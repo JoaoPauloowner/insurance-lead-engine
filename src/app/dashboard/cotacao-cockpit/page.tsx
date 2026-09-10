@@ -138,32 +138,6 @@ export default function CotacaoCockpitPage() {
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16 font-sans">
-      {/* Stitch Design System Badge & Link */}
-      <div className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs">
-        <div className="flex items-center gap-2.5">
-          <Badge variant="blue">STITCH DESIGN SYSTEM</Badge>
-          <span className="text-slate-300 font-semibold text-[11px]">
-            Prime High-Density InsurTech System
-          </span>
-          <span className="text-slate-500 font-mono text-[10px]">
-            (Asset: assets/edbe12754c3a4c419c5e562868743e41)
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Cockpit Sincronizado
-          </span>
-          <a
-            href="https://stitch.withgoogle.com"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[11px] text-blue-400 hover:underline flex items-center gap-1"
-          >
-            Ver no Stitch ↗
-          </a>
-        </div>
-      </div>
 
       {/* Top Telemetry & Ribbon Bar */}
       <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md">

@@ -170,18 +170,18 @@ export default function ConfiguracoesPage() {
       )}
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
-              TENANT SETTINGS
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
+              TENANT ENGINE CONFIG
             </span>
             <span className="text-xs text-slate-400 font-mono">ID: {org.id}</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Configurações & Webhook de Ingestão
           </h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
             Personalize a identidade da sua corretora e conecte fontes de tráfego pago (Meta Ads, Google Ads, formulários externos).
           </p>
         </div>
@@ -190,13 +190,13 @@ export default function ConfiguracoesPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: Tenant Branding Settings */}
         <div className="lg:col-span-6 space-y-6">
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-3 mb-5 border-b border-slate-800/60 pb-4">
+          <div className="glass-panel rounded-2xl p-6 shadow-xl">
+            <div className="flex items-center gap-3 mb-5 border-b border-white/[0.08] pb-4">
               <div className="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-lg">
                 🎨
               </div>
               <div>
-                <h2 className="text-lg font-bold text-slate-100">Identidade Visual da Corretora</h2>
+                <h2 className="text-base font-bold text-white">Identidade Visual da Corretora</h2>
                 <p className="text-xs text-slate-400">White-label personalizado para seu time e clientes</p>
               </div>
             </div>
@@ -300,19 +300,19 @@ export default function ConfiguracoesPage() {
           </div>
 
           {/* Engine Status & Integrations Card */}
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 flex items-center gap-2">
+          <div className="glass-panel rounded-2xl p-6 shadow-xl">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
               <span>🔌</span> Motores & Conectores Ativos
             </h3>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs font-mono">
                     VAPI
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-200">Vapi.ai Voice Agent</div>
+                    <div className="text-xs font-bold text-white">Vapi.ai Voice Agent</div>
                     <div className="text-[10px] text-slate-400">Ligação ativa outbound para Leads HOT (Score ≥ 80)</div>
                   </div>
                 </div>
@@ -322,13 +322,13 @@ export default function ConfiguracoesPage() {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs font-mono">
                     WA
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-200">WhatsApp Conversacional</div>
+                    <div className="text-xs font-bold text-white">WhatsApp Conversacional</div>
                     <div className="text-[10px] text-slate-400">Geração de links E.164 e disparo com templates dinâmicos</div>
                   </div>
                 </div>
@@ -338,13 +338,13 @@ export default function ConfiguracoesPage() {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs font-mono">
                     AI
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-200">Motor de Lead Scoring (GPT-4o / Heurística)</div>
+                    <div className="text-xs font-bold text-white">Motor de Lead Scoring (GPT-4o / Heurística)</div>
                     <div className="text-[10px] text-slate-400">Calcula score de 0 a 100, classifica HOT/WARM/COLD e gera blueprint</div>
                   </div>
                 </div>
@@ -359,13 +359,13 @@ export default function ConfiguracoesPage() {
 
         {/* Right Column: Inbound Webhook Configuration & Test Bench */}
         <div className="lg:col-span-6 space-y-6">
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-3 mb-5 border-b border-slate-800/60 pb-4">
+          <div className="glass-panel rounded-2xl p-6 shadow-xl">
+            <div className="flex items-center gap-3 mb-5 border-b border-white/[0.08] pb-4">
               <div className="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg">
                 ⚡
               </div>
               <div>
-                <h2 className="text-lg font-bold text-slate-100">Webhook de Ingestão Instantânea</h2>
+                <h2 className="text-base font-bold text-white">Webhook de Ingestão Instantânea</h2>
                 <p className="text-xs text-slate-400">Endpoint HTTP para receber leads em tempo real de qualquer fonte</p>
               </div>
             </div>

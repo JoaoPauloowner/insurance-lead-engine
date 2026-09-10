@@ -85,28 +85,28 @@ export default function TemplatesPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="space-y-8 max-w-5xl mx-auto pb-16">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-white/[0.08] pb-5">
         <div>
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
-            <Link href="/dashboard/leads" className="hover:text-slate-200">
+          <div className="flex items-center gap-2 text-xs text-slate-400 mb-2 font-mono">
+            <Link href="/dashboard/leads" className="hover:text-blue-400 transition-colors">
               Dashboard
             </Link>
             <span>/</span>
             <span className="text-slate-200 font-medium">Modelos de Mensagem</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
             Modelos de Mensagens WhatsApp
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Configure templates com variáveis para disparar contatos com 1 clique.
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+            Configure templates conversacionais com interpolação dinâmica de variáveis para envio instantâneo em 1 clique.
           </p>
         </div>
 
         {!isCreating && !editingId && (
           <button
             onClick={handleStartCreate}
-            className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-lg flex items-center gap-2 cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-blue-600/20 border border-blue-400/30 transition-all flex items-center gap-2 cursor-pointer"
           >
             <span>+</span>
             <span>Novo Modelo</span>
@@ -114,30 +114,47 @@ export default function TemplatesPage() {
         )}
       </div>
 
+      {/* Helpful Variables Chip Bar */}
+      <div className="p-3 rounded-xl bg-black/40 border border-white/[0.06] flex items-center gap-2 flex-wrap text-[11px] text-slate-400">
+        <span className="font-mono font-bold text-slate-300">Variáveis disponíveis:</span>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{cliente}`}</code>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{corretora}`}</code>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{corretor}`}</code>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{tipo_seguro}`}</code>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{seguradora}`}</code>
+        <code className="bg-blue-500/15 text-blue-300 px-2 py-0.5 rounded font-mono border border-blue-500/20">{`{dias_vencimento}`}</code>
+      </div>
+
       {(isCreating || editingId) && (
-        <div className="p-6 rounded-2xl bg-slate-900 border border-blue-500/40 shadow-2xl space-y-4">
-          <h2 className="text-xs font-bold text-white uppercase tracking-wider">
-            {isCreating ? 'Novo Modelo' : 'Editar Modelo'}
+        <div className="p-6 rounded-2xl glass-panel border border-blue-500/50 shadow-2xl space-y-4">
+          <h2 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <span>📝</span>
+            <span>{isCreating ? 'Novo Modelo de Mensagem' : 'Editar Modelo'}</span>
           </h2>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">Nome</label>
+              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                Nome de Identificação
+              </label>
               <input
                 type="text"
                 required
                 value={formNome}
                 onChange={(e) => setFormNome(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                placeholder="Ex: Abordagem Inicial Tráfego Pago"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#030712] border border-white/[0.1] text-slate-100 text-xs focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">Texto</label>
+              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                Corpo da Mensagem (suporta emojis e quebra de linha)
+              </label>
               <textarea
                 rows={4}
                 required
                 value={formCorpo}
                 onChange={(e) => setFormCorpo(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#030712] border border-white/[0.1] text-slate-100 text-xs focus:outline-none focus:border-blue-500 transition-colors font-mono leading-relaxed"
               />
             </div>
             <div className="flex justify-end gap-3 pt-2">
@@ -147,16 +164,16 @@ export default function TemplatesPage() {
                   setIsCreating(false);
                   setEditingId(null);
                 }}
-                className="px-4 py-2 rounded-xl border border-slate-800 text-slate-300 text-xs"
+                className="px-4 py-2 rounded-xl border border-white/[0.08] text-slate-300 hover:text-white text-xs transition-colors cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-blue-600/20 cursor-pointer disabled:opacity-50"
               >
-                {saving ? 'Salvando...' : 'Salvar'}
+                {saving ? 'Salvando...' : 'Salvar Modelo'}
               </button>
             </div>
           </form>
@@ -165,26 +182,37 @@ export default function TemplatesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {loading ? (
-          <div className="col-span-2 py-12 text-center text-xs text-slate-400">Carregando modelos...</div>
+          <div className="col-span-2 py-16 text-center text-xs text-slate-400">Carregando modelos...</div>
         ) : (
           templates.map((tpl) => (
             <div
               key={tpl.id}
-              className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between gap-3 shadow-lg"
+              className="glass-card-interactive p-5 rounded-2xl flex flex-col justify-between gap-3 shadow-lg"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="font-bold text-slate-100 text-xs">{tpl.nome}</h3>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => handleStartEdit(tpl)} className="text-slate-400 hover:text-blue-400 text-xs">
+                <div className="flex items-center justify-between gap-2 mb-2 border-b border-white/[0.06] pb-2.5">
+                  <h3 className="font-bold text-white text-xs flex items-center gap-1.5">
+                    <span>💬</span>
+                    <span>{tpl.nome}</span>
+                  </h3>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleStartEdit(tpl)}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-blue-400 hover:bg-white/[0.05] transition-colors cursor-pointer text-xs"
+                      title="Editar"
+                    >
                       ✏️
                     </button>
-                    <button onClick={() => handleDelete(tpl.id)} className="text-slate-400 hover:text-rose-400 text-xs">
+                    <button
+                      onClick={() => handleDelete(tpl.id)}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer text-xs"
+                      title="Excluir"
+                    >
                       🗑️
                     </button>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800/60 whitespace-pre-wrap">
+                <p className="text-xs text-slate-300 leading-relaxed bg-black/40 p-3.5 rounded-xl border border-white/[0.04] whitespace-pre-wrap font-mono">
                   {tpl.corpo}
                 </p>
               </div>
