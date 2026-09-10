@@ -33,6 +33,7 @@ export default function Header({ user, organization }: HeaderProps) {
 
   const navLinks = [
     { href: '/dashboard/leads', label: 'Leads em Tempo Real', icon: '⚡' },
+    { href: '/dashboard/simulador', label: 'Simulador com IA', icon: '🎯' },
     { href: '/dashboard/renovacoes', label: 'Radar de Renovações', icon: '📊' },
     { href: '/dashboard/importar', label: 'Importar Planilha', icon: '📁' },
     { href: '/dashboard/templates', label: 'Modelos de Mensagens', icon: '💬' },
