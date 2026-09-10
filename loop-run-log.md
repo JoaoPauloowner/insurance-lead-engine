@@ -1,4 +1,4 @@
-# Loop Run Log — YOUR_PROJECT
+# Loop Run Log — Insurance Lead Engine
 
 Append one entry per run. Prune entries older than 30 days.
 
@@ -20,3 +20,16 @@ Append one entry per run. Prune entries older than 30 days.
 ## Recent Runs
 
 <!-- Loop appends below this line -->
+```json
+{
+  "run_id": "2026-09-10T16:20:00Z",
+  "pattern": "full-product-build",
+  "duration_s": 360,
+  "items_found": 8,
+  "actions_taken": 8,
+  "escalations": 0,
+  "tokens_estimate": 85000,
+  "outcome": "fix-proposed",
+  "notes": "Full Insurance Lead Engine build completed, Prisma synced, Next.js 16 build passed (code 0), browser E2E flow verified, and code pushed to GitHub."
+}
+```
