@@ -1,0 +1,193 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────────────
+// Organization — tenant raiz
+// ──────────────────────────────────────────────
+model Organization {
+  id          String   @id @default(cuid())
+  nome        String
+  slug        String   @unique
+  logoUrl     String?
+  corPrimaria String?  @default("#2563EB")
+  createdAt   DateTime @default(now())
+
+  users          User[]
+  clientes       Cliente[]
+  apolices       Apolice[]
+  templates      Template[]
+  interacoes     Interacao[]
+  importMappings ImportMapping[]
+  leads          Lead[]
+  leadInteracoes LeadInteracao[]
+}
+
+// ──────────────────────────────────────────────
+// User — corretor / administrador autenticado
+// ──────────────────────────────────────────────
+model User {
+  id             String   @id @default(cuid())
+  organizationId String
+  nome           String
+  email          String   @unique
+  senhaHash      String
+  role           String   @default("admin")
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  interacoes   Interacao[]
+
+  @@index([organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Cliente — segurado / cliente da corretora
+// ──────────────────────────────────────────────
+model Cliente {
+  id             String   @id @default(cuid())
+  organizationId String
+  nome           String
+  telefone       String
+  email          String?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  apolices     Apolice[]
+
+  @@unique([organizationId, telefone])
+  @@index([organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Apolice — apólice da carteira (Radar de Renovação)
+// ──────────────────────────────────────────────
+model Apolice {
+  id              String    @id @default(cuid())
+  organizationId  String
+  clienteId       String
+  seguradora      String
+  tipoSeguro      String
+  numeroApolice   String?
+  dataInicio      DateTime?
+  dataVencimento  DateTime
+  status          String    @default("ativa")
+  createdAt       DateTime  @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  cliente      Cliente      @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  interacoes   Interacao[]
+
+  @@index([organizationId])
+  @@index([organizationId, dataVencimento])
+  @@index([clienteId])
+}
+
+// ──────────────────────────────────────────────
+// Template — modelos de mensagem WhatsApp
+// ──────────────────────────────────────────────
+model Template {
+  id             String   @id @default(cuid())
+  organizationId String
+  nome           String
+  corpo          String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  interacoes   Interacao[]
+
+  @@index([organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Interacao — histórico de disparo WhatsApp wa.me
+// ──────────────────────────────────────────────
+model Interacao {
+  id             String   @id @default(cuid())
+  organizationId String
+  apoliceId      String
+  templateId     String?
+  userId         String
+  dataAcao       DateTime @default(now())
+  status         String   @default("link_aberto")
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  apolice      Apolice      @relation(fields: [apoliceId], references: [id], onDelete: Cascade)
+  template     Template?    @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([apoliceId])
+}
+
+// ──────────────────────────────────────────────
+// ImportMapping — mapeamento de colunas salvo
+// ──────────────────────────────────────────────
+model ImportMapping {
+  id             String   @id @default(cuid())
+  organizationId String
+  nome           String
+  mapeamentoJson String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Lead — Lead de Aquisição (Speed-to-Lead com IA)
+// ──────────────────────────────────────────────
+model Lead {
+  id             String   @id @default(cuid())
+  organizationId String
+  nome           String
+  telefone       String
+  email          String?
+  origem         String   @default("meta_ads") // meta_ads, google_ads, site, csv
+  ramoDesejado   String   @default("Auto")     // Auto, Saude, Vida, Empresarial, etc.
+  score          Int      @default(0)          // 0 a 100
+  prioridade     String   @default("cold")     // hot, warm, cold
+  status         String   @default("novo")     // novo, em_contato, qualificado, desqualificado, convertido
+  canalAtual     String?                       // voz_vapi, whatsapp, sms, corretor
+  resumoIa       String?
+  dadosColetados String?                       // JSON estruturado do Blueprint
+  tentativasVoz  Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization   Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  interacoes     LeadInteracao[]
+
+  @@index([organizationId])
+  @@index([organizationId, score])
+  @@index([organizationId, status])
+}
+
+// ──────────────────────────────────────────────
+// LeadInteracao — Registro de Contato com o Lead (Voz, WA, SMS)
+// ──────────────────────────────────────────────
+model LeadInteracao {
+  id             String   @id @default(cuid())
+  organizationId String
+  leadId         String
+  canal          String   // voz_vapi, whatsapp_aria, sms, humano
+  direcao        String   @default("outbound")
+  status         String?  // completada, sem_resposta, ocupado, erro
+  conteudo       String?  // transcrição ou mensagem enviada
+  audioUrl       String?
+  duracaoSeg     Int?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  lead         Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([leadId])
+}
