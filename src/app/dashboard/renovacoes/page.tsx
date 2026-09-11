@@ -14,7 +14,7 @@ export default function RenovacoesPage() {
   const [statusFilter, setStatusFilter] = useState('todos');
   const [selectedApolice, setSelectedApolice] = useState<any | null>(null);
   const [userOrg, setUserOrg] = useState<{ userName: string; orgName: string }>({
-    userName: 'Corretor Sênior',
+    userName: 'Corretor Responsável',
     orgName: 'Prime Corretora',
   });
 
@@ -44,7 +44,7 @@ export default function RenovacoesPage() {
       if (meRes.ok) {
         const meData = await meRes.json();
         setUserOrg({
-          userName: meData.user?.nome || 'Corretor Sênior',
+          userName: meData.user?.nome || 'Corretor Responsável',
           orgName: meData.organization?.nome || 'Prime Corretora',
         });
       }
@@ -67,153 +67,143 @@ export default function RenovacoesPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-16">
-      {/* Telemetry Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
+    <div className="space-y-5 max-w-7xl mx-auto pb-16">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/80 pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              PORTFOLIO RADAR ACTIVE
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              Monitoramento Ativo
             </span>
-            <span className="text-xs text-slate-400 font-mono">Taxa de Retenção: 91.4%</span>
+            <span className="text-xs text-zinc-400">Retenção de carteira: 91.4%</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
-            Radar Preditivo de Renovações
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            Radar de Renovações
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-            Monitoramento de apólices com algoritmo de priorização temporal, prevenção de churn e disparo em 1 clique de propostas de renovação via WhatsApp.
+          <p className="text-xs text-zinc-400 mt-0.5 max-w-2xl">
+            Acompanhamento temporal de apólices, priorização por prazo de vigência e acionamento preventivo de clientes.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <Link
             href="/dashboard/importar"
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-blue-600/20 border border-blue-400/30 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-sm transition-colors flex items-center gap-2 cursor-pointer active-press"
           >
-            <span>📥</span>
-            <span>Importar Planilha de Apólices</span>
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <span>Importar Planilha</span>
           </Link>
         </div>
       </div>
 
-      {/* KPI Cards (Shopify Polaris + Stripe Benchmark) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* KPI Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
         {/* Urgentes */}
         <div
           onClick={() => setStatusFilter(statusFilter === 'urgente' ? 'todos' : 'urgente')}
-          className={`glass-card-interactive p-4 sm:p-5 rounded-2xl cursor-pointer ${
-            statusFilter === 'urgente'
-              ? 'ring-2 ring-rose-500/80 bg-rose-950/20 border-rose-500/50'
-              : 'hover:border-rose-500/40'
+          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
+            statusFilter === 'urgente' ? 'border-rose-500/60 bg-rose-950/10' : ''
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-              🚨 Urgentes (&lt; 15 dias)
+            <span className="text-xs font-medium text-rose-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+              Crítico (&lt; 15 dias)
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-mono font-semibold">
-              CRÍTICO
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 font-medium">
+              Ação Imediata
             </span>
           </div>
-          <p className="text-3xl font-black text-rose-400 mt-2 tabular-nums">{stats.urgentes}</p>
-          <div className="flex items-center justify-between mt-1">
-            <span className="text-[11px] text-slate-500">Contato Imediato</span>
-            <span className="text-[10px] text-rose-400 font-medium">Filtrar urgentes</span>
-          </div>
+          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.urgentes}</p>
+          <p className="text-[11px] text-zinc-400 mt-1">Vencimento próximo</p>
         </div>
 
         {/* 15-30 dias */}
         <div
           onClick={() => setStatusFilter(statusFilter === 'proximo' ? 'todos' : 'proximo')}
-          className={`glass-card-interactive p-4 sm:p-5 rounded-2xl cursor-pointer ${
-            statusFilter === 'proximo'
-              ? 'ring-2 ring-amber-500/80 bg-amber-950/20 border-amber-500/50'
-              : 'hover:border-amber-500/40'
+          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
+            statusFilter === 'proximo' ? 'border-amber-500/60 bg-amber-950/10' : ''
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
-              ⏳ 15 a 30 dias
+            <span className="text-xs font-medium text-amber-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              Janela de Cotação (15-30d)
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-mono font-semibold">
-              MULTICÁLCULO
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-medium">
+              Multicálculo
             </span>
           </div>
-          <p className="text-3xl font-black text-amber-300 mt-2 tabular-nums">{stats.proximos}</p>
-          <div className="flex items-center justify-between mt-1">
-            <span className="text-[11px] text-slate-500">Janela Ideal de Cotação</span>
-            <span className="text-[10px] text-amber-400 font-medium">Filtrar janela</span>
-          </div>
+          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.proximos}</p>
+          <p className="text-[11px] text-zinc-400 mt-1">Em negociação</p>
         </div>
 
         {/* Em Dia */}
         <div
           onClick={() => setStatusFilter(statusFilter === 'em_dia' ? 'todos' : 'em_dia')}
-          className={`glass-card-interactive p-4 sm:p-5 rounded-2xl cursor-pointer ${
-            statusFilter === 'em_dia'
-              ? 'ring-2 ring-emerald-500/80 bg-emerald-950/20 border-emerald-500/50'
-              : 'hover:border-emerald-500/40'
+          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
+            statusFilter === 'em_dia' ? 'border-emerald-500/60 bg-emerald-950/10' : ''
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-              🛡️ Em dia (&gt; 30 dias)
+            <span className="text-xs font-medium text-emerald-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              Vigentes (&gt; 30 dias)
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-semibold">
-              GARANTIDO
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium">
+              Garantido
             </span>
           </div>
-          <p className="text-3xl font-black text-emerald-400 mt-2 tabular-nums">{stats.emDia}</p>
-          <div className="flex items-center justify-between mt-1">
-            <span className="text-[11px] text-slate-500">Apólices Cobertas</span>
-            <span className="text-[10px] text-emerald-400 font-medium">Filtrar em dia</span>
-          </div>
+          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.emDia}</p>
+          <p className="text-[11px] text-zinc-400 mt-1">Cobertura regular</p>
         </div>
 
         {/* Vencidos */}
         <div
           onClick={() => setStatusFilter(statusFilter === 'vencido' ? 'todos' : 'vencido')}
-          className={`glass-card-interactive p-4 sm:p-5 rounded-2xl cursor-pointer ${
-            statusFilter === 'vencido'
-              ? 'ring-2 ring-slate-500/80 bg-slate-900 border-slate-600'
-              : 'hover:border-slate-700'
+          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
+            statusFilter === 'vencido' ? 'border-zinc-500/60 bg-zinc-900/30' : ''
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-              ⚠️ Vencidos
+            <span className="text-xs font-medium text-zinc-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
+              Expiradas
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono font-semibold">
-              RESGATE
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 font-medium">
+              Resgate
             </span>
           </div>
-          <p className="text-3xl font-black text-slate-400 mt-2 tabular-nums">{stats.vencidos}</p>
-          <div className="flex items-center justify-between mt-1">
-            <span className="text-[11px] text-slate-500">Risco de Churn</span>
-            <span className="text-[10px] text-slate-400 font-medium">Filtrar vencidos</span>
-          </div>
+          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.vencidos}</p>
+          <p className="text-[11px] text-zinc-400 mt-1">Risco de cancelamento</p>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-panel rounded-2xl p-3 sm:p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-3">
         <div className="w-full md:w-96 relative">
           <input
             type="text"
-            placeholder="Buscar por cliente, seguradora ou apólice..."
+            placeholder="Filtrar por cliente, seguradora ou apólice..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#030712] border border-white/[0.08] text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
+            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#090a0f] border border-zinc-800 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-colors"
           />
-          <span className="absolute left-3 top-2.5 text-slate-500 text-xs">🔍</span>
+          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-zinc-500 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-200 text-xs cursor-pointer"
+              className="absolute right-2.5 top-2 text-zinc-400 hover:text-zinc-200 text-xs cursor-pointer"
             >
-              ✕
+              Limpar
             </button>
           )}
         </div>
@@ -221,22 +211,22 @@ export default function RenovacoesPage() {
         <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
           {[
             { id: 'todos', label: 'Todas', count: apolices.length },
-            { id: 'urgente', label: '🚨 Urgentes', count: stats.urgentes },
-            { id: 'proximo', label: '⏳ 15-30 dias', count: stats.proximos },
-            { id: 'em_dia', label: '🛡️ Em dia', count: stats.emDia },
-            { id: 'vencido', label: '⚠️ Vencidas', count: stats.vencidos },
+            { id: 'urgente', label: 'Crítico (&lt; 15d)', count: stats.urgentes },
+            { id: 'proximo', label: '15-30 dias', count: stats.proximos },
+            { id: 'em_dia', label: 'Em dia', count: stats.emDia },
+            { id: 'vencido', label: 'Expiradas', count: stats.vencidos },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setStatusFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 active-press ${
                 statusFilter === tab.id
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30 border border-blue-400/40'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.05] border border-transparent'
+                  ? 'bg-zinc-800 text-white border border-zinc-700'
+                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 border border-transparent'
               }`}
             >
               <span>{tab.label}</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-black/30 font-mono">
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/40 font-mono text-zinc-300">
                 {tab.count}
               </span>
             </button>
@@ -244,37 +234,42 @@ export default function RenovacoesPage() {
         </div>
       </div>
 
-      {/* High-Density Tabular Display (AWS Cloudscape Benchmark) */}
-      <div className="glass-panel rounded-2xl overflow-hidden shadow-2xl">
+      {/* Tabular Display */}
+      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl overflow-hidden shadow-sm">
         {loading ? (
-          <div className="py-24 text-center">
-            <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <div className="text-xs font-semibold text-slate-300">Carregando carteira de apólices...</div>
-            <div className="text-[11px] text-slate-500 mt-1">Calculando janelas de renovação</div>
+          <div className="py-20 text-center">
+            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+            <div className="text-xs font-medium text-zinc-400">Carregando carteira de apólices...</div>
           </div>
         ) : apolices.length === 0 ? (
-          <div className="py-20 text-center px-4">
-            <div className="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mx-auto mb-3">
-              📋
+          <div className="py-16 text-center px-4">
+            <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 flex items-center justify-center mx-auto mb-3">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
             </div>
-            <h3 className="text-sm font-bold text-white">Nenhuma apólice encontrada</h3>
-            <p className="text-xs text-slate-400 mt-1 max-w-md mx-auto">
-              Importe sua base de clientes via planilha Excel/CSV ou converta leads fechados no painel de Leads para alimentar o radar.
+            <h3 className="text-sm font-semibold text-white">Nenhuma apólice registrada</h3>
+            <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
+              Utilize o botão &quot;Importar Planilha&quot; para subir sua base de clientes ou converta leads fechados no painel de Leads.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-white/[0.08] bg-black/40 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                  <th className="py-3.5 px-4 sm:px-6">Cliente & Segurado</th>
-                  <th className="py-3.5 px-4">Seguro & Seguradora</th>
-                  <th className="py-3.5 px-4">Data de Vencimento</th>
-                  <th className="py-3.5 px-4">Status do Relacionamento</th>
-                  <th className="py-3.5 px-4 text-right">Ações Rápidas</th>
+                <tr className="border-b border-zinc-800 bg-[#090a0f]/60 text-xs font-medium text-zinc-400">
+                  <th className="py-3 px-4 sm:px-6">Segurado</th>
+                  <th className="py-3 px-4">Seguro & Seguradora</th>
+                  <th className="py-3 px-4">Vencimento da Vigência</th>
+                  <th className="py-3 px-4">Último Contato</th>
+                  <th className="py-3 px-4 text-right">Ações</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/[0.04]">
+              <tbody className="divide-y divide-zinc-800/60">
                 {apolices.map((apolice) => {
                   const urgency = calculateUrgency(apolice.dataVencimento);
                   const phoneInfo = normalizePhoneBR(apolice.cliente?.telefone);
@@ -288,77 +283,77 @@ export default function RenovacoesPage() {
                     .toUpperCase();
 
                   return (
-                    <tr key={apolice.id} className="hover:bg-white/[0.02] transition-colors group">
-                      {/* Cliente Column */}
-                      <td className="py-3.5 px-4 sm:px-6">
+                    <tr key={apolice.id} className="hover:bg-zinc-800/30 transition-colors group">
+                      {/* Cliente */}
+                      <td className="py-3 px-4 sm:px-6">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-slate-800 text-slate-200 flex items-center justify-center font-bold text-xs shadow">
+                          <div className="w-7 h-7 rounded-md bg-zinc-800 border border-zinc-700 text-zinc-200 flex items-center justify-center font-bold text-xs shrink-0">
                             {initials}
                           </div>
                           <div>
-                            <div className="font-bold text-slate-100 group-hover:text-blue-400 transition-colors">
+                            <div className="font-medium text-zinc-100 group-hover:text-blue-400 transition-colors">
                               {apolice.cliente?.nome}
                             </div>
-                            <div className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5 font-mono">
-                              <span>📞 {phoneInfo.formatted}</span>
+                            <div className="text-[11px] text-zinc-400 mt-0.5 font-mono">
+                              {phoneInfo.formatted}
                             </div>
                           </div>
                         </div>
                       </td>
 
                       {/* Seguro & Seguradora */}
-                      <td className="py-3.5 px-4">
-                        <div className="font-semibold text-slate-200">{apolice.tipoSeguro}</div>
-                        <div className="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5 font-mono">
-                          <span className="text-blue-400 font-bold">{apolice.seguradora}</span>
+                      <td className="py-3 px-4">
+                        <div className="font-medium text-zinc-200">{apolice.tipoSeguro}</div>
+                        <div className="text-[11px] text-zinc-400 mt-0.5 flex items-center gap-1.5 font-mono">
+                          <span className="text-blue-400 font-medium">{apolice.seguradora}</span>
                           {apolice.numeroApolice && <span>• {apolice.numeroApolice}</span>}
                         </div>
                       </td>
 
                       {/* Vencimento */}
-                      <td className="py-3.5 px-4">
-                        <div className="font-bold text-slate-100 tabular-nums font-mono">
+                      <td className="py-3 px-4">
+                        <div className="font-medium text-zinc-200 tabular-nums font-mono">
                           {formatDateBR(apolice.dataVencimento)}
                         </div>
                         <div className="mt-1">
-                          <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold border ${urgency.badgeClass}`}>
+                          <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium border ${urgency.badgeClass}`}>
                             {urgency.label}
                           </span>
                         </div>
                       </td>
 
                       {/* Último Contato */}
-                      <td className="py-3.5 px-4 text-slate-400">
+                      <td className="py-3 px-4 text-zinc-400">
                         {lastInteraction ? (
                           <div>
-                            <span className="text-emerald-400 font-semibold text-[11px] flex items-center gap-1">
-                              <span>✓</span> WhatsApp enviado
+                            <span className="text-emerald-400 font-medium text-[11px] flex items-center gap-1">
+                              <span>✓</span> Contatado por WhatsApp
                             </span>
-                            <div className="text-[10px] text-slate-500 mt-0.5 font-mono">
+                            <div className="text-[10px] text-zinc-500 mt-0.5 font-mono">
                               {formatDateBR(lastInteraction.createdAt)} por {lastInteraction.user?.nome?.split(' ')[0]}
                             </div>
                           </div>
                         ) : (
-                          <span className="text-[11px] text-slate-500 italic">Sem contato registrado</span>
+                          <span className="text-[11px] text-zinc-500 italic">Sem contato recente</span>
                         )}
                       </td>
 
                       {/* Ação Imediata */}
-                      <td className="py-3.5 px-4 text-right space-x-2">
+                      <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                         <Link
                           href="/dashboard/cotacao-cockpit"
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-[11px] font-semibold transition-all cursor-pointer shadow-sm"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs font-medium transition-colors cursor-pointer active-press"
                           title="Recalcular no Cockpit"
                         >
-                          📈 Cockpit
+                          Cotação
                         </Link>
 
                         <button
                           onClick={() => setSelectedApolice(apolice)}
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 text-[11px] font-semibold transition-all cursor-pointer shadow-sm"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-xs font-medium transition-colors cursor-pointer active-press"
                           title="Enviar proposta de renovação via WhatsApp"
                         >
-                          💬 WhatsApp
+                          WhatsApp
                         </button>
                       </td>
                     </tr>
@@ -383,4 +378,3 @@ export default function RenovacoesPage() {
     </div>
   );
 }
-

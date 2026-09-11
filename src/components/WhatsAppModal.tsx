@@ -13,7 +13,7 @@ interface Template {
 interface WhatsAppModalProps {
   isOpen: boolean;
   onClose: () => void;
-  targetData: any | null; // pode ser uma Apólice ou um Lead
+  targetData: any | null;
   isLead?: boolean;
   templates: Template[];
   brokerName: string;
@@ -105,45 +105,53 @@ export default function WhatsAppModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-        <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">
-              💬
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 transition-opacity">
+      <div className="bg-[#10121a] border border-zinc-800 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden flex flex-col">
+        <div className="px-5 py-3.5 border-b border-zinc-800 flex items-center justify-between bg-[#090a0f]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-100">Disparar WhatsApp (wa.me)</h3>
-              <p className="text-xs text-slate-400">
-                Sem custos de API da Meta — abre direto no seu WhatsApp
+              <h3 className="text-xs font-semibold text-white">Disparo Direto WhatsApp</h3>
+              <p className="text-[11px] text-zinc-500">
+                Abertura nativa via protocolo wa.me com número validado
               </p>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800">
-            ✕
+          <button
+            onClick={onClose}
+            className="text-zinc-500 hover:text-zinc-200 p-1 rounded-md hover:bg-zinc-800 transition-colors"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           </button>
         </div>
 
-        <div className="px-6 py-2.5 bg-slate-950/40 border-b border-slate-800/80 flex items-center justify-between text-xs">
+        <div className="px-5 py-2 bg-[#090a0f]/60 border-b border-zinc-800 flex items-center justify-between text-xs">
           <div>
-            <span className="text-slate-400">Destinatário: </span>
-            <span className="font-semibold text-slate-200">{targetData.cliente?.nome || targetData.nome}</span>
-            <span className="text-slate-400 ml-2">({phoneInfo.formatted})</span>
+            <span className="text-zinc-500">Destinatário: </span>
+            <span className="font-medium text-zinc-200">{targetData.cliente?.nome || targetData.nome}</span>
+            <span className="text-zinc-500 ml-1.5 font-mono">({phoneInfo.formatted})</span>
           </div>
-          <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-medium border border-blue-500/20">
+          <span className="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 text-[10px] border border-zinc-700">
             {targetData.tipoSeguro || targetData.ramoDesejado}
           </span>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-5 space-y-3.5">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-              Selecione o Modelo de Mensagem:
+            <label className="block text-xs font-medium text-zinc-300 mb-1">
+              Modelo pré-definido
             </label>
             <select
               value={selectedTemplateId}
               onChange={handleTemplateChange}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-blue-500"
+              className="w-full px-3 py-2 rounded-lg bg-[#090a0f] border border-zinc-800 text-zinc-200 text-xs focus:outline-none focus:border-zinc-600 transition-colors"
             >
               {templates.map((t) => (
                 <option key={t.id} value={t.id}>
@@ -154,34 +162,34 @@ export default function WhatsAppModal({
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                Texto da Mensagem:
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-medium text-zinc-300">
+                Mensagem a enviar
               </label>
-              <span className="text-[11px] text-slate-400">Edite antes de enviar se desejar</span>
+              <span className="text-[11px] text-zinc-500">Você pode ajustar o texto antes de abrir</span>
             </div>
             <textarea
               rows={5}
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs leading-relaxed focus:outline-none focus:border-emerald-500"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 text-zinc-200 text-xs leading-relaxed focus:outline-none focus:border-zinc-600 transition-colors"
             />
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-slate-950/80 border-t border-slate-800 flex items-center justify-end gap-3">
+        <div className="px-5 py-3 bg-[#090a0f] border-t border-zinc-800 flex items-center justify-end gap-2">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl border border-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-800"
+            className="px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300 text-xs font-medium hover:bg-zinc-800 transition-colors active-press"
           >
             Cancelar
           </button>
           <button
             onClick={handleOpenWhatsApp}
             disabled={sending}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-lg shadow-emerald-600/25 flex items-center gap-2"
+            className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition-colors shadow-sm active-press flex items-center gap-1.5"
           >
-            <span>{sending ? 'Abrindo...' : 'Abrir no WhatsApp Web'}</span>
+            <span>{sending ? 'Abrindo...' : 'Abrir WhatsApp Web'}</span>
           </button>
         </div>
       </div>

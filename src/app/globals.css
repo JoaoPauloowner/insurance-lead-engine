@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #030712;
-  --foreground: #f9fafb;
-  --surface-1: #0b0f19;
-  --surface-2: #111827;
-  --surface-border: rgba(255, 255, 255, 0.08);
-  --surface-border-hover: rgba(59, 130, 246, 0.4);
-  --accent-primary: #2563eb;
+  --background: #090a0f;
+  --foreground: #f4f4f5;
+  --surface-base: #090a0f;
+  --surface-panel: #10121a;
+  --surface-card: #151824;
+  --surface-border: rgba(255, 255, 255, 0.07);
+  --surface-border-subtle: rgba(255, 255, 255, 0.04);
+  --surface-border-hover: rgba(255, 255, 255, 0.14);
+  --accent-primary: #3b82f6;
   --accent-success: #10b981;
   --accent-danger: #f43f5e;
   --accent-warning: #f59e0b;
@@ -17,13 +19,8 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
-  background-image: 
-    radial-gradient(at 50% 0%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,47 +35,53 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Glassmorphism surfaces */
-.glass-panel {
-  background: rgba(11, 15, 25, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--surface-border);
+/* Emil Kowalski tactile physics micro-interactions */
+.active-press {
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+.active-press:active {
+  transform: scale(0.975);
 }
 
-.glass-card-interactive {
-  background: rgba(11, 15, 25, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--surface-border);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.spring-drawer {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card-interactive:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.08);
+/* Crisp financial surfaces */
+.surface-card {
+  background-color: #10121a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.surface-card-hover {
+  background-color: #10121a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.surface-card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background-color: #131620;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #090a0f;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #27272a;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #3f3f46;
 }

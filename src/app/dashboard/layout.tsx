@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#090a0f] text-zinc-100 flex flex-col">
       <Header
         user={{
           nome: session.nome,

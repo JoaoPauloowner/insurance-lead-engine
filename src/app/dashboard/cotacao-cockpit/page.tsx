@@ -111,7 +111,6 @@ export default function CotacaoCockpitPage() {
     setEmissionSuccess(null);
 
     try {
-      // Dispara o lead correspondente com status 'em_contato'
       const res = await fetch('/api/leads/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -122,7 +121,7 @@ export default function CotacaoCockpitPage() {
           origem: `Cockpit de Cotação - ${currentInsurer.name}`,
           ramoDesejado: 'Auto',
           urgencia: 'alta',
-          notas: `Emissão automática de proposta vinculada: ${currentInsurer.name} (${currentInsurer.total} à vista). FIPE: 100%, RCF: ${currentInsurer.rcf}, Franquia: ${currentInsurer.franquia}.`,
+          notas: `Emissão de proposta vinculada: ${currentInsurer.name} (${currentInsurer.total} à vista). FIPE: 100%, RCF: ${currentInsurer.rcf}, Franquia: ${currentInsurer.franquia}.`,
         }),
       });
 
@@ -137,49 +136,52 @@ export default function CotacaoCockpitPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-16 font-sans">
-
-      {/* Top Telemetry & Ribbon Bar */}
-      <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md">
+    <div className="space-y-5 max-w-7xl mx-auto pb-16">
+      {/* Top Header & Telemetry Bar */}
+      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-3.5 shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex flex-col">
-              <span className="text-xs font-extrabold tracking-wider text-slate-200 uppercase flex items-center gap-2">
-                <span>⚡</span> Cockpit Profissional de Cotação & Underwriting
-              </span>
-              <span className="text-[10px] text-slate-400">
-                Multicálculo e Análise de Risco em Tempo Real
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-white tracking-tight">
+                  Cockpit de Cotação & Subscrição
+                </span>
+                <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                  Pré-aprovado
+                </span>
+              </div>
+              <span className="text-[11px] text-zinc-400">
+                Multicálculo técnico e análise de risco veicular
               </span>
             </div>
 
-            <div className="flex items-center gap-1.5 ml-2 border-l border-slate-800 pl-3">
+            <div className="flex items-center gap-1.5 ml-2 border-l border-zinc-800 pl-3">
               <button
                 type="button"
                 onClick={copyPropostaId}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-950 border border-slate-700/80 text-[11px] font-mono text-emerald-400 hover:border-emerald-500 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#090a0f] border border-zinc-700/80 text-[11px] font-mono text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors cursor-pointer active-press"
                 title="Copiar ID da Proposta"
               >
                 <span>#COT-2026-8941</span>
-                <span className="text-[10px] text-slate-400">{copied ? '✓' : '📋'}</span>
+                <span className="text-[10px] text-zinc-400">{copied ? 'Copiado' : 'Copiar'}</span>
               </button>
-              <Badge variant="emerald">PRÉ-APROVADO</Badge>
             </div>
           </div>
 
           {/* Telemetry Metrics */}
-          <div className="flex items-center gap-2 flex-wrap text-[11px]">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SUSEP Gateway: <strong className="text-emerald-400">Online (42ms)</strong></span>
+          <div className="flex items-center gap-2 flex-wrap text-xs">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#090a0f] border border-zinc-800 text-zinc-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>SUSEP Gateway: <strong className="text-emerald-400 font-medium">Online</strong></span>
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300">
-              <span>FIPE: <strong className="text-cyan-400">Jan/2025 v2.4</strong></span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#090a0f] border border-zinc-800 text-zinc-300">
+              <span>Tabela FIPE: <strong className="text-zinc-100 font-medium">Jan/2025</strong></span>
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300">
-              <span>Sinistralidade: <strong className="text-emerald-400">12% (Baixo)</strong></span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#090a0f] border border-zinc-800 text-zinc-300">
+              <span>Sinistralidade: <strong className="text-emerald-400 font-medium">12% (Baixa)</strong></span>
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300">
-              <span>Score Serasa: <strong className="text-slate-100 font-mono">920/1000</strong></span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#090a0f] border border-zinc-800 text-zinc-300">
+              <span>Serasa Score: <strong className="text-white font-mono">920</strong></span>
             </div>
           </div>
         </div>
@@ -187,9 +189,11 @@ export default function CotacaoCockpitPage() {
 
       {/* Success Notification */}
       {emissionSuccess && (
-        <div className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/50 text-xs text-emerald-200 flex items-center justify-between gap-3 shadow-lg">
+        <div className="p-3.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-200 flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-2">
-            <span className="text-base font-bold">✓</span>
+            <svg className="w-4 h-4 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
             <span>{emissionSuccess}</span>
           </div>
           <Button
@@ -197,296 +201,289 @@ export default function CotacaoCockpitPage() {
             variant="emerald"
             onClick={() => (window.location.href = '/dashboard/leads')}
           >
-            Acompanhar no Painel de Leads →
+            Acompanhar na esteira de leads
           </Button>
         </div>
       )}
 
       {/* 3-Column Analytical Workspace */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* LEFT COLUMN: Underwriting & Driver Risk (3 cols) */}
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-3.5">
           {/* Card 1: Perfil do Proponente */}
-          <Card>
-            <CardHeader className="p-3.5 pb-2">
-              <CardTitle className="text-xs flex items-center justify-between">
-                <span>👤 Perfil do Proponente</span>
-                <Badge variant="blue">Classe 07</Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-3.5 pt-0 space-y-2 text-xs">
+          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+              <span className="text-xs font-semibold text-white">Perfil do Proponente</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-medium border border-blue-500/20">
+                Classe 07
+              </span>
+            </div>
+            <div className="space-y-2 text-xs">
               <div>
-                <span className="text-[10px] uppercase text-slate-400 block font-semibold">Nome Completo</span>
-                <span className="text-slate-100 font-medium">Rodrigo Silveira Mendonça</span>
+                <span className="text-[11px] text-zinc-500 block">Nome completo</span>
+                <span className="text-zinc-200 font-medium">Rodrigo Silveira Mendonça</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[10px] uppercase text-slate-400 block font-semibold">CPF</span>
-                  <span className="text-slate-200 font-mono text-[11px]">***.482.918-**</span>
+                  <span className="text-[11px] text-zinc-500 block">CPF</span>
+                  <span className="text-zinc-300 font-mono text-[11px]">***.482.918-**</span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-slate-400 block font-semibold">Idade / Est. Civil</span>
-                  <span className="text-slate-200 text-[11px]">38 anos, Casado</span>
+                  <span className="text-[11px] text-zinc-500 block">Idade / Perfil</span>
+                  <span className="text-zinc-300 text-[11px]">38 anos, Casado</span>
                 </div>
               </div>
               <div>
-                <span className="text-[10px] uppercase text-slate-400 block font-semibold">CEP Pernoite</span>
-                <span className="text-slate-200 text-[11px]">04578-000 (Brooklin, SP)</span>
-                <span className="block text-[10px] text-emerald-400">Zona A (Baixa incidência de roubo)</span>
+                <span className="text-[11px] text-zinc-500 block">CEP Pernoite</span>
+                <span className="text-zinc-300 text-[11px]">04578-000 (Brooklin, SP)</span>
+                <span className="block text-[11px] text-emerald-400 mt-0.5">Zona A — Baixo índice de furto</span>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Card 2: Veículo & Dispositivos */}
-          <Card>
-            <CardHeader className="p-3.5 pb-2">
-              <CardTitle className="text-xs flex items-center justify-between">
-                <span>🚗 Veículo & Telemetria</span>
-                <Badge variant="emerald">-15% Rastreador</Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-3.5 pt-0 space-y-2 text-xs">
+          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+              <span className="text-xs font-semibold text-white">Veículo & Telemetria</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium border border-emerald-500/20">
+                Rastreador Ativo
+              </span>
+            </div>
+            <div className="space-y-2 text-xs">
               <div>
-                <span className="text-[10px] uppercase text-slate-400 block font-semibold">Modelo / Ano</span>
-                <span className="text-slate-100 font-medium">Jeep Compass Longitude 1.3</span>
-                <span className="text-slate-400 text-[11px] block">2024 / 2024 Turbo Flex</span>
+                <span className="text-[11px] text-zinc-500 block">Modelo / Ano</span>
+                <span className="text-zinc-200 font-medium">Jeep Compass Longitude 1.3</span>
+                <span className="text-zinc-400 text-[11px] block">2024 Turbo Flex</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[10px] uppercase text-slate-400 block font-semibold">FIPE</span>
-                  <span className="text-emerald-400 font-mono font-bold text-[12px]">R$ 168.450</span>
+                  <span className="text-[11px] text-zinc-500 block">Valor FIPE</span>
+                  <span className="text-white font-mono font-bold text-xs">R$ 168.450</span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-slate-400 block font-semibold">Placa</span>
-                  <span className="text-slate-200 font-mono text-[11px]">BRA2E19</span>
+                  <span className="text-[11px] text-zinc-500 block">Placa</span>
+                  <span className="text-zinc-300 font-mono text-xs">BRA2E19</span>
                 </div>
               </div>
-              <div className="pt-1 border-t border-slate-800 text-[11px] text-slate-400">
-                <span>Garagem automática fechada (residência e trabalho)</span>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Card 3: Coberturas Rápidas */}
-          <Card>
-            <CardHeader className="p-3.5 pb-2">
-              <CardTitle className="text-xs">🛡️ Coberturas Contratadas</CardTitle>
-            </CardHeader>
-            <CardContent className="p-3.5 pt-0 space-y-2.5">
+          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm space-y-3">
+            <div className="pb-2 border-b border-zinc-800">
+              <span className="text-xs font-semibold text-white">Cláusulas de Cobertura</span>
+            </div>
+            <div className="space-y-2.5">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-300">100% Tabela FIPE (Casco)</span>
+                <span className="text-zinc-300">100% FIPE (Casco)</span>
                 <Switch checked={coberturaFipe} onCheckedChange={setCoberturaFipe} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-300">RCF-V Terceiros R$ 500k</span>
+                <span className="text-zinc-300">RCF-V Terceiros R$ 500k</span>
                 <Switch checked={rcfTerceiros} onCheckedChange={setRcfTerceiros} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-300">Carro Reserva 30d SUV</span>
+                <span className="text-zinc-300">Carro Reserva 30d SUV</span>
                 <Switch checked={carroReserva30d} onCheckedChange={setCarroReserva30d} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-300">Vidros VIP & Faróis</span>
+                <span className="text-zinc-300">Vidros VIP & Faróis</span>
                 <Switch checked={vidrosVip} onCheckedChange={setVidrosVip} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-300">Guincho 24h Ilimitado</span>
+                <span className="text-zinc-300">Guincho 24h Ilimitado</span>
                 <Switch checked={guinchoIlimitado} onCheckedChange={setGuinchoIlimitado} />
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* CENTER COLUMN: Multi-Insurer Rate Matrix (6 cols) */}
-        <div className="lg:col-span-6 space-y-4">
-          <Card className="border-slate-800">
-            <CardHeader className="p-4 pb-3 flex flex-row items-center justify-between">
+        <div className="lg:col-span-6 space-y-3.5">
+          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl overflow-hidden shadow-sm">
+            <div className="p-3.5 border-b border-zinc-800 flex items-center justify-between">
               <div>
-                <CardTitle className="text-sm">📊 Matriz Comparativa Multicálculo</CardTitle>
-                <CardDescription className="text-xs">
-                  5 seguradoras homologadas com cotação em tempo real
-                </CardDescription>
+                <h3 className="text-xs font-semibold text-white">Matriz Comparativa Multicálculo</h3>
+                <p className="text-[11px] text-zinc-400">5 seguradoras homologadas com cotação em tempo real</p>
               </div>
-              <Badge variant="cyan">Circular SUSEP 621</Badge>
-            </CardHeader>
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Seguradora</TableHead>
-                    <TableHead>Franquia</TableHead>
-                    <TableHead>Assistência</TableHead>
-                    <TableHead className="text-right">Mensalidade</TableHead>
-                    <TableHead className="text-right">À Vista</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
+              <span className="text-[11px] font-mono text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">
+                Circular SUSEP 621
+              </span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr className="border-b border-zinc-800 bg-[#090a0f]/60 text-xs font-medium text-zinc-400">
+                    <th className="py-2.5 px-3">Seguradora</th>
+                    <th className="py-2.5 px-3">Franquia</th>
+                    <th className="py-2.5 px-3">Assistência</th>
+                    <th className="py-2.5 px-3 text-right">Mensalidade</th>
+                    <th className="py-2.5 px-3 text-right">À Vista</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-800/60">
                   {insurers.map((item) => {
                     const isSelected = selectedInsurer === item.name;
                     return (
-                      <TableRow
+                      <tr
                         key={item.id}
                         onClick={() => setSelectedInsurer(item.name)}
                         className={`cursor-pointer transition-colors ${
                           isSelected
-                            ? 'bg-blue-950/40 border-l-2 border-l-blue-500 hover:bg-blue-950/50'
-                            : 'hover:bg-slate-800/40'
+                            ? 'bg-blue-950/20 border-l-2 border-l-blue-500'
+                            : 'hover:bg-zinc-800/30'
                         }`}
                       >
-                        <TableCell>
+                        <td className="py-3 px-3">
                           <div className="flex flex-col">
                             <div className="flex items-center gap-1.5">
-                              <span className="font-bold text-slate-100">{item.name}</span>
+                              <span className="font-semibold text-zinc-100">{item.name}</span>
                               {item.isBest && (
-                                <Badge variant="emerald" className="text-[9px] px-1.5 py-0">
-                                  ⭐ RECOMENDADA
-                                </Badge>
+                                <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                                  Recomendada
+                                </span>
                               )}
                             </div>
-                            <span className="text-[10px] text-slate-400">SUSEP {item.susep} • Match {item.match}</span>
+                            <span className="text-[10px] text-zinc-500 font-mono">
+                              SUSEP {item.susep} • Match {item.match}
+                            </span>
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <span className="font-mono text-slate-200 text-[11px] block">{item.franquia}</span>
-                          <span className="text-[10px] text-slate-400">{item.franquiaTipo}</span>
-                        </TableCell>
-                        <TableCell className="text-[11px] text-slate-300 max-w-[140px] truncate">
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className="font-mono text-zinc-200 text-[11px] block">{item.franquia}</span>
+                          <span className="text-[10px] text-zinc-500">{item.franquiaTipo}</span>
+                        </td>
+                        <td className="py-3 px-3 text-[11px] text-zinc-400 max-w-[130px] truncate">
                           {item.assistencia}
-                        </TableCell>
-                        <TableCell className="text-right font-mono font-bold text-slate-100 text-[12px]">
+                        </td>
+                        <td className="py-3 px-3 text-right font-mono font-semibold text-zinc-200 text-xs">
                           12x {item.mensal}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <span className="font-mono font-bold text-emerald-400 text-[12px] block">
+                        </td>
+                        <td className="py-3 px-3 text-right">
+                          <span className="font-mono font-bold text-white text-xs block">
                             {item.total}
                           </span>
-                          <span className="text-[9px] text-emerald-300 font-semibold">{item.descontoPix}</span>
-                        </TableCell>
-                      </TableRow>
+                          <span className="text-[10px] text-emerald-400">{item.descontoPix}</span>
+                        </td>
+                      </tr>
                     );
                   })}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-
-          {/* SLA & Speed-to-Lead Callout */}
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center justify-between text-xs text-slate-300">
-            <div className="flex items-center gap-2">
-              <span className="text-emerald-400 text-base">🛡️</span>
-              <span>
-                Cotações válidas por <strong>48 horas</strong>. Transmissão 100% digital com certificação ICP-Brasil.
-              </span>
+                </tbody>
+              </table>
             </div>
-            <Badge variant="secondary">SLA: 15 min</Badge>
+          </div>
+
+          {/* Validated SLA Callout */}
+          <div className="p-3 rounded-lg bg-[#10121a] border border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-emerald-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>Validade de proposta: 48 horas com certificação digital ICP-Brasil.</span>
+            </div>
+            <span className="font-mono text-zinc-300">SLA: 15 min</span>
           </div>
         </div>
 
         {/* RIGHT COLUMN: Proposal Summary & Binding (3 cols) */}
-        <div className="lg:col-span-3 space-y-4">
-          <Card className="border-2 border-emerald-500/40 bg-gradient-to-b from-slate-900 to-slate-950">
-            <CardHeader className="p-4 pb-2 border-b border-slate-800">
+        <div className="lg:col-span-3 space-y-3.5">
+          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm space-y-3.5">
+            <div className="pb-3 border-b border-zinc-800">
               <div className="flex items-center justify-between">
-                <Badge variant="emerald">PROPOSTA SELECIONADA</Badge>
-                <span className="text-xs text-slate-400 font-mono">{currentInsurer.match} Match</span>
+                <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Opção Selecionada</span>
+                <span className="text-xs text-zinc-400 font-mono">{currentInsurer.match} compatibilidade</span>
               </div>
-              <CardTitle className="text-base text-white mt-1">{currentInsurer.name}</CardTitle>
-              <CardDescription className="text-xs text-emerald-400">
-                Plano Compreensivo Premium
-              </CardDescription>
-            </CardHeader>
+              <h4 className="text-base font-bold text-white mt-1">{currentInsurer.name}</h4>
+              <p className="text-xs text-zinc-400">Plano Compreensivo Completo</p>
+            </div>
 
-            <CardContent className="p-4 space-y-3.5 text-xs">
-              {/* Financial Breakdown */}
-              <div className="space-y-1.5 pt-1 text-[11px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Prêmio Líquido:</span>
-                  <span className="font-mono text-slate-200">R$ 2.540,15</span>
-                </div>
-                <div className="flex justify-between text-slate-400">
-                  <span>IOF (7,38%):</span>
-                  <span className="font-mono text-slate-200">R$ 187,46</span>
-                </div>
-                <div className="flex justify-between text-slate-400">
-                  <span>Desconto Comercial:</span>
-                  <span className="font-mono text-emerald-400">- R$ 200,00</span>
-                </div>
-                <div className="pt-2 border-t border-slate-800 flex justify-between items-baseline">
-                  <span className="font-bold text-slate-100">Total à Vista (PIX):</span>
-                  <span className="font-mono font-extrabold text-emerald-400 text-sm">
-                    {currentInsurer.total}
-                  </span>
-                </div>
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>Parcelado:</span>
-                  <span className="font-mono text-slate-200">12x de {currentInsurer.mensal} s/ juros</span>
-                </div>
+            {/* Financial Breakdown */}
+            <div className="space-y-1.5 text-xs">
+              <div className="flex justify-between text-zinc-400">
+                <span>Prêmio Líquido:</span>
+                <span className="font-mono text-zinc-200">R$ 2.540,15</span>
               </div>
-
-              {/* Compliance Checklist */}
-              <div className="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 space-y-1 text-[10px] text-slate-300">
-                <div className="flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span>
-                  <span>CPF Regular na Receita Federal</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span>
-                  <span>Vistoria Prévia Dispensada</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span>
-                  <span>Aceitação Automática SUSEP 100%</span>
-                </div>
+              <div className="flex justify-between text-zinc-400">
+                <span>IOF (7,38%):</span>
+                <span className="font-mono text-zinc-200">R$ 187,46</span>
               </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-2 pt-1">
-                <Button
-                  variant="emerald"
-                  size="default"
-                  className="w-full"
-                  disabled={submitting}
-                  onClick={handleEmitirProposta}
-                >
-                  {submitting ? (
-                    <>
-                      <div className="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
-                      Transmitindo...
-                    </>
-                  ) : (
-                    <>
-                      <span>⚡</span> Emitir Proposta & Transmitir
-                    </>
-                  )}
-                </Button>
-
-                <Button
-                  variant="blue"
-                  size="default"
-                  className="w-full"
-                  onClick={() => {
-                    const msg = encodeURIComponent(
-                      `Olá Rodrigo! Segue a cotação aprovada da ${currentInsurer.name}: 12x de ${currentInsurer.mensal} ou ${currentInsurer.total} à vista. Deseja que eu emita a apólice?`
-                    );
-                    window.open(`https://wa.me/5511984521920?text=${msg}`, '_blank');
-                  }}
-                >
-                  <span>💬</span> Enviar Proposta via WhatsApp
-                </Button>
-
-                <Button
-                  variant="outline"
-                  size="default"
-                  className="w-full"
-                  onClick={() => {
-                    alert('Disparo automático do agente de voz Vapi.ai acionado para Rodrigo Silveira Mendonça!');
-                  }}
-                >
-                  <span>🎙️</span> Fechamento Assistido por Voz (Vapi)
-                </Button>
+              <div className="flex justify-between text-zinc-400">
+                <span>Desconto Comercial:</span>
+                <span className="font-mono text-emerald-400">- R$ 200,00</span>
               </div>
-            </CardContent>
-          </Card>
+              <div className="pt-2 border-t border-zinc-800 flex justify-between items-baseline">
+                <span className="font-semibold text-zinc-200">Total à Vista (PIX):</span>
+                <span className="font-mono font-bold text-white text-base">
+                  {currentInsurer.total}
+                </span>
+              </div>
+              <div className="flex justify-between text-[11px] text-zinc-400">
+                <span>Parcelamento:</span>
+                <span className="font-mono text-zinc-300">12x de {currentInsurer.mensal}</span>
+              </div>
+            </div>
+
+            {/* Checklist */}
+            <div className="p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 space-y-1.5 text-[11px] text-zinc-400">
+              <div className="flex items-center gap-2 text-emerald-400">
+                <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>CPF Regular na Receita Federal</span>
+              </div>
+              <div className="flex items-center gap-2 text-emerald-400">
+                <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Vistoria Prévia Dispensada</span>
+              </div>
+              <div className="flex items-center gap-2 text-emerald-400">
+                <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Aceitação Automática SUSEP 100%</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-2 pt-1">
+              <Button
+                variant="emerald"
+                size="default"
+                className="w-full active-press font-semibold"
+                disabled={submitting}
+                onClick={handleEmitirProposta}
+              >
+                {submitting ? 'Transmitindo...' : 'Transmitir Proposta'}
+              </Button>
+
+              <Button
+                variant="blue"
+                size="default"
+                className="w-full active-press"
+                onClick={() => {
+                  const msg = encodeURIComponent(
+                    `Olá Rodrigo! Segue a cotação aprovada da ${currentInsurer.name}: 12x de ${currentInsurer.mensal} ou ${currentInsurer.total} à vista. Deseja que eu emita a apólice?`
+                  );
+                  window.open(`https://wa.me/5511984521920?text=${msg}`, '_blank');
+                }}
+              >
+                Enviar por WhatsApp
+              </Button>
+
+              <Button
+                variant="outline"
+                size="default"
+                className="w-full active-press text-zinc-300 border-zinc-700"
+                onClick={() => {
+                  alert('Agendamento de chamada assistida para Rodrigo Silveira Mendonça.');
+                }}
+              >
+                Atendimento por Voz
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

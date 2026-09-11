@@ -85,8 +85,8 @@ export function scoreLeadHeuristic(input: LeadScoringInput): LeadScoringResult {
     recommendedAction = 'SMS_NURTURE';
   }
 
-  const resumo = `${priority === 'HOT' ? '🔥 Lead de Alta Prioridade' : priority === 'WARM' ? '⚡ Lead Padrão' : '❄️ Lead Frio'}: Interessado em seguro ${input.ramoDesejado || 'Geral'}. ${
-    hasUrgentKeyword ? 'Declarou urgência na cotação.' : 'Em fase de pesquisa.'
+  const resumo = `${priority === 'HOT' ? 'Alta Prioridade' : priority === 'WARM' ? 'Prioridade Média' : 'Nutrição'}: Interesse em seguro ${input.ramoDesejado || 'Geral'}. ${
+    hasUrgentKeyword ? 'Declarou urgência na contratação.' : 'Em fase de pesquisa e comparação.'
   }`;
 
   const blueprint = {
