@@ -616,6 +616,18 @@ export default function LeadsPage() {
                         className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap"
                         onClick={(e) => e.stopPropagation()}
                       >
+                        <Link
+                          href={`/dashboard/leads/${lead.id}`}
+                          title="Abrir Dossier & Submission Packet"
+                          className="px-2.5 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs font-medium transition-colors cursor-pointer inline-flex items-center gap-1"
+                        >
+                          <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                          </svg>
+                          Dossier
+                        </Link>
+
                         <button
                           onClick={() => setSelectedLeadForCall(lead)}
                           title="Iniciar chamada assistida por IA"
@@ -837,6 +849,17 @@ export default function LeadsPage() {
                     <span>WhatsApp</span>
                   </button>
                 </div>
+
+                <Link
+                  href={`/dashboard/leads/${inspectingLead.id}`}
+                  className="w-full p-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center shadow-sm active-press"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                  <span>Abrir Dossier & Submission Packet Completo</span>
+                </Link>
 
                 <Link
                   href="/dashboard/cotacao-cockpit"

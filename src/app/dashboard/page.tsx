@@ -562,6 +562,20 @@ export default function ExecutiveCockpitPage() {
                         Fast Route
                       </Button>
 
+                      <Link href={`/dashboard/leads/${lead.id}`}>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-8 text-xs border-zinc-700 bg-zinc-900 text-zinc-200 hover:text-white hover:bg-zinc-800 flex items-center gap-1"
+                        >
+                          <svg className="w-3.5 h-3.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                          </svg>
+                          Review File
+                        </Button>
+                      </Link>
+
                       <Button
                         size="sm"
                         variant="ghost"
