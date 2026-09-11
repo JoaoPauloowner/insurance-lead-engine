@@ -1,19 +1,48 @@
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'rounded-xl border border-slate-800/80 bg-slate-900/70 text-slate-100 shadow-md backdrop-blur-md',
-      className
-    )}
-    {...props}
-  />
-));
+const cardVariants = cva(
+  'rounded-xl text-zinc-100 transition-colors',
+  {
+    variants: {
+      variant: {
+        // 1. Padrão: Painel de superfície padrão com borda discreta
+        default:
+          'border border-zinc-800/80 bg-[#10121a] shadow-xs',
+        // 2. Analítico: Alta densidade de dados e tabelas, sem desfoque pesado, borda nítida de 1px
+        analytical:
+          'border border-zinc-800 bg-[#0e1017] shadow-none',
+        // 3. Interativo: Superfície tátil para cards selecionáveis com resposta :active (Emil Kowalski)
+        interactive:
+          'border border-zinc-800/80 bg-[#10121a] hover:bg-[#131622] hover:border-zinc-700/80 cursor-pointer active-press shadow-xs',
+        // 4. Crítico / Urgência Operacional: Contorno sutil com advertência de SLA ou vencimento iminente
+        critical:
+          'border border-red-500/30 bg-[#140f12] shadow-xs shadow-red-950/20',
+        // 5. Destacado / Cockpit Primário
+        elevated:
+          'border border-zinc-700/70 bg-[#131622] shadow-sm',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
+
+export interface CardProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardVariants> {}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, variant, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(cardVariants({ variant }), className)}
+      {...props}
+    />
+  )
+);
 Card.displayName = 'Card';
 
 const CardHeader = React.forwardRef<
@@ -35,7 +64,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      'text-sm sm:text-base font-bold text-slate-100 leading-tight tracking-tight',
+      'text-sm sm:text-base font-semibold text-zinc-100 leading-tight tracking-tight',
       className
     )}
     {...props}
@@ -49,7 +78,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-xs text-slate-400', className)}
+    className={cn('text-xs text-zinc-400', className)}
     {...props}
   />
 ));
@@ -75,4 +104,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = 'CardFooter';
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };

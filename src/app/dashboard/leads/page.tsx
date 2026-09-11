@@ -5,6 +5,8 @@ import { normalizePhoneBR } from '@/lib/phone';
 import WhatsAppModal from '@/components/WhatsAppModal';
 import VapiCallModal from '@/components/VapiCallModal';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 
 export default function LeadsPage() {
   const [leads, setLeads] = useState<any[]>([]);
@@ -131,17 +133,22 @@ export default function LeadsPage() {
     cold: leads.filter((l) => l.prioridade === 'cold').length,
   };
 
+  const totalLeads = leads.length;
+  const pctHot = totalLeads > 0 ? Math.round((stats.hot / totalLeads) * 100) : 0;
+  const pctWarm = totalLeads > 0 ? Math.round((stats.warm / totalLeads) * 100) : 0;
+  const pctCold = totalLeads > 0 ? Math.max(0, 100 - (pctHot + pctWarm)) : 0;
+
   return (
     <div className="space-y-5 max-w-7xl mx-auto pb-16">
       {/* Header & Primary Action */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/80 pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              Recepção em Tempo Real
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-950/40 text-emerald-300 border border-emerald-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Recepção em tempo real
             </span>
-            <span className="text-xs text-zinc-400">Tempo de resposta: &lt; 45s</span>
+            <span className="text-xs text-zinc-400 font-mono">Meta de contato: &lt; 45s</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
             Esteira de Ingestão de Leads
@@ -171,98 +178,149 @@ export default function LeadsPage() {
               <line x1="12" y1="5" x2="12" y2="19" />
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
-            <span>{simulating ? 'Simulando...' : 'Simular Entrada de Lead'}</span>
+            <span>{simulating ? 'Simulando...' : 'Simular entrada de lead'}</span>
           </button>
         </div>
       </div>
 
-      {/* Metric Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-        {/* Total Leads */}
-        <div
-          onClick={() => setPriorityFilter('todos')}
-          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
-            priorityFilter === 'todos'
-              ? 'border-blue-500/60 bg-blue-950/10'
-              : ''
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-zinc-400">Total Recebido</span>
-            <span className="text-[11px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300 font-medium">
-              Geral
-            </span>
+      {/* DISPOSITIVO ESTRUTURAL: Esteira de Intake Velocity & Funil Speed-to-Lead */}
+      <Card variant="analytical" className="p-4 sm:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-800/80">
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-zinc-100">
+                Velocidade da esteira (Speed-to-Lead)
+              </h2>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/40 text-emerald-300 border border-emerald-500/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                SLA médio: 38s
+              </span>
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-0.5">
+              Funil de triagem por propensão de fechamento e canal prioritário de atendimento.
+            </p>
           </div>
-          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.total}</p>
-          <p className="text-[11px] text-zinc-400 mt-1">Esteira unificada</p>
+          {priorityFilter !== 'todos' && (
+            <button
+              onClick={() => setPriorityFilter('todos')}
+              className="text-xs text-blue-400 hover:text-blue-300 transition-colors self-start sm:self-auto cursor-pointer"
+            >
+              Exibir todos os leads ({stats.total})
+            </button>
+          )}
         </div>
 
-        {/* Hot Leads */}
-        <div
-          onClick={() => setPriorityFilter(priorityFilter === 'hot' ? 'todos' : 'hot')}
-          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
-            priorityFilter === 'hot'
-              ? 'border-rose-500/60 bg-rose-950/10'
-              : ''
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-rose-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-              Alta Prioridade (80+)
-            </span>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 font-medium">
-              Voz AI
-            </span>
+        {/* Barra Proporcional do Funil de Pontuação */}
+        <div className="mt-4 mb-4">
+          <div className="w-full h-2.5 rounded-full bg-zinc-900 overflow-hidden flex shadow-inner">
+            {totalLeads > 0 ? (
+              <>
+                <div
+                  style={{ width: `${pctHot}%` }}
+                  className="bg-red-500 transition-all duration-300"
+                  title={`Alta prioridade (Score 80+): ${stats.hot} (${pctHot}%)`}
+                />
+                <div
+                  style={{ width: `${pctWarm}%` }}
+                  className="bg-amber-500 transition-all duration-300"
+                  title={`Média prioridade (Score 50-79): ${stats.warm} (${pctWarm}%)`}
+                />
+                <div
+                  style={{ width: `${pctCold}%` }}
+                  className="bg-zinc-600 transition-all duration-300"
+                  title={`Nutrição (< 50): ${stats.cold} (${pctCold}%)`}
+                />
+              </>
+            ) : (
+              <div className="w-full bg-zinc-800" />
+            )}
           </div>
-          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.hot}</p>
-          <p className="text-[11px] text-zinc-400 mt-1">Contato prioritário</p>
         </div>
 
-        {/* Warm Leads */}
-        <div
-          onClick={() => setPriorityFilter(priorityFilter === 'warm' ? 'todos' : 'warm')}
-          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
-            priorityFilter === 'warm'
-              ? 'border-amber-500/60 bg-amber-950/10'
-              : ''
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-amber-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-              Média Prioridade (50-79)
-            </span>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-medium">
-              WhatsApp
-            </span>
+        {/* Faixas Integradas de Priorização Operacional */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          {/* Alta Prioridade */}
+          <div
+            onClick={() => setPriorityFilter(priorityFilter === 'hot' ? 'todos' : 'hot')}
+            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+              priorityFilter === 'hot'
+                ? 'border-red-500/60 bg-red-950/20'
+                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+            }`}
+          >
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-red-400 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-500" />
+                Alta prioridade (80+)
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-red-500/10 text-red-300 border border-red-500/20">
+                {pctHot}%
+              </span>
+            </div>
+            <div className="mt-2 flex items-baseline justify-between">
+              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+                {stats.hot}
+              </span>
+              <span className="text-[11px] text-zinc-400">Voz AI / Imediato</span>
+            </div>
+            <p className="text-[10px] text-zinc-500 mt-1">Contato prioritário com ligação assistida</p>
           </div>
-          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.warm}</p>
-          <p className="text-[11px] text-zinc-400 mt-1">Fluxo conversacional</p>
-        </div>
 
-        {/* Cold Leads */}
-        <div
-          onClick={() => setPriorityFilter(priorityFilter === 'cold' ? 'todos' : 'cold')}
-          className={`surface-card-hover p-4 rounded-xl cursor-pointer active-press ${
-            priorityFilter === 'cold'
-              ? 'border-zinc-500/60 bg-zinc-900/30'
-              : ''
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-zinc-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
-              Baixa Prioridade (&lt; 50)
-            </span>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 font-medium">
-              Nutrição
-            </span>
+          {/* Média Prioridade */}
+          <div
+            onClick={() => setPriorityFilter(priorityFilter === 'warm' ? 'todos' : 'warm')}
+            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+              priorityFilter === 'warm'
+                ? 'border-amber-500/60 bg-amber-950/20'
+                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+            }`}
+          >
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-amber-300 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-500" />
+                Média prioridade (50-79)
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                {pctWarm}%
+              </span>
+            </div>
+            <div className="mt-2 flex items-baseline justify-between">
+              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+                {stats.warm}
+              </span>
+              <span className="text-[11px] text-zinc-400">WhatsApp ativo</span>
+            </div>
+            <p className="text-[10px] text-zinc-500 mt-1">Fluxo conversacional assistido</p>
           </div>
-          <p className="text-2xl font-bold text-white mt-1.5 tabular-nums">{stats.cold}</p>
-          <p className="text-[11px] text-zinc-400 mt-1">Régua automatizada</p>
+
+          {/* Baixa Prioridade / Nutrição */}
+          <div
+            onClick={() => setPriorityFilter(priorityFilter === 'cold' ? 'todos' : 'cold')}
+            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+              priorityFilter === 'cold'
+                ? 'border-zinc-600 bg-zinc-800/40'
+                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+            }`}
+          >
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-zinc-400 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-zinc-500" />
+                Nutrição (&lt; 50)
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
+                {pctCold}%
+              </span>
+            </div>
+            <div className="mt-2 flex items-baseline justify-between">
+              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+                {stats.cold}
+              </span>
+              <span className="text-[11px] text-zinc-400">Régua passiva</span>
+            </div>
+            <p className="text-[10px] text-zinc-500 mt-1">Aquecimento por régua automática</p>
+          </div>
         </div>
-      </div>
+      </Card>
 
       {/* Filter and Search Bar */}
       <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-3">
@@ -339,8 +397,8 @@ export default function LeadsPage() {
               <thead>
                 <tr className="border-b border-zinc-800 bg-[#090a0f]/60 text-xs font-medium text-zinc-400">
                   <th className="py-3 px-4 sm:px-6">Proponente</th>
-                  <th className="py-3 px-4">Interesse & Canal</th>
-                  <th className="py-3 px-4">Pontuação & Diagnóstico</th>
+                  <th className="py-3 px-4">Interesse & canal</th>
+                  <th className="py-3 px-4">Pontuação & diagnóstico</th>
                   <th className="py-3 px-4">Status</th>
                   <th className="py-3 px-4 text-right">Ações</th>
                 </tr>
@@ -389,31 +447,28 @@ export default function LeadsPage() {
                       {/* Interesse & Origem */}
                       <td className="py-3 px-4">
                         <div className="font-medium text-zinc-200">{lead.ramoDesejado}</div>
-                        <div className="text-[11px] text-zinc-400 mt-0.5 flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-zinc-500" />
-                          <span>{lead.origem}</span>
+                        <div className="mt-1">
+                          <Badge variant="channel">{lead.origem}</Badge>
                         </div>
                       </td>
 
-                      {/* Pontuação */}
+                      {/* Pontuação com Badges Semânticos */}
                       <td className="py-3 px-4 max-w-sm">
-                        <div className="flex items-center gap-2">
-                          <div className="px-2 py-0.5 rounded text-[11px] font-mono font-medium border border-zinc-700 bg-zinc-800 text-zinc-200 tabular-nums">
-                            {lead.score}/100
-                          </div>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <Badge variant="score">{lead.score}/100</Badge>
 
                           {isHot ? (
-                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
-                              Alta
-                            </span>
+                            <Badge variant="criticalUrgent" dotColor="bg-red-500">
+                              Alta prioridade
+                            </Badge>
                           ) : isWarm ? (
-                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                              Média
-                            </span>
+                            <Badge variant="warningWindow" dotColor="bg-amber-500">
+                              Média prioridade
+                            </Badge>
                           ) : (
-                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-zinc-800 text-zinc-400 border border-zinc-700">
+                            <Badge variant="secondary">
                               Nutrição
-                            </span>
+                            </Badge>
                           )}
                         </div>
 
@@ -548,7 +603,7 @@ export default function LeadsPage() {
               <div className="p-4 rounded-lg bg-[#090a0f] border border-zinc-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-zinc-300">
-                    Diagnóstico da Análise Técnica
+                    Diagnóstico da análise técnica
                   </span>
                   <span className="text-[11px] text-zinc-500">Qualificação automática</span>
                 </div>
@@ -566,7 +621,7 @@ export default function LeadsPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 rounded-lg bg-[#090a0f] border border-zinc-800">
                   <span className="text-[11px] font-medium text-zinc-500 block mb-1">
-                    Ramo Pretendido
+                    Ramo pretendido
                   </span>
                   <span className="text-xs font-semibold text-zinc-200">
                     {inspectingLead.ramoDesejado}
@@ -575,7 +630,7 @@ export default function LeadsPage() {
 
                 <div className="p-3 rounded-lg bg-[#090a0f] border border-zinc-800">
                   <span className="text-[11px] font-medium text-zinc-500 block mb-1">
-                    Origem da Ingestão
+                    Origem da ingestão
                   </span>
                   <span className="text-xs font-semibold text-zinc-200">
                     {inspectingLead.origem}
@@ -587,7 +642,7 @@ export default function LeadsPage() {
               {inspectingLead.notas && (
                 <div className="p-3 rounded-lg bg-[#090a0f] border border-zinc-800">
                   <span className="text-[11px] font-medium text-zinc-500 block mb-1">
-                    Histórico & Parâmetros do Proponente
+                    Histórico & parâmetros do proponente
                   </span>
                   <p className="text-xs text-zinc-300 whitespace-pre-wrap leading-relaxed font-sans">
                     {inspectingLead.notas}
@@ -598,7 +653,7 @@ export default function LeadsPage() {
               {/* Fast Forward Links */}
               <div className="border-t border-zinc-800 pt-4 space-y-2.5">
                 <span className="text-xs font-medium text-zinc-400 block">
-                  Ações Operacionais
+                  Ações operacionais
                 </span>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -630,7 +685,7 @@ export default function LeadsPage() {
                   <svg className="w-3.5 h-3.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  <span>Abrir Cockpit de Cotação</span>
+                  <span>Abrir cockpit de cotação</span>
                 </Link>
 
                 {inspectingLead.status !== 'convertido' && (
@@ -639,7 +694,7 @@ export default function LeadsPage() {
                     disabled={convertingId === inspectingLead.id}
                     className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active-press"
                   >
-                    <span>Converter em Apólice no Radar</span>
+                    <span>Converter em apólice no radar</span>
                   </button>
                 )}
               </div>
@@ -648,7 +703,7 @@ export default function LeadsPage() {
             {/* Drawer Footer */}
             <div className="border-t border-zinc-800 pt-4 mt-6 text-center">
               <span className="text-[11px] text-zinc-500">
-                Operação Segura • {userOrg.orgName}
+                Operação segura • {userOrg.orgName}
               </span>
             </div>
           </div>

@@ -5,15 +5,24 @@
   --background: #090a0f;
   --foreground: #f4f4f5;
   --surface-base: #090a0f;
-  --surface-panel: #10121a;
-  --surface-card: #151824;
+  --surface-panel: #0e1017;
+  --surface-card: #131620;
+  --surface-card-hover: #181c2b;
   --surface-border: rgba(255, 255, 255, 0.07);
   --surface-border-subtle: rgba(255, 255, 255, 0.04);
   --surface-border-hover: rgba(255, 255, 255, 0.14);
-  --accent-primary: #3b82f6;
-  --accent-success: #10b981;
-  --accent-danger: #f43f5e;
-  --accent-warning: #f59e0b;
+
+  /* Paleta InsurTech com identidade de domínio: Cobalto Institucional, Rubi de Urgência, Conhaque de Negociação e Jade de Cobertura */
+  --accent-primary: #2563eb;
+  --accent-primary-subtle: rgba(37, 99, 235, 0.12);
+  --accent-success: #059669;
+  --accent-success-subtle: rgba(5, 150, 105, 0.12);
+  --accent-danger: #dc2626;
+  --accent-danger-subtle: rgba(220, 38, 38, 0.12);
+  --accent-warning: #d97706;
+  --accent-warning-subtle: rgba(217, 119, 6, 0.12);
+  --accent-neutral: #71717a;
+  --accent-neutral-subtle: rgba(113, 113, 122, 0.12);
 }
 
 body {

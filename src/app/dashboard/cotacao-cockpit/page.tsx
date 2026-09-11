@@ -391,7 +391,7 @@ export default function CotacaoCockpitPage() {
           <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm space-y-3.5">
             <div className="pb-3 border-b border-zinc-800">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Opção Selecionada</span>
+                <span className="text-xs font-medium text-zinc-400">Opção selecionada</span>
                 <span className="text-xs text-zinc-400 font-mono">{currentInsurer.match} compatibilidade</span>
               </div>
               <h4 className="text-base font-bold text-white mt-1">{currentInsurer.name}</h4>
