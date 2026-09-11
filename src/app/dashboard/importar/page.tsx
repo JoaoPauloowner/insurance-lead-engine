@@ -123,7 +123,7 @@ export default function ImportarPage() {
             </div>
             <button
               onClick={() => router.push('/dashboard/renovacoes')}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-xs transition-all shadow-md cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-emerald-950 font-black text-xs transition-all shadow-md cursor-pointer"
             >
               Ver Radar de Renovações →
             </button>

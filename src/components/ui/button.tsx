@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link:
           'text-blue-400 underline-offset-4 hover:underline',
         emerald:
-          'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20 hover:bg-emerald-400 hover:shadow-emerald-500/30',
+          'bg-emerald-500 text-emerald-950 font-bold shadow-md shadow-emerald-500/20 hover:bg-emerald-400 hover:shadow-emerald-500/30',
         blue:
           'bg-blue-600 text-white font-bold shadow-md shadow-blue-600/20 hover:bg-blue-500',
       },

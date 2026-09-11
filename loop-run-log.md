@@ -45,5 +45,16 @@ Append one entry per run. Prune entries older than 30 days.
   "tokens_estimate": 45000,
   "outcome": "fix-proposed",
   "notes": "Completed full Apex InsurTech frontend redesign across all routes (Linear dark mode + Stripe typography/cards/drawers + AWS Cloudscape density + Shopify Polaris KPI clarity). Purged 100% of internal Stitch strings and banners. Next.js 16 build passed with code 0 (22/22 routes). All authenticated routes verified returning 200 OK."
+```json
+{
+  "run_id": "2026-09-10T21:08:00Z",
+  "pattern": "design-engineering-skills-integration",
+  "duration_s": 180,
+  "items_found": 6,
+  "actions_taken": 4,
+  "escalations": 0,
+  "tokens_estimate": 35000,
+  "outcome": "fix-proposed",
+  "notes": "Installed Impeccable (engine + 61 rules), Taste Skill (design-taste-frontend), and 12 Emil Kowalski animation skills into .agents/skills. Ran impeccable detect src, resolved 4 gray-on-color contrast issues in buttons and badges, verified Next.js 16 build passing with code 0."
 }
 ```

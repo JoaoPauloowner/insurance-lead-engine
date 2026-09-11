@@ -96,7 +96,7 @@ export default function SimuladorPage() {
             <div>
               <div className="text-sm font-bold text-emerald-300 flex items-center gap-2">
                 Lead Ingerido com Sucesso no Lead Engine!
-                <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500 text-slate-950 font-extrabold">
+                <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500 text-emerald-950 font-extrabold">
                   SCORE {leadResult.lead?.score || 100} — HOT
                 </span>
               </div>
@@ -323,7 +323,7 @@ export default function SimuladorPage() {
 
           {/* Card 1: Porto Seguro (Featured / Best Value) */}
           <div className="relative bg-gradient-to-b from-[#0b0f19] to-[#030712] border-2 border-emerald-500/50 rounded-2xl p-6 shadow-2xl backdrop-blur-md overflow-hidden">
-            <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-wider shadow">
+            <div className="absolute top-0 right-0 bg-emerald-500 text-emerald-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-wider shadow">
               ⭐ Mais Recomendada pela IA (98% Match)
             </div>
 
