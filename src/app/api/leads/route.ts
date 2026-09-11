@@ -8,6 +8,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get('search') || '';
     const priority = searchParams.get('priority') || 'todos';
+    const lob = searchParams.get('lob') || 'all';
 
     const where: any = {
       organizationId: session.organizationId,
@@ -17,11 +18,17 @@ export async function GET(req: Request) {
       where.prioridade = priority.toLowerCase();
     }
 
+    if (lob !== 'all') {
+      where.lob = lob;
+    }
+
     if (search.trim()) {
       where.OR = [
         { nome: { contains: search.trim() } },
+        { empresa: { contains: search.trim() } },
         { telefone: { contains: search.trim() } },
         { email: { contains: search.trim() } },
+        { lob: { contains: search.trim() } },
         { ramoDesejado: { contains: search.trim() } },
         { origem: { contains: search.trim() } },
       ];

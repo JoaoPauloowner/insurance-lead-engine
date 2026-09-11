@@ -159,6 +159,16 @@ model Lead {
   resumoIa       String?
   dadosColetados String?                       // JSON estruturado do Blueprint
   tentativasVoz  Int      @default(0)
+  
+  // Campos Comerciais / Underwriting Enterprise (LeadEngine Pro)
+  empresa         String?                       // Razão Social / Insured Company
+  premioEstimado  Float    @default(0)          // Prêmio estimado ($10k - $250k+)
+  lob             String   @default("Fleet Auto") // Fleet Auto, Cyber & Tech, Inland Marine, General Liability
+  carrierAppetite Float    @default(0)          // Score de Apetite (0-100%)
+  targetCarrier   String?                       // Chubb, Progressive, Travelers, Liberty Mutual
+  riskTags        String?                       // JSON array: ["DOT Tier A", "SOC2 Type II", "FIPE Matched", "OSHA Clear"]
+  slaExpiresAt    DateTime?                     // SLA limite para primeiro contato
+  
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
@@ -168,6 +178,7 @@ model Lead {
   @@index([organizationId])
   @@index([organizationId, score])
   @@index([organizationId, status])
+  @@index([organizationId, lob])
 }
 
 // ──────────────────────────────────────────────
