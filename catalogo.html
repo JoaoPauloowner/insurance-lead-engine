@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Telas & Engenharia Reversa — Insurance Lead Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --surface-panel: #0e1017;
+      --surface-card: #131620;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --accent-primary: #2563eb;
+      --accent-danger: #dc2626;
+      --accent-warning: #d97706;
+      --accent-success: #059669;
+      --accent-neutral: #71717a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #f4f4f5;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      padding: 2.5rem 1.5rem 6rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(37, 99, 235, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      margin-bottom: 0.75rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    p.lead {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      max-width: 850px;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-desc {
+      font-size: 0.825rem;
+      color: #71717a;
+      margin-bottom: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .card-analytical {
+      background: var(--surface-panel);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+
+    .card-interactive {
+      cursor: pointer;
+    }
+
+    .card-interactive:active {
+      transform: scale(0.98);
+    }
+
+    .card-interactive:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-critical {
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      background: rgba(220, 38, 38, 0.06);
+    }
+
+    .screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .screen-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .screen-route {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: #71717a;
+    }
+
+    .screen-desc {
+      font-size: 0.8rem;
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .screen-file {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: #52525b;
+      margin-bottom: 1rem;
+      word-break: break-all;
+    }
+
+    .btn-action {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      background: #27272a;
+      color: #f4f4f5;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .btn-action:hover {
+      background: #3f3f46;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .badge-critical {
+      background: rgba(220, 38, 38, 0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      font-weight: 600;
+    }
+
+    .badge-warning {
+      background: rgba(217, 119, 6, 0.2);
+      color: #fcd34d;
+      border: 1px solid rgba(217, 119, 6, 0.4);
+    }
+
+    .badge-secured {
+      background: rgba(5, 150, 105, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(5, 150, 105, 0.4);
+    }
+
+    .badge-expired {
+      background: rgba(113, 113, 122, 0.2);
+      color: #a1a1aa;
+      border: 1px solid rgba(113, 113, 122, 0.4);
+    }
+
+    .badge-channel {
+      background: rgba(255, 255, 255, 0.05);
+      color: #a1a1aa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+    }
+
+    .badge-score {
+      background: #27272a;
+      color: #f4f4f5;
+      border: 1px solid #3f3f46;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+
+    /* Timeline Bar */
+    .timeline-container {
+      width: 100%;
+      height: 10px;
+      border-radius: 9999px;
+      background: #18181b;
+      display: flex;
+      overflow: hidden;
+      margin: 1rem 0;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .timeline-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .bg-red { background: var(--accent-danger); }
+    .bg-amber { background: var(--accent-warning); }
+    .bg-emerald { background: var(--accent-success); }
+    .bg-zinc { background: #52525b; }
+
+    /* Swatches */
+    .swatch-color {
+      height: 48px;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 0.35rem;
+      accent-color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="tag-top">
+        <span class="dot" style="background: #3b82f6;"></span>
+        Engenharia Reversa • Living Styleguide & Arquitetura Visual
+      </div>
+      <h1>Insurance Lead Engine — Catálogo Completo</h1>
+      <p class="lead">
+        Visão detalhada de todas as 8 telas, componentes atômicos, paleta de domínio, dispositivos temporais e modais operacionais desacoplados para inspeção e testes isolados.
+      </p>
+    </div>
+
+    <!-- SEÇÃO 1: DIRETÓRIO DAS 8 TELAS -->
+    <section>
+      <div class="section-title">
+        <span class="dot" style="background: #3b82f6;"></span>
+        1. Diretório de Telas do Sistema (Rotas Isoladas)
+      </div>
+      <p class="section-desc">
+        Acesse cada tela individualmente com o servidor local ativo em <code>localhost:3000</code>.
+      </p>
+
+      <div class="grid-4">
+        <!-- 1. Leads -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge badge-critical">Aquisição</span>
+            <span class="screen-route">/dashboard/leads</span>
+          </div>
+          <div class="screen-title">Esteira de Ingestão de Leads</div>
+          <p class="screen-desc">Cockpit Speed-to-Lead, monitoramento de SLA &lt; 45s, funil de qualificação e gaveta de inspeção técnica.</p>
+          <div class="screen-file">src/app/dashboard/leads/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/leads" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 2. Renovações -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge badge-warning">Retenção</span>
+            <span class="screen-route">/dashboard/renovacoes</span>
+          </div>
+          <div class="screen-title">Radar de Renovações & Churn</div>
+          <p class="screen-desc">Timeline proporcional de decaimento temporal de vigência (&lt; 15d, 15-30d, &gt; 30d) e acionamento WhatsApp.</p>
+          <div class="screen-file">src/app/dashboard/renovacoes/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/renovacoes" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 3. Cotação Cockpit -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge badge-secured">Vendas</span>
+            <span class="screen-route">/dashboard/cotacao-cockpit</span>
+          </div>
+          <div class="screen-title">Cockpit de Cotação Multicálculo</div>
+          <p class="screen-desc">Matriz comparativa de 8 seguradoras (Porto, Tokio, Allianz, etc.), cálculo de IOF, prêmio líquido e franquia.</p>
+          <div class="screen-file">src/app/dashboard/cotacao-cockpit/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/cotacao-cockpit" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 4. Simulador -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge">Cálculo</span>
+            <span class="screen-route">/dashboard/simulador</span>
+          </div>
+          <div class="screen-title">Simulador Interativo de Seguro</div>
+          <p class="screen-desc">Sliders em tempo real para franquia, perfil de condutor, comissão da corretora e prêmio final.</p>
+          <div class="screen-file">src/app/dashboard/simulador/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/simulador" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 5. Importar -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge badge-expired">Lote</span>
+            <span class="screen-route">/dashboard/importar</span>
+          </div>
+          <div class="screen-title">Importador de Planilhas</div>
+          <p class="screen-desc">Upload drag-and-drop de arquivos Excel (.xlsx) e CSV com mapeamento semântico automático de colunas.</p>
+          <div class="screen-file">src/app/dashboard/importar/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/importar" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 6. Templates -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge">Automação</span>
+            <span class="screen-route">/dashboard/templates</span>
+          </div>
+          <div class="screen-title">Modelos & Templates</div>
+          <p class="screen-desc">Editor de réguas de comunicação para WhatsApp e scripts de voz IA com interpolação de tags dinâmicas ({nome}).</p>
+          <div class="screen-file">src/app/dashboard/templates/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/templates" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 7. Configurações -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge badge-expired">Admin</span>
+            <span class="screen-route">/dashboard/configuracoes</span>
+          </div>
+          <div class="screen-title">Configurações da Corretora</div>
+          <p class="screen-desc">Webhook de entrada de leads, chaves de API (Vapi, OpenAI, Evolution) e console de teste com cURL.</p>
+          <div class="screen-file">src/app/dashboard/configuracoes/page.tsx</div>
+          <a href="http://localhost:3000/dashboard/configuracoes" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+
+        <!-- 8. Login -->
+        <div class="card card-analytical">
+          <div class="screen-header">
+            <span class="badge">Sessão</span>
+            <span class="screen-route">/login</span>
+          </div>
+          <div class="screen-title">Login & Autenticação</div>
+          <p class="screen-desc">Portal de entrada com sessão segura via iron-session e botão de preenchimento rápido para demonstração.</p>
+          <div class="screen-file">src/app/login/page.tsx</div>
+          <a href="http://localhost:3000/login" target="_blank" class="btn-action">Abrir tela no navegador →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: PALETA DE DOMÍNIO INSURTECH -->
+    <section>
+      <div class="section-title">
+        <span class="dot" style="background: #10b981;"></span>
+        2. Paleta de Domínio InsurTech (Tokens de Cor)
+      </div>
+      <p class="section-desc">Cores calibradas com base na função cognitiva e no significado do mercado de seguros.</p>
+
+      <div class="grid-5">
+        <div class="card card-analytical">
+          <div class="swatch-color" style="background: #2563eb; color: #fff;">#2563eb</div>
+          <div style="font-weight: 600; font-size: 0.85rem;">Cobalt Institucional</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #71717a;">--accent-primary</div>
+          <div style="font-size: 0.75rem; color: #a1a1aa; margin-top: 0.35rem;">Ações primárias e navegação.</div>
+        </div>
+
+        <div class="card card-analytical">
+          <div class="swatch-color" style="background: #dc2626; color: #fff;">#dc2626</div>
+          <div style="font-weight: 600; font-size: 0.85rem;">Rubi de Risco Crítico</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #71717a;">--accent-danger</div>
+          <div style="font-size: 0.75rem; color: #a1a1aa; margin-top: 0.35rem;">Vencimento &lt; 15 dias e SLA prioritário.</div>
+        </div>
+
+        <div class="card card-analytical">
+          <div class="swatch-color" style="background: #d97706; color: #fff;">#d97706</div>
+          <div style="font-weight: 600; font-size: 0.85rem;">Conhaque de Negociação</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #71717a;">--accent-warning</div>
+          <div style="font-size: 0.75rem; color: #a1a1aa; margin-top: 0.35rem;">Janela 15-30 dias e cotação ativa.</div>
+        </div>
+
+        <div class="card card-analytical">
+          <div class="swatch-color" style="background: #059669; color: #fff;">#059669</div>
+          <div style="font-weight: 600; font-size: 0.85rem;">Jade Cobertura Ativa</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #71717a;">--accent-success</div>
+          <div style="font-size: 0.75rem; color: #a1a1aa; margin-top: 0.35rem;">Vigência &gt; 30 dias e apólices em dia.</div>
+        </div>
+
+        <div class="card card-analytical">
+          <div class="swatch-color" style="background: #71717a; color: #fff;">#71717a</div>
+          <div style="font-weight: 600; font-size: 0.85rem;">Zinco de Metadados</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #71717a;">--accent-neutral</div>
+          <div style="font-size: 0.75rem; color: #a1a1aa; margin-top: 0.35rem;">Canais de origem e metadados.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: SISTEMA HIERÁRQUICO DE BADGES -->
+    <section>
+      <div class="section-title">
+        <span class="dot" style="background: #f59e0b;"></span>
+        3. Catálogo de Badges & Hierarquia Cognitiva
+      </div>
+      <p class="section-desc">Diferenciação visual evidente por importância operacional.</p>
+
+      <div class="card card-analytical" style="padding: 1.5rem;">
+        <div class="grid-4" style="margin-bottom: 1.5rem;">
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">1. Urgência Crítica (&lt; 15d)</div>
+            <span class="badge badge-critical"><span class="dot" style="background:#ef4444;"></span> Vence em 3 dias</span>
+          </div>
+
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">2. Janela de Negociação (15-30d)</div>
+            <span class="badge badge-warning"><span class="dot" style="background:#f59e0b;"></span> Vence em 24 dias</span>
+          </div>
+
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">3. Cobertura Garantida (&gt; 30d)</div>
+            <span class="badge badge-secured"><span class="dot" style="background:#10b981;"></span> Vence em 45 dias</span>
+          </div>
+
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">4. Contrato Expirado</div>
+            <span class="badge badge-expired">Venceu há 12 dias</span>
+          </div>
+        </div>
+
+        <div class="grid-3" style="border-top: 1px solid var(--border); padding-top: 1.25rem;">
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">5. Canais de Mídia (Mono)</div>
+            <span class="badge badge-channel">Meta Ads</span>
+            <span class="badge badge-channel">Google Search</span>
+            <span class="badge badge-channel">WhatsApp</span>
+          </div>
+
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">6. Score Numérico Tabular</div>
+            <span class="badge badge-score">100/100</span>
+            <span class="badge badge-score">85/100</span>
+            <span class="badge badge-score">42/100</span>
+          </div>
+
+          <div>
+            <div style="font-size: 0.8rem; color: #71717a; margin-bottom: 0.5rem;">7. Prioridade Operacional</div>
+            <span class="badge badge-critical">Alta prioridade</span>
+            <span class="badge badge-warning">Média prioridade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: SIMULADOR INTERATIVO DA RÉGUA DE DECAIMENTO TEMPORAL -->
+    <section>
+      <div class="section-title">
+        <span class="dot" style="background: #ef4444;"></span>
+        4. Simulador Interativo da Régua de Decaimento Temporal
+      </div>
+      <p class="section-desc">Mova os controles deslizantes abaixo para ver a barra proporcional reagir ao vivo:</p>
+
+      <div class="card card-analytical" style="padding: 1.5rem;">
+        <!-- Controles Interativos -->
+        <div class="grid-4" style="background: #090a0f; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 1.5rem;">
+          <div>
+            <label style="font-size: 0.75rem; color: #a1a1aa;">Crítico (&lt; 15d): <strong id="lbl-critico" style="color: #f87171;">60%</strong></label>
+            <input type="range" id="rng-critico" min="0" max="100" value="60" oninput="updateTimeline()">
+          </div>
+
+          <div>
+            <label style="font-size: 0.75rem; color: #a1a1aa;">Janela (15-30d): <strong id="lbl-janela" style="color: #fbbf24;">20%</strong></label>
+            <input type="range" id="rng-janela" min="0" max="100" value="20" oninput="updateTimeline()">
+          </div>
+
+          <div>
+            <label style="font-size: 0.75rem; color: #a1a1aa;">Garantido (&gt; 30d): <strong id="lbl-garantido" style="color: #34d399;">15%</strong></label>
+            <input type="range" id="rng-garantido" min="0" max="100" value="15" oninput="updateTimeline()">
+          </div>
+
+          <div>
+            <label style="font-size: 0.75rem; color: #a1a1aa;">Expiradas: <strong id="lbl-expirado" style="color: #a1a1aa;">5%</strong></label>
+            <input type="range" id="rng-expirado" min="0" max="100" value="5" oninput="updateTimeline()">
+          </div>
+        </div>
+
+        <!-- Barra Proporcional Reativa -->
+        <div style="font-size: 0.8rem; color: #a1a1aa; display: flex; justify-content: space-between;">
+          <span>Proporção da carteira monitorada</span>
+          <span style="font-family: 'JetBrains Mono', monospace;" id="lbl-total">100 unidades</span>
+        </div>
+
+        <div class="timeline-container">
+          <div id="bar-critico" class="timeline-segment bg-red" style="width: 60%;"></div>
+          <div id="bar-janela" class="timeline-segment bg-amber" style="width: 20%;"></div>
+          <div id="bar-garantido" class="timeline-segment bg-emerald" style="width: 15%;"></div>
+          <div id="bar-expirado" class="timeline-segment bg-zinc" style="width: 5%;"></div>
+        </div>
+
+        <!-- Indicadores de Fases -->
+        <div class="grid-4" style="margin-top: 1.25rem;">
+          <div class="card" style="border: 1px solid rgba(220,38,38,0.3); background: rgba(220,38,38,0.08);">
+            <div style="font-size: 0.75rem; font-weight: 600; color: #f87171;">Ação imediata (&lt; 15d)</div>
+            <div id="val-critico" style="font-size: 1.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin: 0.25rem 0;">3</div>
+            <div style="font-size: 0.7rem; color: #71717a;">Vencimento iminente</div>
+          </div>
+
+          <div class="card" style="border: 1px solid rgba(217,119,6,0.3); background: rgba(217,119,6,0.08);">
+            <div style="font-size: 0.75rem; font-weight: 600; color: #fbbf24;">Janela ativa (15-30d)</div>
+            <div id="val-janela" style="font-size: 1.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin: 0.25rem 0;">1</div>
+            <div style="font-size: 0.7rem; color: #71717a;">Multicálculo em aberto</div>
+          </div>
+
+          <div class="card" style="border: 1px solid rgba(5,150,105,0.3); background: rgba(5,150,105,0.08);">
+            <div style="font-size: 0.75rem; font-weight: 600; color: #34d399;">Garantido (&gt; 30d)</div>
+            <div id="val-garantido" style="font-size: 1.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin: 0.25rem 0;">1</div>
+            <div style="font-size: 0.7rem; color: #71717a;">Cobertura regular</div>
+          </div>
+
+          <div class="card" style="border: 1px solid rgba(113,113,122,0.3); background: rgba(113,113,122,0.08);">
+            <div style="font-size: 0.75rem; font-weight: 600; color: #a1a1aa;">Expiradas / Resgate</div>
+            <div id="val-expirado" style="font-size: 1.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin: 0.25rem 0;">0</div>
+            <div style="font-size: 0.7rem; color: #71717a;">Reativação de carteira</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function updateTimeline() {
+      const c = Number(document.getElementById('rng-critico').value);
+      const j = Number(document.getElementById('rng-janela').value);
+      const g = Number(document.getElementById('rng-garantido').value);
+      const e = Number(document.getElementById('rng-expirado').value);
+
+      document.getElementById('lbl-critico').innerText = c + '%';
+      document.getElementById('lbl-janela').innerText = j + '%';
+      document.getElementById('lbl-garantido').innerText = g + '%';
+      document.getElementById('lbl-expirado').innerText = e + '%';
+
+      document.getElementById('bar-critico').style.width = c + '%';
+      document.getElementById('bar-janela').style.width = j + '%';
+      document.getElementById('bar-garantido').style.width = g + '%';
+      document.getElementById('bar-expirado').style.width = e + '%';
+
+      document.getElementById('val-critico').innerText = Math.round(c / 20);
+      document.getElementById('val-janela').innerText = Math.round(j / 20);
+      document.getElementById('val-garantido').innerText = Math.round(g / 20);
+      document.getElementById('val-expirado').innerText = Math.round(e / 20);
+
+      document.getElementById('lbl-total').innerText = (c + j + g + e) + ' unidades';
+    }
+  </script>
+</body>
+</html>
