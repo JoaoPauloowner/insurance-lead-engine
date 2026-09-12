@@ -3,26 +3,26 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 cursor-pointer select-none active:scale-[0.98]',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#275ba5] disabled:pointer-events-none disabled:opacity-50 cursor-pointer select-none active:scale-[0.98]',
   {
     variants: {
       variant: {
         default:
-          'bg-blue-600 text-white shadow-sm hover:bg-blue-500',
+          'bg-[#275ba5] text-white shadow-xs hover:bg-[#1e4a87]',
         destructive:
-          'bg-rose-600 text-white shadow-sm hover:bg-rose-500',
+          'bg-[#ba1a1a] text-white shadow-xs hover:bg-[#93000a]',
         outline:
-          'border border-slate-700 bg-slate-900/60 text-slate-200 hover:bg-slate-800 hover:text-white',
+          'border border-[#c3c6d3] bg-white text-[#1b1c1c] hover:bg-[#f5f3f3] hover:border-[#737782]',
         secondary:
-          'bg-slate-800 text-slate-100 shadow-sm hover:bg-slate-700',
+          'bg-[#efeded] text-[#1b1c1c] shadow-2xs hover:bg-[#e9e8e7]',
         ghost:
-          'text-slate-400 hover:bg-slate-800 hover:text-slate-100',
+          'text-[#565f71] hover:bg-[#f5f3f3] hover:text-[#1b1c1c]',
         link:
-          'text-blue-400 underline-offset-4 hover:underline',
+          'text-[#275ba5] underline-offset-4 hover:underline',
         emerald:
-          'bg-emerald-500 text-emerald-950 font-bold shadow-md shadow-emerald-500/20 hover:bg-emerald-400 hover:shadow-emerald-500/30',
+          'bg-emerald-600 text-white font-medium shadow-xs hover:bg-emerald-500',
         blue:
-          'bg-blue-600 text-white font-bold shadow-md shadow-blue-600/20 hover:bg-blue-500',
+          'bg-[#275ba5] text-white font-medium shadow-xs hover:bg-[#1e4a87]',
       },
       size: {
         default: 'h-9 px-4 py-2',

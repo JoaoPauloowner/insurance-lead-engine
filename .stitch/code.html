@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>LeadEngine - Executive Fintech Platform</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-tertiary-fixed":"#28132e","on-tertiary-fixed-variant":"#563e5c","surface-container-highest":"#e3e2e2","on-tertiary-container":"#fffbff","secondary-fixed":"#dae2f8","outline-variant":"#c3c6d3","on-primary-fixed-variant":"#00458d","primary":"#275ba5","surface-container-high":"#e9e8e7","secondary-fixed-dim":"#bec7dc","on-secondary":"#ffffff","on-error-container":"#93000a","error-container":"#ffdad6","on-surface":"#1b1c1c","tertiary-fixed-dim":"#dcbce0","inverse-primary":"#aac7ff","primary-fixed":"#d6e3ff","on-primary-container":"#fefcff","error":"#ba1a1a","background":"#fbf9f9","on-secondary-container":"#5a6375","surface":"#fbf9f9","surface-container-lowest":"#ffffff","surface-container":"#efeded","primary-container":"#4474bf","inverse-on-surface":"#f2f0f0","surface-variant":"#e3e2e2","secondary-container":"#d7e0f5","surface-bright":"#fbf9f9","inverse-surface":"#303031","primary-fixed-dim":"#aac7ff","surface-container-low":"#f5f3f3","on-surface-variant":"#424751","outline":"#737782","on-error":"#ffffff","on-primary-fixed":"#001b3e","surface-tint":"#2a5ea7","tertiary-container":"#866c8b","on-secondary-fixed":"#131c2b","secondary":"#565f71","on-background":"#1b1c1c","on-primary":"#ffffff","surface-dim":"#dbdad9","on-tertiary":"#ffffff","on-secondary-fixed-variant":"#3e4758","tertiary":"#6d5372","tertiary-fixed":"#f9d8fd"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-lg":"1.5rem","space-md":"1rem","margin":"1.5rem","space-sm":"0.5rem","gutter":"1rem","space-xl":"2rem","space-xs":"0.25rem"},"fontFamily":{"headline-lg":["Inter"],"label-md":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","fontWeight":"500"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center gap-space-sm"><img alt="LeadEngine Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGhaTE9TbpYK0hLKPcGsHsrwS9CwJ-cnX1g2BJ5Z8XB8BjYbTx9d1FlR7UKmHKS7Me48fktHzqkF23J39aH7W9Z06MQ5tM310pe0PIVQwpdWKkL1gOU6jmudXH6vgZCzdr1muY1rWLJBOOP464LMvb_t_psJqktgoMRMirr2lV_zTqAZw34EiMEK1WKY4RhdSujEBJI8H1OINMkEjK_e8gSW9oUiDnJ-YCf2mohcepgz5KmBZu58WlEz4"/><div class="flex flex-col"><span class="font-headline-lg text-label-md font-bold tracking-tight text-on-surface leading-tight">LeadEngine</span><span class="font-label-md text-[11px] text-secondary leading-tight tracking-wider uppercase">Fintech Core</span></div></div><div class="px-space-md mt-space-sm mb-space-xs"><span class="font-label-md text-[11px] font-semibold uppercase tracking-wider text-secondary">Underwriting Hub</span></div><nav class="flex flex-col gap-1 px-space-sm" data-active-classes="bg-secondary-container text-on-secondary-fixed font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg transition-all bg-secondary-container text-on-secondary-fixed font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.03)]" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-label-md text-label-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="leads-queue" href="#"><span class="material-symbols-outlined text-[20px]">inbox_customize</span><span class="font-label-md text-label-md">Leads Queue</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="pipeline-funnel" href="#"><span class="material-symbols-outlined text-[20px]">filter_alt</span><span class="font-label-md text-label-md">Pipeline &amp; Funnel</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-md text-label-md">Analytics</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="carriers-markets" href="#"><span class="material-symbols-outlined text-[20px]">account_balance</span><span class="font-label-md text-label-md">Carriers &amp; Markets</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-md text-label-md">Settings</span></a></nav></div><div class="p-space-sm m-space-sm rounded-lg bg-surface-container-low flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-md text-[11px] font-medium text-secondary uppercase">API Gateway</span><span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span></div><p class="font-label-md text-[12px] text-on-surface-variant leading-normal">Direct broker integration synced 1m ago</p></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full pl-9 pr-space-md py-1.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-label-md text-label-md focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary transition-all" placeholder="Search carriers, EIN, broker, policy ID..." type="text"/></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-md text-[11px] font-medium">38ms Engine SLA • Real-time active</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="hidden md:flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface leading-snug">Sarah Vance</span><span class="font-label-md text-[12px] text-secondary leading-none">Principal Underwriter</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida/AEtjO1X6wyI_ikG4vBVoVYMGk1WA69Y4xNGEQwJ-tuEBn4Y2cFcq_sfulSHrKOn2aTzJ2dxZJSSG1TEdnT__5AEq5G_7EC4VetF9MiHJTpiV6yecCutBeUz6GKYJ5-EsnoNlNRYNxTnplPUjSRpeIHVERcPapq3J-YuJhPmxCeaWPa3NHdMGTUZD7CwRXNJIz6PNgjfSuanGGc-N0yzwfZ7D_a7S302gJF1xEeu8q5pf-S4uaopOlzbKiM2-7q8"/></div></div></header><main class="w-full pt-16 bg-background min-h-screen px-space-lg py-space-md"><div class="flex flex-col w-full gap-space-lg pb-12">
+<!-- Top Breadcrumb / Status Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-2">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">calendar_today</span>
+<span>Tuesday, October 24</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-semibold">38ms Engine SLA</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+<span>18 qualified submissions awaiting bind</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-secondary font-label-md text-label-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+        SOC-2 Certified
+      </span>
+<span>•</span>
+<span>API Node: us-east-prod-4</span>
+</div>
+</div>
+<!-- Page Header & Global Command Suite -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
+<div class="space-y-1.5">
+<div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-md text-label-md font-semibold uppercase tracking-wider">
+        Commercial Lines Underwriting
+      </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Insurtech Cockpit</h1>
+<p class="font-body-md text-body-md text-secondary max-w-3xl">
+        Real-time broker routing, carrier appetite telemetry, and high-intent commercial policy pipeline.
+      </p>
+</div>
+<!-- Actions & Filter Suite -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative">
+<button class="flex items-center gap-2 px-space-sm py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-high transition-colors" id="filterDropdownBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span>Filter Queue</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">keyboard_arrow_down</span>
+</button>
+</div>
+<button class="flex items-center gap-2 px-space-sm py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Export CSV</span>
+</button>
+<button class="flex items-center gap-2 px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md hover:bg-primary-container transition-all shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Intake Lead</span>
+</button>
+</div>
+</div>
+<!-- Top KPI & Velocity Grid (4 Columns) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Pipeline Volume -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Pipeline Volume</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">$1.48M</span>
+<span class="inline-flex items-center text-label-md font-label-md font-semibold text-primary">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+            +21.4%
+          </span>
+</div>
+<span class="font-label-md text-label-md text-secondary">vs. last rolling 7 days</span>
+</div>
+<!-- Sparkline inline SVG -->
+<div class="mt-4 pt-3 flex items-end justify-between gap-1 h-8">
+<div class="w-full bg-surface-container-high rounded-t h-3 group-hover:bg-primary/30 transition-all"></div>
+<div class="w-full bg-surface-container-high rounded-t h-4 group-hover:bg-primary/40 transition-all"></div>
+<div class="w-full bg-surface-container-high rounded-t h-3.5 group-hover:bg-primary/50 transition-all"></div>
+<div class="w-full bg-surface-container-high rounded-t h-5 group-hover:bg-primary/60 transition-all"></div>
+<div class="w-full bg-surface-container-high rounded-t h-6 group-hover:bg-primary/70 transition-all"></div>
+<div class="w-full bg-surface-container-high rounded-t h-5.5 group-hover:bg-primary/80 transition-all"></div>
+<div class="w-full bg-primary rounded-t h-8 transition-all"></div>
+</div>
+</div>
+<!-- Card 2: Total Leads Ingested -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary-fixed/30 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Total Leads Ingested</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]">dynamic_feed</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">142</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-semibold">
+            +18 Today
+          </span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Direct broker API &amp; portal drops</span>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-md font-label-md text-secondary">
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          89% Tier-1 Routing
+        </span>
+<span class="text-on-surface font-medium">9.2m avg SLA</span>
+</div>
+</div>
+<!-- Card 3: Conversion Rate & Throughput -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/10 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Conversion Rate</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-tertiary">
+<span class="material-symbols-outlined text-[20px]">conversion_path</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">14.7%</span>
+<span class="inline-flex items-center text-label-md font-label-md font-semibold text-tertiary">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+            +5.5% vs peer avg
+          </span>
+</div>
+<span class="font-label-md text-label-md text-secondary">142 Ingest → 21 Policies Bound</span>
+</div>
+<div class="mt-4 pt-3">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 69%"></div>
+<div class="bg-primary-container h-full" style="width: 45%"></div>
+<div class="bg-tertiary h-full" style="width: 14.7%"></div>
+</div>
+</div>
+</div>
+<!-- Card 4: Closed Premium Today -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Closed Premium Today</span>
+<span class="p-2 rounded-lg bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">$428,000</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">
+            Target 92%
+          </span>
+</div>
+<span class="font-label-md text-label-md text-secondary">4 Active Underwriters engaged</span>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-md font-label-md">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="inline-block h-6 w-6 rounded-full bg-secondary-container text-on-secondary-fixed text-center leading-6 text-[10px] font-bold">DV</div>
+<div class="inline-block h-6 w-6 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed text-center leading-6 text-[10px] font-bold">SK</div>
+<div class="inline-block h-6 w-6 rounded-full bg-primary-fixed text-on-primary-fixed text-center leading-6 text-[10px] font-bold">AR</div>
+<div class="inline-block h-6 w-6 rounded-full bg-surface-container-high text-on-surface-variant text-center leading-6 text-[10px] font-bold">+1</div>
+</div>
+<span class="text-primary font-semibold">2 pending clearance</span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (70% Left / 30% Right Split) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (Priority Deals & High-Intent Pipeline) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Submissions Card Container -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-md flex flex-col gap-space-md">
+<!-- Section Header & Filter Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-lg text-label-md font-bold text-on-surface">Priority Deals &amp; Hot Submissions</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-md text-[12px] font-semibold">
+              3 Hot Submissions
+            </span>
+</div>
+<!-- Search Input Inside Table -->
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-8 pr-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-label-md text-label-md focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary transition-all" placeholder="Filter company, state, broker..." type="text"/>
+</div>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1">
+<button class="px-3 py-1.5 rounded-lg bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-semibold transition-all">
+            All (18)
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-all">
+            High Intent (90%+)
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-all">
+            Commercial Auto
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-all">
+            Cyber &amp; E&amp;O
+          </button>
+</div>
+<!-- Submissions Interactive List Rows -->
+<div class="flex flex-col gap-space-sm">
+<!-- Row 1: Fleet Logistics Solutions -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">local_shipping</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline-lg text-body-md font-bold text-on-surface truncate">Fleet Logistics Solutions</span>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-md text-[11px] font-bold tracking-wide uppercase">
+                    96% MATCH
+                  </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-md text-[11px]">
+                    FIPE Verified
+                  </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm mt-1 text-secondary font-label-md text-label-md">
+<span class="text-on-surface font-medium">Marcus Vance</span>
+<span>•</span>
+<span>12 Units Fleet</span>
+<span>•</span>
+<span>Commercial Auto</span>
+<span>•</span>
+<span class="inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Austin, TX
+                  </span>
+<span>•</span>
+<span class="text-primary font-medium">2m ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-md shrink-0">
+<div class="text-left md:text-right">
+<div class="font-label-md text-[11px] uppercase tracking-wider text-secondary">Est. Premium</div>
+<div class="font-headline-lg text-body-md font-bold text-on-surface">$45,000</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                  Call Lead
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors">
+                  Review File
+                </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" title="Quick Bind">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Row 2: Synthetix Cloud Labs -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">shield</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline-lg text-body-md font-bold text-on-surface truncate">Synthetix Cloud Labs (Series A)</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-[11px] font-bold tracking-wide uppercase">
+                    91% INTENT
+                  </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-md text-[11px]">
+                    SOC-2 Type II
+                  </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm mt-1 text-secondary font-label-md text-label-md">
+<span class="text-on-surface font-medium">Elena Rostova</span>
+<span>•</span>
+<span>Cyber &amp; Tech E&amp;O</span>
+<span>•</span>
+<span class="inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">location_on</span> SF, CA
+                  </span>
+<span>•</span>
+<span class="text-secondary font-medium">7m ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-md shrink-0">
+<div class="text-left md:text-right">
+<div class="font-label-md text-[11px] uppercase tracking-wider text-secondary">Est. Premium</div>
+<div class="font-headline-lg text-body-md font-bold text-on-surface">$18,200</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                  Call Lead
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-secondary-container text-on-secondary-fixed font-label-md text-label-md hover:bg-surface-container transition-colors">
+                  Fast Route
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors">
+                  Review File
+                </button>
+</div>
+</div>
+</div>
+<!-- Row 3: Apex Logistics LLC -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">rv_hookup</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline-lg text-body-md font-bold text-on-surface truncate">Apex Logistics LLC</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-[11px] font-bold tracking-wide uppercase">
+                    88% SCORE
+                  </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-md text-[11px]">
+                    Interstate Freight
+                  </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm mt-1 text-secondary font-label-md text-label-md">
+<span class="text-on-surface font-medium">Broker: Dave M.</span>
+<span>•</span>
+<span>Inland Marine</span>
+<span>•</span>
+<span class="inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Chicago, IL
+                  </span>
+<span>•</span>
+<span class="text-secondary font-medium">14m ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-md shrink-0">
+<div class="text-left md:text-right">
+<div class="font-label-md text-[11px] uppercase tracking-wider text-secondary">Est. Premium</div>
+<div class="font-headline-lg text-body-md font-bold text-on-surface">$62,400</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                  Call Lead
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors">
+                  Review File
+                </button>
+</div>
+</div>
+</div>
+<!-- Row 4: Solomon Build & Craft -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">construction</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline-lg text-body-md font-bold text-on-surface truncate">Solomon Build &amp; Craft</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-[11px] font-bold tracking-wide uppercase">
+                    86% WARM
+                  </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm mt-1 text-secondary font-label-md text-label-md">
+<span class="text-on-surface font-medium">Commercial Construction</span>
+<span>•</span>
+<span>General Liability &amp; Builders Risk</span>
+<span>•</span>
+<span class="inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Denver, CO
+                  </span>
+<span>•</span>
+<span class="text-secondary font-medium">25m ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-md shrink-0">
+<div class="text-left md:text-right">
+<div class="font-label-md text-[11px] uppercase tracking-wider text-secondary">Est. Premium</div>
+<div class="font-headline-lg text-body-md font-bold text-on-surface">$34,000</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                  Call Lead
+                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors">
+                  Review File
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pipeline Throughput Funnel Bar Section -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-headline-lg text-label-md font-bold text-on-surface">Pipeline Throughput Funnel</span>
+<span class="text-secondary font-label-md text-label-md">Live Conversion Dropoff</span>
+</div>
+<span class="font-label-md text-[12px] font-semibold text-primary">Avg Cycle: 4.2 Hours</span>
+</div>
+<!-- Segmented Funnel Bar -->
+<div class="w-full bg-surface-container-low rounded-lg p-2 flex flex-col gap-2">
+<div class="grid grid-cols-4 gap-1 h-3 rounded overflow-hidden">
+<div class="bg-primary rounded-l h-full" title="Stage 1"></div>
+<div class="bg-primary-container h-full" title="Stage 2"></div>
+<div class="bg-secondary h-full" title="Stage 3"></div>
+<div class="bg-tertiary rounded-r h-full" title="Stage 4"></div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-1">
+<div class="flex flex-col border-l-2 border-primary pl-2">
+<span class="font-label-md text-[11px] text-secondary uppercase font-semibold">1. Ingest</span>
+<span class="font-headline-lg text-body-md font-bold text-on-surface">142 Leads</span>
+<span class="font-label-md text-[11px] text-primary">100% Volume</span>
+</div>
+<div class="flex flex-col border-l-2 border-primary-container pl-2">
+<span class="font-label-md text-[11px] text-secondary uppercase font-semibold">2. Scored &amp; Verified</span>
+<span class="font-headline-lg text-body-md font-bold text-on-surface">98 Leads</span>
+<span class="font-label-md text-[11px] text-secondary">69% Pass Rate</span>
+</div>
+<div class="flex flex-col border-l-2 border-secondary pl-2">
+<span class="font-label-md text-[11px] text-secondary uppercase font-semibold">3. UW Engaged</span>
+<span class="font-headline-lg text-body-md font-bold text-on-surface">64 Policies</span>
+<span class="font-label-md text-[11px] text-secondary">65% Engagement</span>
+</div>
+<div class="flex flex-col border-l-2 border-tertiary pl-2">
+<span class="font-label-md text-[11px] text-secondary uppercase font-semibold">4. Bound &amp; Issued</span>
+<span class="font-headline-lg text-body-md font-bold text-on-surface">21 Bound</span>
+<span class="font-label-md text-[11px] text-tertiary">32.8% Conversion</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Operational Widgets & Carrier Telemetry - 30%) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Executive Actions Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-lg text-label-md font-bold text-on-surface">Executive Actions</h3>
+<span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col items-start gap-1 text-left">
+<span class="material-symbols-outlined text-primary text-[20px]">post_add</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">New Intake</span>
+<span class="font-label-md text-[11px] text-secondary leading-tight">Manual lead entry</span>
+</button>
+<button class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col items-start gap-1 text-left">
+<span class="material-symbols-outlined text-primary text-[20px]">alt_route</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Dispatch</span>
+<span class="font-label-md text-[11px] text-secondary leading-tight">Tier 1 routing run</span>
+</button>
+<button class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col items-start gap-1 text-left">
+<span class="material-symbols-outlined text-primary text-[20px]">podcasts</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Pool Blast</span>
+<span class="font-label-md text-[11px] text-secondary leading-tight">Carrier RFQ ping</span>
+</button>
+<button class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col items-start gap-1 text-left">
+<span class="material-symbols-outlined text-primary text-[20px]">rule_folder</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Batch UW</span>
+<span class="font-label-md text-[11px] text-secondary leading-tight">Auto clearance</span>
+</button>
+</div>
+</div>
+<!-- Carrier Appetite & Clearance Ratios Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-lg text-label-md font-bold text-on-surface">Carrier Appetite</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-[11px]">
+              14 Connected
+            </span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">wifi_tethering</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- Chubb -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Chubb Commercial</span>
+<span class="font-label-md text-label-md font-bold text-primary">94% Appetite</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 94%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-md text-secondary">
+<span>Primary: Tech &amp; Directors Liability</span>
+<span>1.4h avg bind</span>
+</div>
+</div>
+<!-- Progressive -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Progressive Commercial</span>
+<span class="font-label-md text-label-md font-bold text-primary">91% Appetite</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 91%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-md text-secondary">
+<span>Primary: Heavy Fleet &amp; Cargo</span>
+<span>45m instant API</span>
+</div>
+</div>
+<!-- Travelers -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Travelers</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">84% Appetite</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 84%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-md text-secondary">
+<span>Primary: General Liability &amp; Inland</span>
+<span>2.1h avg bind</span>
+</div>
+</div>
+<!-- Liberty Mutual -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Liberty Mutual</span>
+<span class="font-label-md text-label-md font-bold text-secondary">72% Appetite</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full" style="width: 72%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-md text-secondary">
+<span>Primary: Workers Comp &amp; Surety</span>
+<span>3.5h avg bind</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Underwriter Capacity / Activity Widget -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<h3 class="font-headline-lg text-label-md font-bold text-on-surface">Underwriter Workload</h3>
+<span class="font-label-md text-[11px] text-primary font-semibold">Active Shift</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Underwriter 1 -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-label-md">
+                DM
+              </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-snug">Dave Miller</span>
+<span class="font-label-md text-[11px] text-secondary">Senior Auto Underwriter</span>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 92% SLA
+              </span>
+<div class="font-label-md text-[11px] text-secondary">$480k Bound</div>
+</div>
+</div>
+<!-- Underwriter 2 -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed flex items-center justify-center font-bold text-label-md">
+                SK
+              </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-snug">Sarah Keller</span>
+<span class="font-label-md text-[11px] text-secondary">Cyber Practice Lead</span>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 98% SLA
+              </span>
+<div class="font-label-md text-[11px] text-secondary">$365k Bound</div>
+</div>
+</div>
+<!-- Underwriter 3 -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-label-md">
+                AR
+              </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-snug">Alex Rivera</span>
+<span class="font-label-md text-[11px] text-secondary">Specialty Lines Analyst</span>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 88% SLA
+              </span>
+<div class="font-label-md text-[11px] text-secondary">$290k Bound</div>
+</div>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between font-label-md text-[12px] text-secondary">
+<span>Capacity utilization: 84%</span>
+<a class="text-primary font-semibold hover:underline" href="#">Rebalance Queue →</a>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

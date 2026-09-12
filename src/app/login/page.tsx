@@ -121,6 +121,13 @@ export default function LoginPage() {
               <p>Senha: admin123</p>
             </div>
           </div>
+
+          <div className="mt-4 text-center text-xs text-zinc-400">
+            <span>Não tem uma conta? </span>
+            <a href="/cadastro" className="text-blue-400 hover:text-blue-300 font-semibold underline">
+              Criar conta (7 dias grátis)
+            </a>
+          </div>
         </div>
       </div>
     </div>

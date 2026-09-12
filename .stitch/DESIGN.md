@@ -1,117 +1,105 @@
 ---
-name: Prime High-Density InsurTech System
+name: My Design System
 colors:
-  surface: '#030712'
-  surface-dim: '#030712'
-  surface-bright: '#1f2937'
-  surface-container-lowest: '#020617'
-  surface-container-low: '#0b0f19'
-  surface-container: '#111827'
-  surface-container-high: '#1f2937'
-  surface-container-highest: '#374151'
-  on-surface: '#f8fafc'
-  on-surface-variant: '#94a3b8'
-  inverse-surface: '#f8fafc'
-  inverse-on-surface: '#020617'
-  outline: '#334155'
-  outline-variant: '#1e293b'
-  surface-tint: '#3b82f6'
-  primary: '#2563eb'
+  surface: '#fbf9f9'
+  surface-dim: '#dbdad9'
+  surface-bright: '#fbf9f9'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f5f3f3'
+  surface-container: '#efeded'
+  surface-container-high: '#e9e8e7'
+  surface-container-highest: '#e3e2e2'
+  on-surface: '#1b1c1c'
+  on-surface-variant: '#424751'
+  inverse-surface: '#303031'
+  inverse-on-surface: '#f2f0f0'
+  outline: '#737782'
+  outline-variant: '#c3c6d3'
+  surface-tint: '#2a5ea7'
+  primary: '#275ba5'
   on-primary: '#ffffff'
-  primary-container: '#1d4ed8'
-  on-primary-container: '#dbeafe'
-  secondary: '#10b981'
-  on-secondary: '#022c22'
-  secondary-container: '#059669'
-  on-secondary-container: '#d1fae5'
-  tertiary: '#38bdf8'
-  on-tertiary: '#082f49'
-  tertiary-container: '#0284c7'
-  on-tertiary-container: '#e0f2fe'
-  error: '#f43f5e'
-  on-error: '#4c0519'
-  error-container: '#be123c'
-  on-error-container: '#ffe4e6'
-  background: '#030712'
-  on-background: '#f8fafc'
+  primary-container: '#4474bf'
+  on-primary-container: '#fefcff'
+  inverse-primary: '#aac7ff'
+  secondary: '#565f71'
+  on-secondary: '#ffffff'
+  secondary-container: '#d7e0f5'
+  on-secondary-container: '#5a6375'
+  tertiary: '#6d5372'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#866c8b'
+  on-tertiary-container: '#fffbff'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#d6e3ff'
+  primary-fixed-dim: '#aac7ff'
+  on-primary-fixed: '#001b3e'
+  on-primary-fixed-variant: '#00458d'
+  secondary-fixed: '#dae2f8'
+  secondary-fixed-dim: '#bec7dc'
+  on-secondary-fixed: '#131c2b'
+  on-secondary-fixed-variant: '#3e4758'
+  tertiary-fixed: '#f9d8fd'
+  tertiary-fixed-dim: '#dcbce0'
+  on-tertiary-fixed: '#28132e'
+  on-tertiary-fixed-variant: '#563e5c'
+  background: '#fbf9f9'
+  on-background: '#1b1c1c'
+  surface-variant: '#e3e2e2'
 typography:
-  display-xl:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 40px
-    fontWeight: '800'
-    lineHeight: 48px
-    letterSpacing: -0.03em
   headline-lg:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 28px
-    fontWeight: '700'
-    lineHeight: 34px
-    letterSpacing: -0.02em
-  headline-md:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 20px
+    fontFamily: Inter
+    fontSize: 32px
     fontWeight: '600'
-    lineHeight: 26px
-    letterSpacing: -0.01em
-  title-sm:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 16px
-    fontWeight: '600'
-    lineHeight: 22px
-    letterSpacing: -0.005em
+    lineHeight: 40px
   body-md:
     fontFamily: Inter
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 24px
+  label-md:
+    fontFamily: Inter
     fontSize: 14px
-    fontWeight: '400'
+    fontWeight: '500'
     lineHeight: 20px
-  body-sm:
-    fontFamily: Inter
-    fontSize: 12px
-    fontWeight: '400'
-    lineHeight: 16px
-  label-xs:
-    fontFamily: Inter
-    fontSize: 10px
-    fontWeight: '700'
-    lineHeight: 12px
-    letterSpacing: 0.05em
-  numeric-data:
-    fontFamily: Inter
-    fontSize: 15px
-    fontWeight: '700'
-    lineHeight: 20px
-    fontVariantNumeric: tabular-nums
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
 spacing:
-  unit: 4px
-  xs: 4px
-  sm: 8px
-  md: 12px
-  lg: 16px
-  xl: 24px
-  xxl: 32px
-  gutter: 16px
-  container-max: 1440px
+  gutter: 1rem
+  margin: 1.5rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2rem
 ---
 
-## Visual Atmosphere
-- **Concept:** High-Density Analytical InsurTech Terminal.
-- **Mood:** Authority, surgical precision, instant quotes, zero visual slop.
-- **Density Score:** 8/10 (Cockpit Dense) — micro-spacing (4px/8px), maximum information density above the fold, no excessive dead space.
-- **Banned Clichés:** No generic purple/blue AI neon glows, no rounded-pill cards, no washed-out drop shadows.
+# Design System
+
+## Brand & Style
+The design system embraces a **rainbow** modern aesthetic, combining clean structure with a vibrant, versatile color palette using Inter as the core typeface. The visual tone is highly functional, professional, and accessible, suitable for modern web applications requiring clear hierarchical distinction and a fresh user experience.
 
 ## Colors
-- **Canvas Base:** `#030712` (Slate-950 deep).
-- **Surface Tiers:** `#0b0f19` (Container Low), `#111827` (Card Surface), `#1f2937` (Hover state).
-- **Accents:** Electric Blue (`#2563eb`) for primary interactions; Vivid Emerald (`#10b981`) exclusively for conversion, positive margins, and instant policy approval.
-- **Telemetry:** Cyan (`#38bdf8`) for real-time FIPE pricing and risk indicators.
-- **Borders:** Crisp, 1px translucent borders (`rgba(51, 65, 85, 0.6)` / Slate-800).
+The color palette utilizes a vibrant primary blue (`#4777c2`) for key interactive elements, complemented by a slate secondary tone (`#6e778a`) and a distinctive purple-tinted tertiary color (`#896e8e`). Neutral tones (`#777777`) provide high-contrast readability across light surfaces while maintaining clean, balanced layouts.
 
 ## Typography
-- **Headlines & Metric Titles:** `Plus Jakarta Sans` with tight negative tracking (-0.02em).
-- **Tabular Data & Body:** `Inter` with `font-variant-numeric: tabular-nums` for aligned BRL (`R$`) values, dates, percentages, and policy numbers.
+**Inter** serves as the universal typeface for headlines, body text, and labels, ensuring high legibility and a contemporary digital feel. Type scales cleanly from dense data displays to prominent structural headings.
 
-## Component Behaviors
-- **Buttons:** 36px/40px compressed height, 8px radius, solid emerald with dark text for primary conversion; slate outline for secondary.
-- **Form Inputs:** 34px height, slate-950 background with subtle focus rings.
-- **Cards:** Glassmorphism 1px top highlight, high contrast internal padding (16px), dense row checklists with 12px status icons.
-- **Status Badges:** Compact labels (`label-xs`), uppercase, pill with 1px border and glowing dot indicator.
+## Layout & Spacing
+A consistent 8px-based spacing rhythm organizes the layout. Standard gutters are set to `1rem` with outer canvas margins at `1.5rem`, ensuring proper breathing room across standard viewports.
+
+## Elevation & Depth
+Elevation is achieved through a combination of subtle tonal layers and clean, low-contrast outlines. Shadows are kept soft and minimal to reinforce a flat yet tactile interface structure.
+
+## Shapes
+A roundedness level of `2` provides friendly, approachable UI elements with standard `0.5rem` corner radiuses on containers, buttons, and input components, scaling appropriately for larger cards and modals.
+
+## Components
+Components utilize the Inter typography, standard rounded corners (`0.5rem`), and the primary `#4777c2` color for focus and primary actions. Buttons, input fields, cards, and chips maintain consistent padding based on the established layout rhythm.

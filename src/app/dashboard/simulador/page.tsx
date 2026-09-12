@@ -54,33 +54,33 @@ export default function SimuladorPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-16">
+    <div className="space-y-6 max-w-7xl mx-auto pb-20 font-sans">
       {/* Header */}
-      <div className="border-b border-zinc-800/80 pb-5">
+      <div className="border-b border-[#e9e8e7] pb-5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                 Simulador Multicálculo
               </span>
-              <span className="text-xs text-zinc-400">Tempo de resposta da esteira: &lt; 45s</span>
+              <span className="text-xs text-[#565f71]">Cálculo instantâneo em &lt; 30s</span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Simulador Técnico de Cotações
+            <h1 className="text-2xl font-bold text-[#1b1c1c] tracking-tight">
+              Simulador de Cotação de Seguros
             </h1>
-            <p className="text-zinc-400 text-xs mt-0.5">
-              Parametrização veicular, comparação de coberturas homologadas e disparo para a esteira de atendimento.
+            <p className="text-[#565f71] text-sm mt-0.5">
+              Preencha os dados básicos do veículo ou imóvel e compare as opções recomendadas para o cliente.
             </p>
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#10121a] border border-zinc-800 text-xs text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e9e8e7] text-xs text-[#1b1c1c] shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Conformidade SUSEP</span>
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#10121a] border border-zinc-800 text-xs text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span>Criptografia 256-bit</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e9e8e7] text-xs text-[#1b1c1c] shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#275ba5]" />
+              <span>Tabela FIPE Vigente</span>
             </div>
           </div>
         </div>
@@ -88,19 +88,19 @@ export default function SimuladorPage() {
 
       {/* Result Alert if Triggered */}
       {leadResult && (
-        <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+        <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center font-bold text-base shrink-0">
               ✓
             </div>
             <div>
-              <div className="text-sm font-semibold text-emerald-300 flex items-center gap-2">
-                Lead Ingerido com Sucesso no Sistema
-                <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500 text-emerald-950 font-bold">
+              <div className="text-sm font-semibold text-emerald-900 flex items-center gap-2">
+                Cotação Registrada na Esteira de Leads!
+                <span className="px-2 py-0.5 rounded-md text-xs bg-emerald-200 text-emerald-900 font-bold">
                   Score {leadResult.lead?.score || 100}
                 </span>
               </div>
-              <p className="text-xs text-zinc-300 mt-0.5">
+              <p className="text-xs text-emerald-800 mt-0.5">
                 Seguradora selecionada: <strong>{selectedSeguradora}</strong> | Telefone: <strong>{leadResult.lead?.telefone}</strong>
               </p>
             </div>
@@ -109,7 +109,7 @@ export default function SimuladorPage() {
           <div className="flex items-center gap-2">
             <Link
               href="/dashboard/leads"
-              className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition-colors shadow-sm active-press"
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors shadow-sm"
             >
               Ver na Esteira de Leads
             </Link>
@@ -121,32 +121,32 @@ export default function SimuladorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Left Column: Configurator Panel */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-5 shadow-sm">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
-              <h2 className="text-xs font-semibold text-white">
-                Parâmetros da Simulação
+          <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex items-center justify-between border-b border-[#e9e8e7] pb-3 mb-4">
+              <h2 className="text-sm font-bold text-[#1b1c1c]">
+                Parâmetros da Cotação
               </h2>
-              <span className="text-[11px] text-zinc-400 font-mono bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">
+              <span className="text-xs text-[#565f71] font-mono bg-[#f5f3f3] px-2 py-0.5 rounded-md border border-[#e9e8e7]">
                 FIPE Jan/2025
               </span>
             </div>
 
             {/* Segment Selector Tabs */}
-            <div className="grid grid-cols-4 gap-1.5 bg-[#090a0f] p-1 rounded-lg border border-zinc-800 mb-5">
+            <div className="grid grid-cols-4 gap-1.5 bg-[#f5f3f3] p-1 rounded-lg border border-[#e9e8e7] mb-5">
               {[
                 { id: 'auto', label: 'Automóvel' },
                 { id: 'frota', label: 'Frota' },
-                { id: 'residencial', label: 'Imóvel' },
+                { id: 'residencial', label: 'Residencial' },
                 { id: 'vida', label: 'Vida' },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setSegmento(tab.id)}
-                  className={`py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer active-press text-center ${
+                  className={`py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer text-center ${
                     segmento === tab.id
-                      ? 'bg-zinc-800 text-white border border-zinc-700'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      ? 'bg-white text-[#1b1c1c] font-semibold shadow-xs'
+                      : 'text-[#565f71] hover:text-[#1b1c1c]'
                   }`}
                 >
                   {tab.label}
@@ -157,147 +157,147 @@ export default function SimuladorPage() {
             {/* Form Fields */}
             <div className="space-y-3.5">
               <div>
-                <label className="block text-xs font-medium text-zinc-400 mb-1">
-                  Nome do proponente
+                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  Nome do Proponente
                 </label>
                 <input
                   type="text"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
-                  className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-zinc-600 transition-colors"
+                  className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-zinc-400 mb-1">
-                    Telefone de contato
+                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                    Telefone de Contato
                   </label>
                   <input
                     type="text"
                     value={telefone}
                     onChange={(e) => setTelefone(e.target.value)}
-                    className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 font-mono focus:outline-none focus:border-zinc-600 transition-colors"
+                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
                     CEP Pernoite
                   </label>
                   <input
                     type="text"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
-                    className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 font-mono focus:outline-none focus:border-zinc-600 transition-colors"
+                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-400 mb-1">
-                  Modelo do veículo
+                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  Modelo do Veículo
                 </label>
                 <input
                   type="text"
                   value={veiculo}
                   onChange={(e) => setVeiculo(e.target.value)}
-                  className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-zinc-600 transition-colors"
+                  className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
                     Ano / Fabricação
                   </label>
                   <input
                     type="text"
                     value={ano}
                     onChange={(e) => setAno(e.target.value)}
-                    className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-zinc-600 transition-colors"
+                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-zinc-400 mb-1">
-                    Placa do veículo
+                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                    Placa
                   </label>
                   <input
                     type="text"
                     value={placa}
                     onChange={(e) => setPlaca(e.target.value)}
-                    className="w-full bg-[#090a0f] border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 font-mono uppercase focus:outline-none focus:border-zinc-600 transition-colors"
+                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono uppercase focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
               </div>
 
               {/* Coverage Toggles */}
-              <div className="pt-3 border-t border-zinc-800 space-y-2">
-                <span className="block text-xs font-medium text-zinc-400 mb-2">
-                  Coberturas adicionais
+              <div className="pt-3 border-t border-[#e9e8e7] space-y-2">
+                <span className="block text-xs font-bold text-[#1b1c1c] mb-2">
+                  Coberturas Adicionais
                 </span>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-zinc-200">100% Tabela FIPE (Compreensiva)</span>
-                    <span className="text-[11px] text-zinc-500">Colisão, Incêndio, Roubo e Alagamento</span>
+                    <span className="text-xs font-medium text-[#1b1c1c]">100% Tabela FIPE (Compreensiva)</span>
+                    <span className="text-[11px] text-[#565f71]">Colisão, Incêndio, Roubo e Alagamento</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={coberturaFipe}
                     onChange={(e) => setCoberturaFipe(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
+                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-zinc-200">Danos Terceiros (RCF R$ 300.000)</span>
-                    <span className="text-[11px] text-zinc-500">Danos materiais e corporais</span>
+                    <span className="text-xs font-medium text-[#1b1c1c]">Danos Terceiros (RCF R$ 300.000)</span>
+                    <span className="text-[11px] text-[#565f71]">Danos materiais e corporais</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={danosTerceiros}
                     onChange={(e) => setDanosTerceiros(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
+                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-zinc-200">Carro Reserva Plus (15 dias)</span>
-                    <span className="text-[11px] text-zinc-500">Categoria Sedã Médio com Ar</span>
+                    <span className="text-xs font-medium text-[#1b1c1c]">Carro Reserva Plus (15 dias)</span>
+                    <span className="text-[11px] text-[#565f71]">Categoria Sedã com Ar Condicionado</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={carroReserva}
                     onChange={(e) => setCarroReserva(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
+                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-zinc-200">Vidros, Faróis e Retrovisores</span>
-                    <span className="text-[11px] text-zinc-500">Inclui película protetora</span>
+                    <span className="text-xs font-medium text-[#1b1c1c]">Vidros, Faróis e Retrovisores</span>
+                    <span className="text-[11px] text-[#565f71]">Cobertura integral para troca de cristais</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={vidrosFarois}
                     onChange={(e) => setVidrosFarois(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
+                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#090a0f] border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-zinc-200">Assistência 24h Guincho Ilimitado</span>
-                    <span className="text-[11px] text-zinc-500">Território nacional sem limite de km</span>
+                    <span className="text-xs font-medium text-[#1b1c1c]">Assistência 24h Guincho Ilimitado</span>
+                    <span className="text-[11px] text-[#565f71]">Território nacional sem limite de km</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={guinchoIlimitado}
                     onChange={(e) => setGuinchoIlimitado(e.target.checked)}
-                    className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
+                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
                   />
                 </label>
               </div>
@@ -308,59 +308,59 @@ export default function SimuladorPage() {
         {/* Right Column: Comparative Insurer Cards */}
         <div className="lg:col-span-7 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xs font-semibold text-white">
-              Cotações Disponíveis
+            <h2 className="text-sm font-bold text-[#1b1c1c]">
+              Cotações Recomendadas
             </h2>
-            <span className="text-xs text-zinc-500 font-mono">3 seguradoras compatíveis</span>
+            <span className="text-xs text-[#565f71]">3 seguradoras compatíveis com o perfil</span>
           </div>
 
           {/* Card 1: Porto Seguro (Featured) */}
-          <div className="relative bg-[#10121a] border border-zinc-700 rounded-xl p-5 shadow-sm">
-            <div className="absolute top-0 right-0 bg-emerald-500 text-emerald-950 text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+          <div className="relative bg-white border-2 border-[#275ba5] rounded-xl p-5 shadow-[0_2px_8px_rgba(39,91,165,0.08)]">
+            <div className="absolute top-0 right-0 bg-[#275ba5] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
               Recomendação Técnica
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-3 mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-white">Porto Seguro</span>
-                  <span className="text-[10px] text-zinc-500 font-mono">SUSEP 05886</span>
+                  <span className="text-base font-bold text-[#1b1c1c]">Porto Seguro</span>
+                  <span className="text-[10px] text-[#565f71] font-mono">SUSEP 05886</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-0.5">
-                  Franquia Reduzida: <strong className="text-zinc-200">R$ 2.850,00</strong>
+                <p className="text-xs text-[#565f71] mt-0.5">
+                  Franquia Reduzida: <strong className="text-[#1b1c1c]">R$ 2.850,00</strong>
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-2xl font-bold text-emerald-400 tabular-nums">
+                <span className="text-2xl font-bold text-[#275ba5] tabular-nums">
                   12x R$ 247,90
                 </span>
-                <span className="block text-[11px] text-zinc-500 font-mono">ou R$ 2.677,32 à vista</span>
+                <span className="block text-xs text-[#565f71] font-mono">ou R$ 2.677,32 à vista</span>
               </div>
             </div>
 
             {/* Perks */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#565f71] mb-5">
               <div className="flex items-center gap-2">
-                <svg className="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <span>Guincho ilimitado e socorro 24h</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span>Carro Reserva categoria Sedã Médio</span>
+                <span>Carro Reserva Sedã com Ar</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <span>Desconto Centro Automotivo Porto</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <span>Vidros completos e retrovisores</span>
@@ -372,42 +372,42 @@ export default function SimuladorPage() {
               type="button"
               disabled={submitting}
               onClick={() => handleSubmitSimulacao('Porto Seguro')}
-              className="w-full py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs transition-colors active-press cursor-pointer disabled:opacity-50"
+              className="w-full py-2.5 px-4 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white font-semibold text-xs transition-colors cursor-pointer shadow-sm disabled:opacity-50"
             >
               {submitting && selectedSeguradora === 'Porto Seguro' ? 'Enviando para esteira...' : 'Selecionar Porto Seguro e Contatar'}
             </button>
           </div>
 
           {/* Card 2: Tokio Marine */}
-          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3 mb-3">
+          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e9e8e7] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-white">Tokio Marine Seguradora</span>
-                  <span className="text-[10px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">
-                    94% compatibilidade
+                  <span className="text-sm font-bold text-[#1b1c1c]">Tokio Marine Seguradora</span>
+                  <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium border border-emerald-200">
+                    94% fit
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-0.5">
+                <p className="text-xs text-[#565f71] mt-0.5">
                   Franquia Normal: R$ 3.920,00
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-lg font-bold text-zinc-200 tabular-nums">12x R$ 229,15</span>
-                <span className="block text-[11px] text-zinc-500 font-mono">R$ 2.474,80 à vista</span>
+                <span className="text-lg font-bold text-[#1b1c1c] tabular-nums">12x R$ 229,15</span>
+                <span className="block text-xs text-[#565f71] font-mono">R$ 2.474,80 à vista</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <span className="text-xs text-zinc-400">
+              <span className="text-xs text-[#565f71]">
                 Assistência 24h até 500 km • Carro reserva 7 dias
               </span>
               <button
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmitSimulacao('Tokio Marine')}
-                className="px-3.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-colors border border-zinc-700 cursor-pointer active-press"
+                className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] text-xs font-semibold transition-colors border border-[#c3c6d3] cursor-pointer"
               >
                 Selecionar Tokio Marine
               </button>
@@ -415,35 +415,35 @@ export default function SimuladorPage() {
           </div>
 
           {/* Card 3: Allianz */}
-          <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-4 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3 mb-3">
+          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e9e8e7] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-white">Allianz Seguros</span>
-                  <span className="text-[10px] text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">
-                    91% compatibilidade
+                  <span className="text-sm font-bold text-[#1b1c1c]">Allianz Seguros</span>
+                  <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium border border-emerald-200">
+                    91% fit
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-0.5">
+                <p className="text-xs text-[#565f71] mt-0.5">
                   Franquia Reduzida: R$ 2.990,00
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-lg font-bold text-zinc-200 tabular-nums">12x R$ 265,40</span>
-                <span className="block text-[11px] text-zinc-500 font-mono">R$ 2.866,32 à vista</span>
+                <span className="text-lg font-bold text-[#1b1c1c] tabular-nums">12x R$ 265,40</span>
+                <span className="block text-xs text-[#565f71] font-mono">R$ 2.866,32 à vista</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <span className="text-xs text-zinc-400">
+              <span className="text-xs text-[#565f71]">
                 Atendimento Premier • Carro reserva 15 dias SUV • Guincho 1.000 km
               </span>
               <button
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmitSimulacao('Allianz')}
-                className="px-3.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-colors border border-zinc-700 cursor-pointer active-press"
+                className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] text-xs font-semibold transition-colors border border-[#c3c6d3] cursor-pointer"
               >
                 Selecionar Allianz
               </button>
@@ -451,15 +451,15 @@ export default function SimuladorPage() {
           </div>
 
           {/* Standard SLA Notice */}
-          <div className="p-3 rounded-lg bg-[#10121a] border border-zinc-800 text-xs text-zinc-400 flex items-center gap-3">
-            <svg className="w-4 h-4 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="p-3.5 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#565f71] flex items-center gap-3">
+            <svg className="w-4 h-4 text-[#275ba5] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
             <div>
-              <strong className="text-zinc-200 block font-medium">Atendimento Integrado</strong>
+              <strong className="text-[#1b1c1c] block font-medium">Fluxo Integrado com a Corretora</strong>
               <span>
-                Ao selecionar qualquer opção, as condições são enviadas para a esteira e o corretor responsável é notificado para prosseguir com a emissão.
+                Ao selecionar qualquer seguradora, o lead é registrado instantaneamente na fila com prioridade para contato imediato via WhatsApp.
               </span>
             </div>
           </div>

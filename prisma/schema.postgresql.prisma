@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -179,28 +179,28 @@ model Lead {
   interacoes     LeadInteracao[]
 
   @@index([organizationId])
-  @@index([organizationId, score])
   @@index([organizationId, status])
-  @@index([organizationId, lob])
+  @@index([organizationId, prioridade])
+  @@index([telefone])
 }
 
 // ──────────────────────────────────────────────
-// LeadInteracao — Registro de Contato com o Lead (Voz, WA, SMS)
+// LeadInteracao — Registro de Disparos e Chamadas
 // ──────────────────────────────────────────────
 model LeadInteracao {
   id             String   @id @default(cuid())
   organizationId String
   leadId         String
-  canal          String   // voz_vapi, whatsapp_aria, sms, humano
-  direcao        String   @default("outbound")
-  status         String?  // completada, sem_resposta, ocupado, erro
-  conteudo       String?  // transcrição ou mensagem enviada
-  audioUrl       String?
-  duracaoSeg     Int?
+  canal          String   // voz_vapi, whatsapp, sms, corretor
+  direcao        String   @default("outbound") // inbound, outbound
+  status         String   // atendida, nao_atendida, ocupado, mensagem_enviada, respondida, falha
+  conteudo       String?
+  audioUrl       String?  // Gravação da chamada Vapi.ai se disponível
+  duracaoSegundos Int?
   createdAt      DateTime @default(now())
 
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  lead         Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  lead           Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   @@index([organizationId])
   @@index([leadId])

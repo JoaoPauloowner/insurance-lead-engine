@@ -7,6 +7,7 @@ import { normalizePhoneBR } from '@/lib/phone';
 import WhatsAppModal from '@/components/WhatsAppModal';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export default function RenovacoesPage() {
   const [apolices, setApolices] = useState<any[]>([]);
@@ -16,8 +17,8 @@ export default function RenovacoesPage() {
   const [statusFilter, setStatusFilter] = useState('todos');
   const [selectedApolice, setSelectedApolice] = useState<any | null>(null);
   const [userOrg, setUserOrg] = useState<{ userName: string; orgName: string }>({
-    userName: 'Corretor Responsável',
-    orgName: 'Prime Corretora',
+    userName: 'Carlos Silva',
+    orgName: 'Valor Corretora de Seguros',
   });
 
   const fetchData = useCallback(async () => {
@@ -46,8 +47,8 @@ export default function RenovacoesPage() {
       if (meRes.ok) {
         const meData = await meRes.json();
         setUserOrg({
-          userName: meData.user?.nome || 'Corretor Responsável',
-          orgName: meData.organization?.nome || 'Prime Corretora',
+          userName: meData.user?.nome || 'Carlos Silva',
+          orgName: meData.organization?.nome || 'Valor Corretora de Seguros',
         });
       }
     } catch (error) {
@@ -75,58 +76,73 @@ export default function RenovacoesPage() {
   const pctVencidos = totalCount > 0 ? Math.max(0, 100 - (pctUrgentes + pctProximos + pctEmDia)) : 0;
 
   return (
-    <div className="space-y-5 max-w-7xl mx-auto pb-16">
+    <div className="space-y-6 max-w-7xl mx-auto pb-20 font-sans">
       {/* Header Operacional Sóbrio */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/80 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-blue-950/40 text-blue-300 border border-blue-500/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[#275ba5] border border-blue-200">
+              <span className="w-2 h-2 rounded-full bg-[#275ba5]" />
               Radar Ativo de Carteira
             </span>
-            <span className="text-xs text-zinc-400 font-mono">Taxa de renovação: 91,4%</span>
+            <span className="text-xs text-[#565f71]">Taxa de retenção média: 92%</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-            Radar de Renovações
+          <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+            Radar de Renovações de Apólices
           </h1>
-          <p className="text-xs text-zinc-400 mt-0.5 max-w-2xl">
-            Acompanhamento temporal de apólices, priorização por prazo de vigência e acionamento preventivo de clientes.
+          <p className="text-sm text-[#565f71] mt-0.5">
+            Acompanhe o vencimento de vigência dos clientes da corretora e previna cancelamentos com acionamento antecipado.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/dashboard/importar"
-            className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-sm transition-colors flex items-center gap-2 cursor-pointer active-press"
-          >
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="17 8 12 3 7 8" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
-            <span>Importar planilha</span>
+        <div className="flex items-center gap-2.5">
+          <Link href="/dashboard/importar">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-9 px-3 bg-white border-[#c3c6d3] text-[#1b1c1c] hover:bg-[#f5f3f3] text-xs font-medium"
+            >
+              <svg className="w-4 h-4 mr-1.5 text-[#565f71]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <span>Importar Planilha</span>
+            </Button>
           </Link>
+
+          <Button
+            onClick={fetchData}
+            title="Atualizar lista"
+            variant="outline"
+            size="sm"
+            className="h-9 px-2.5 bg-white border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </Button>
         </div>
       </div>
 
       {/* DISPOSITIVO ESTRUTURAL: Timeline / Régua de Decaimento Temporal */}
-      <Card variant="analytical" className="p-4 sm:p-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-800/80">
+      <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e9e8e7]">
           <div>
-            <h2 className="text-sm font-semibold text-zinc-100 flex items-center gap-2">
-              <span>Distribuição temporal da carteira</span>
-              <span className="text-xs font-mono text-zinc-400 font-normal">
-                ({totalCount} apólices na base)
+            <h2 className="text-sm font-semibold text-[#1b1c1c] flex items-center gap-2">
+              <span>Distribuição Temporal da Carteira</span>
+              <span className="text-xs text-[#565f71] font-normal">
+                ({totalCount} apólices monitoradas)
               </span>
             </h2>
-            <p className="text-[11px] text-zinc-400 mt-0.5">
-              Horizonte de vencimento segmentado por gravidade e janela ideal de ação do corretor.
+            <p className="text-xs text-[#565f71] mt-0.5">
+              Segmentação por proximidade de vencimento e janela ideal de cálculo.
             </p>
           </div>
           {statusFilter !== 'todos' && (
             <button
               onClick={() => setStatusFilter('todos')}
-              className="text-xs text-blue-400 hover:text-blue-300 transition-colors self-start sm:self-auto cursor-pointer"
+              className="text-xs text-[#275ba5] hover:underline transition-colors self-start sm:self-auto cursor-pointer font-medium"
             >
               Exibir todas as apólices
             </button>
@@ -135,12 +151,12 @@ export default function RenovacoesPage() {
 
         {/* Barra Proporcional de Decaimento Temporal */}
         <div className="mt-4 mb-4">
-          <div className="w-full h-2.5 rounded-full bg-zinc-900 overflow-hidden flex shadow-inner">
+          <div className="w-full h-2.5 rounded-full bg-[#efeded] overflow-hidden flex">
             {totalCount > 0 ? (
               <>
                 <div
                   style={{ width: `${pctUrgentes}%` }}
-                  className="bg-red-500 transition-all duration-300"
+                  className="bg-rose-500 transition-all duration-300"
                   title={`Crítico (< 15d): ${stats.urgentes} (${pctUrgentes}%)`}
                 />
                 <div
@@ -155,146 +171,146 @@ export default function RenovacoesPage() {
                 />
                 <div
                   style={{ width: `${pctVencidos}%` }}
-                  className="bg-zinc-600 transition-all duration-300"
+                  className="bg-slate-400 transition-all duration-300"
                   title={`Expiradas: ${stats.vencidos} (${pctVencidos}%)`}
                 />
               </>
             ) : (
-              <div className="w-full bg-zinc-800" />
+              <div className="w-full bg-[#efeded]" />
             )}
           </div>
         </div>
 
-        {/* Etapas Integradas da Régua Temporal (Filtros operacionais diretos) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+        {/* Etapas Integradas da Régua Temporal */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Estágio 1: Urgência Crítica */}
           <div
             onClick={() => setStatusFilter(statusFilter === 'urgente' ? 'todos' : 'urgente')}
-            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+            className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'urgente'
-                ? 'border-red-500/60 bg-red-950/20'
-                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+                ? 'border-rose-400 bg-rose-50 shadow-xs'
+                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-red-400 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-red-500" />
+              <span className="font-semibold text-rose-700 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
                 Crítico (&lt; 15 dias)
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-red-500/10 text-red-300 border border-red-500/20">
+              <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">
                 {pctUrgentes}%
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
                 {stats.urgentes}
               </span>
-              <span className="text-[11px] text-zinc-400">Ação imediata</span>
+              <span className="text-xs text-rose-700 font-medium">Ação Imediata</span>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-1">Risco iminente de perda para concorrência</p>
+            <p className="text-[11px] text-[#565f71] mt-1">Risco iminente de perda para concorrência</p>
           </div>
 
           {/* Estágio 2: Janela de Negociação */}
           <div
             onClick={() => setStatusFilter(statusFilter === 'proximo' ? 'todos' : 'proximo')}
-            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+            className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'proximo'
-                ? 'border-amber-500/60 bg-amber-950/20'
-                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+                ? 'border-amber-400 bg-amber-50 shadow-xs'
+                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-amber-300 flex items-center gap-1.5">
+              <span className="font-semibold text-amber-800 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-amber-500" />
-                Janela ativa (15-30d)
+                Janela Ideal (15-30d)
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+              <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-medium">
                 {pctProximos}%
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
                 {stats.proximos}
               </span>
-              <span className="text-[11px] text-zinc-400">Multicálculo</span>
+              <span className="text-xs text-amber-800 font-medium">Enviar Cotação</span>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-1">Momento ideal de envio de proposta</p>
+            <p className="text-[11px] text-[#565f71] mt-1">Momento ideal para envio da renovação</p>
           </div>
 
           {/* Estágio 3: Vigentes em Dia */}
           <div
             onClick={() => setStatusFilter(statusFilter === 'em_dia' ? 'todos' : 'em_dia')}
-            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+            className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'em_dia'
-                ? 'border-emerald-500/60 bg-emerald-950/20'
-                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+                ? 'border-emerald-400 bg-emerald-50 shadow-xs'
+                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
+              <span className="font-semibold text-emerald-800 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                Garantido (&gt; 30 dias)
+                Vigência Regular (&gt; 30d)
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+              <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">
                 {pctEmDia}%
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
                 {stats.emDia}
               </span>
-              <span className="text-[11px] text-zinc-400">Em dia</span>
+              <span className="text-xs text-emerald-800 font-medium">Em Dia</span>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-1">Cobertura regular sem risco ativo</p>
+            <p className="text-[11px] text-[#565f71] mt-1">Cobertura regular sem risco no curto prazo</p>
           </div>
 
           {/* Estágio 4: Expiradas / Resgate */}
           <div
             onClick={() => setStatusFilter(statusFilter === 'vencido' ? 'todos' : 'vencido')}
-            className={`p-3 rounded-lg border transition-all cursor-pointer active-press ${
+            className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'vencido'
-                ? 'border-zinc-600 bg-zinc-800/40'
-                : 'border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-850 hover:border-zinc-700/60'
+                ? 'border-slate-400 bg-slate-100 shadow-xs'
+                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-zinc-400 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-zinc-500" />
-                Expiradas
+              <span className="font-semibold text-slate-700 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-slate-500" />
+                Vencidas / Resgate
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
+              <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-medium">
                 {pctVencidos}%
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-white tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
                 {stats.vencidos}
               </span>
-              <span className="text-[11px] text-zinc-400">Resgate</span>
+              <span className="text-xs text-slate-600 font-medium">Recuperar</span>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-1">Recuperação e reativação de segurado</p>
+            <p className="text-[11px] text-[#565f71] mt-1">Reativação e recuperação de segurado</p>
           </div>
         </div>
-      </Card>
+      </div>
 
       {/* Barra de Filtros e Busca */}
-      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="bg-white border border-[#e9e8e7] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="w-full md:w-96 relative">
           <input
             type="text"
             placeholder="Filtrar por segurado, seguradora ou apólice..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#090a0f] border border-zinc-800 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-colors"
+            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#1b1c1c] placeholder-[#737782] focus:bg-white focus:border-[#275ba5] focus:outline-none transition-colors"
           />
-          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-zinc-500 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#737782] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-2.5 top-2 text-zinc-400 hover:text-zinc-200 text-xs cursor-pointer"
+              className="absolute right-2.5 top-2 text-[#737782] hover:text-[#1b1c1c] text-xs cursor-pointer"
             >
               Limpar
             </button>
@@ -307,19 +323,21 @@ export default function RenovacoesPage() {
             { id: 'urgente', label: 'Crítico (< 15d)', count: stats.urgentes },
             { id: 'proximo', label: '15-30 dias', count: stats.proximos },
             { id: 'em_dia', label: 'Em dia', count: stats.emDia },
-            { id: 'vencido', label: 'Expiradas', count: stats.vencidos },
+            { id: 'vencido', label: 'Vencidas', count: stats.vencidos },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setStatusFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 active-press ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                 statusFilter === tab.id
-                  ? 'bg-zinc-800 text-white border border-zinc-700'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 border border-transparent'
+                  ? 'bg-[#275ba5] text-white shadow-sm'
+                  : 'text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]'
               }`}
             >
               <span>{tab.label}</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/40 font-mono text-zinc-300">
+              <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+                statusFilter === tab.id ? 'bg-white/20 text-white' : 'bg-[#efeded] text-[#565f71]'
+              }`}>
                 {tab.count}
               </span>
             </button>
@@ -327,17 +345,17 @@ export default function RenovacoesPage() {
         </div>
       </div>
 
-      {/* Tabela de Alta Densidade com Badges Hierarquizados */}
-      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl overflow-hidden shadow-xs">
+      {/* Tabela de Apólices */}
+      <div className="bg-white border border-[#e9e8e7] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {loading ? (
           <div className="py-20 text-center">
-            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-            <div className="text-xs font-medium text-zinc-400">Carregando carteira de apólices...</div>
+            <div className="w-7 h-7 border-2 border-[#275ba5] border-t-transparent rounded-full animate-spin mx-auto mb-2.5" />
+            <div className="text-xs font-medium text-[#565f71]">Carregando carteira de apólices...</div>
           </div>
         ) : apolices.length === 0 ? (
           <div className="py-16 text-center px-4">
-            <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 flex items-center justify-center mx-auto mb-3">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="w-12 h-12 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-[#565f71] flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
@@ -345,24 +363,24 @@ export default function RenovacoesPage() {
                 <polyline points="10 9 9 9 8 9" />
               </svg>
             </div>
-            <h3 className="text-sm font-semibold text-white">Nenhuma apólice encontrada</h3>
-            <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
-              Utilize o botão &quot;Importar planilha&quot; para subir sua base de clientes ou converta leads fechados no painel de Leads.
+            <h3 className="text-sm font-semibold text-[#1b1c1c]">Nenhuma apólice encontrada</h3>
+            <p className="text-xs text-[#565f71] mt-1 max-w-sm mx-auto">
+              Utilize o botão &quot;Importar Planilha&quot; para subir sua base de clientes ou converta leads fechados no painel de Leads.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-zinc-800 bg-[#090a0f]/60 text-xs font-medium text-zinc-400">
+                <tr className="border-b border-[#e9e8e7] bg-[#f5f3f3] text-[11px] font-semibold text-[#565f71] uppercase tracking-wider">
                   <th className="py-3 px-4 sm:px-6">Segurado</th>
-                  <th className="py-3 px-4">Seguro & seguradora</th>
-                  <th className="py-3 px-4">Vencimento da vigência</th>
-                  <th className="py-3 px-4">Último contato</th>
-                  <th className="py-3 px-4 text-right">Ações</th>
+                  <th className="py-3 px-4">Seguro & Seguradora</th>
+                  <th className="py-3 px-4">Vencimento da Vigência</th>
+                  <th className="py-3 px-4">Último Contato</th>
+                  <th className="py-3 px-4 text-right">Ação Rápida</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/60">
+              <tbody className="divide-y divide-[#e9e8e7]">
                 {apolices.map((apolice) => {
                   const urgency = calculateUrgency(apolice.dataVencimento);
                   const phoneInfo = normalizePhoneBR(apolice.cliente?.telefone);
@@ -376,18 +394,18 @@ export default function RenovacoesPage() {
                     .toUpperCase();
 
                   return (
-                    <tr key={apolice.id} className="hover:bg-zinc-800/30 transition-colors group">
+                    <tr key={apolice.id} className="hover:bg-[#faf8f8] transition-colors group">
                       {/* Cliente */}
-                      <td className="py-3 px-4 sm:px-6">
+                      <td className="py-3.5 px-4 sm:px-6">
                         <div className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-md bg-zinc-800 border border-zinc-700 text-zinc-200 flex items-center justify-center font-bold text-xs shrink-0">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#275ba5] flex items-center justify-center font-bold text-xs shrink-0">
                             {initials}
                           </div>
                           <div>
-                            <div className="font-medium text-zinc-100 group-hover:text-blue-400 transition-colors">
+                            <div className="font-semibold text-[#1b1c1c] group-hover:text-[#275ba5] transition-colors">
                               {apolice.cliente?.nome}
                             </div>
-                            <div className="text-[11px] text-zinc-400 mt-0.5 font-mono">
+                            <div className="text-xs text-[#565f71] mt-0.5 font-mono">
                               {phoneInfo.formatted}
                             </div>
                           </div>
@@ -395,30 +413,30 @@ export default function RenovacoesPage() {
                       </td>
 
                       {/* Seguro & Seguradora */}
-                      <td className="py-3 px-4">
-                        <div className="font-medium text-zinc-200">{apolice.tipoSeguro}</div>
-                        <div className="text-[11px] text-zinc-400 mt-0.5 flex items-center gap-1.5 font-mono">
-                          <span className="text-blue-400 font-medium">{apolice.seguradora}</span>
+                      <td className="py-3.5 px-4">
+                        <div className="font-medium text-[#1b1c1c]">{apolice.tipoSeguro}</div>
+                        <div className="text-xs text-[#565f71] mt-0.5 flex items-center gap-1.5 font-mono">
+                          <span className="text-[#275ba5] font-semibold">{apolice.seguradora}</span>
                           {apolice.numeroApolice && <span>• {apolice.numeroApolice}</span>}
                         </div>
                       </td>
 
-                      {/* Vencimento com Badge Hierarquizado */}
-                      <td className="py-3 px-4">
-                        <div className="font-medium text-zinc-200 tabular-nums font-mono">
+                      {/* Vencimento */}
+                      <td className="py-3.5 px-4">
+                        <div className="font-medium text-[#1b1c1c] tabular-nums font-mono">
                           {formatDateBR(apolice.dataVencimento)}
                         </div>
                         <div className="mt-1">
                           {urgency.status === 'urgente' ? (
-                            <Badge variant="criticalUrgent" dotColor="bg-red-500">
+                            <Badge variant="criticalUrgent">
                               {urgency.label}
                             </Badge>
                           ) : urgency.status === 'proximo' ? (
-                            <Badge variant="warningWindow" dotColor="bg-amber-500">
+                            <Badge variant="warningWindow">
                               {urgency.label}
                             </Badge>
                           ) : urgency.status === 'em_dia' ? (
-                            <Badge variant="secured" dotColor="bg-emerald-500">
+                            <Badge variant="secured">
                               {urgency.label}
                             </Badge>
                           ) : (
@@ -430,26 +448,26 @@ export default function RenovacoesPage() {
                       </td>
 
                       {/* Último Contato */}
-                      <td className="py-3 px-4 text-zinc-400">
+                      <td className="py-3.5 px-4 text-[#565f71]">
                         {lastInteraction ? (
                           <div>
-                            <span className="text-emerald-400 font-medium text-[11px] flex items-center gap-1">
+                            <span className="text-emerald-700 font-medium text-xs flex items-center gap-1">
                               <span>✓</span> Contatado por WhatsApp
                             </span>
-                            <div className="text-[10px] text-zinc-500 mt-0.5 font-mono">
+                            <div className="text-[11px] text-[#737782] mt-0.5 font-mono">
                               {formatDateBR(lastInteraction.createdAt)} por {lastInteraction.user?.nome?.split(' ')[0]}
                             </div>
                           </div>
                         ) : (
-                          <span className="text-[11px] text-zinc-500 italic">Sem contato recente</span>
+                          <span className="text-xs text-[#737782] italic">Sem contato recente</span>
                         )}
                       </td>
 
                       {/* Ação Imediata */}
-                      <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-right space-x-1.5 whitespace-nowrap">
                         <Link
                           href="/dashboard/cotacao-cockpit"
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs font-medium transition-colors cursor-pointer active-press"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors cursor-pointer"
                           title="Recalcular no cockpit"
                         >
                           Cotação
@@ -457,9 +475,12 @@ export default function RenovacoesPage() {
 
                         <button
                           onClick={() => setSelectedApolice(apolice)}
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-xs font-medium transition-colors cursor-pointer active-press"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition-colors cursor-pointer shadow-sm"
                           title="Enviar proposta de renovação via WhatsApp"
                         >
+                          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                          </svg>
                           WhatsApp
                         </button>
                       </td>

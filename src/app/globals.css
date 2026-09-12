@@ -1,37 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #090a0f;
-  --foreground: #f4f4f5;
-  --surface-base: #090a0f;
-  --surface-panel: #0e1017;
-  --surface-card: #131620;
-  --surface-card-hover: #181c2b;
-  --surface-border: rgba(255, 255, 255, 0.07);
-  --surface-border-subtle: rgba(255, 255, 255, 0.04);
-  --surface-border-hover: rgba(255, 255, 255, 0.14);
+@theme {
+  --color-on-tertiary-fixed: #28132e;
+  --color-on-tertiary-fixed-variant: #563e5c;
+  --color-surface-container-highest: #e3e2e2;
+  --color-on-tertiary-container: #fffbff;
+  --color-secondary-fixed: #dae2f8;
+  --color-outline-variant: #c3c6d3;
+  --color-on-primary-fixed-variant: #00458d;
+  --color-primary: #275ba5;
+  --color-surface-container-high: #e9e8e7;
+  --color-secondary-fixed-dim: #bec7dc;
+  --color-on-secondary: #ffffff;
+  --color-on-error-container: #93000a;
+  --color-error-container: #ffdad6;
+  --color-on-surface: #1b1c1c;
+  --color-tertiary-fixed-dim: #dcbce0;
+  --color-inverse-primary: #aac7ff;
+  --color-primary-fixed: #d6e3ff;
+  --color-on-primary-container: #fefcff;
+  --color-error: #ba1a1a;
+  --color-background: #fbf9f9;
+  --color-on-secondary-container: #5a6375;
+  --color-surface: #fbf9f9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container: #efeded;
+  --color-primary-container: #4474bf;
+  --color-inverse-on-surface: #f2f0f0;
+  --color-surface-variant: #e3e2e2;
+  --color-secondary-container: #d7e0f5;
+  --color-surface-bright: #fbf9f9;
+  --color-inverse-surface: #303031;
+  --color-primary-fixed-dim: #aac7ff;
+  --color-surface-container-low: #f5f3f3;
+  --color-on-surface-variant: #424751;
+  --color-outline: #737782;
+  --color-on-error: #ffffff;
+  --color-on-primary-fixed: #001b3e;
+  --color-surface-tint: #2a5ea7;
+  --color-tertiary-container: #866c8b;
+  --color-on-secondary-fixed: #131c2b;
+  --color-secondary: #565f71;
+  --color-on-background: #1b1c1c;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #dbdad9;
+  --color-on-tertiary: #ffffff;
+  --color-on-secondary-fixed-variant: #3e4758;
+  --color-tertiary: #6d5372;
+  --color-tertiary-fixed: #f9d8fd;
 
-  /* Paleta InsurTech com identidade de domínio: Cobalto Institucional, Rubi de Urgência, Conhaque de Negociação e Jade de Cobertura */
-  --accent-primary: #2563eb;
-  --accent-primary-subtle: rgba(37, 99, 235, 0.12);
-  --accent-success: #059669;
-  --accent-success-subtle: rgba(5, 150, 105, 0.12);
-  --accent-danger: #dc2626;
-  --accent-danger-subtle: rgba(220, 38, 38, 0.12);
-  --accent-warning: #d97706;
-  --accent-warning-subtle: rgba(217, 119, 6, 0.12);
-  --accent-neutral: #71717a;
-  --accent-neutral-subtle: rgba(113, 113, 122, 0.12);
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-margin: 1.5rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-gutter: 1rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-xs: 0.25rem;
+
+  --font-headline-lg: 'Inter', sans-serif;
+  --font-label-md: 'Inter', sans-serif;
+  --font-body-md: 'Inter', sans-serif;
 }
 
-body {
+:root {
+  --background: #fbf9f9;
+  --foreground: #1b1c1c;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols Outlined settings */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
 .tabular-nums {
@@ -39,58 +105,14 @@ body {
   font-feature-settings: "tnum";
 }
 
-.font-mono-numbers {
-  font-family: 'JetBrains Mono', monospace;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Emil Kowalski tactile physics micro-interactions */
+/* Tactile micro-interactions */
 .active-press {
   transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .active-press:active {
-  transform: scale(0.975);
+  transform: scale(0.98);
 }
 
-.spring-drawer {
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Crisp financial surfaces */
-.surface-card {
-  background-color: #10121a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-}
-
-.surface-card-hover {
-  background-color: #10121a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  transition: border-color 150ms ease, background-color 150ms ease;
-}
-
-.surface-card-hover:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  background-color: #131620;
-}
-
-/* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: #090a0f;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  display: none;
 }

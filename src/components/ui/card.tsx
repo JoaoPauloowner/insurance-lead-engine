@@ -3,25 +3,25 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const cardVariants = cva(
-  'rounded-xl text-zinc-100 transition-colors',
+  'rounded-lg text-[#1b1c1c] transition-all',
   {
     variants: {
       variant: {
-        // 1. Padrão: Painel de superfície padrão com borda discreta
+        // 1. Padrão: Card branco com borda sutil e sombra suave (DESIGN.md)
         default:
-          'border border-zinc-800/80 bg-[#10121a] shadow-xs',
-        // 2. Analítico: Alta densidade de dados e tabelas, sem desfoque pesado, borda nítida de 1px
+          'border border-[#e9e8e7] bg-white shadow-xs',
+        // 2. Analítico: Fundo branco, borda nítida
         analytical:
-          'border border-zinc-800 bg-[#0e1017] shadow-none',
-        // 3. Interativo: Superfície tátil para cards selecionáveis com resposta :active (Emil Kowalski)
+          'border border-[#e9e8e7] bg-white shadow-xs',
+        // 3. Interativo: Superfície tátil com hover suave
         interactive:
-          'border border-zinc-800/80 bg-[#10121a] hover:bg-[#131622] hover:border-zinc-700/80 cursor-pointer active-press shadow-xs',
-        // 4. Crítico / Urgência Operacional: Contorno sutil com advertência de SLA ou vencimento iminente
+          'border border-[#e9e8e7] bg-white hover:bg-[#f5f3f3] hover:border-[#c3c6d3] cursor-pointer active-press shadow-xs hover:shadow-sm',
+        // 4. Crítico / Urgência Operacional
         critical:
-          'border border-red-500/30 bg-[#140f12] shadow-xs shadow-red-950/20',
-        // 5. Destacado / Cockpit Primário
+          'border border-red-200 bg-red-50/40 shadow-xs',
+        // 5. Destacado / Primário
         elevated:
-          'border border-zinc-700/70 bg-[#131622] shadow-sm',
+          'border border-[#d7e0f5] bg-white shadow-sm',
       },
     },
     defaultVariants: {
@@ -51,7 +51,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col space-y-1.5 p-4 sm:p-5', className)}
+    className={cn('flex flex-col space-y-1 p-4 sm:p-5', className)}
     {...props}
   />
 ));
@@ -64,7 +64,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      'text-sm sm:text-base font-semibold text-zinc-100 leading-tight tracking-tight',
+      'text-sm sm:text-base font-semibold text-[#1b1c1c] leading-tight tracking-tight',
       className
     )}
     {...props}
@@ -78,7 +78,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-xs text-zinc-400', className)}
+    className={cn('text-xs text-[#565f71]', className)}
     {...props}
   />
 ));

@@ -31,48 +31,17 @@ export default function Header({ user, organization }: HeaderProps) {
     }
   };
 
+  // Menu focado na rotina da pequena e média corretora de seguros
   const navLinks = [
     {
-      href: '/dashboard',
-      label: 'Cockpit Executivo',
-      icon: (
-        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="3" width="7" height="7" />
-          <rect x="14" y="3" width="7" height="7" />
-          <rect x="14" y="14" width="7" height="7" />
-          <rect x="3" y="14" width="7" height="7" />
-        </svg>
-      ),
-    },
-    {
       href: '/dashboard/leads',
-      label: 'Leads & Ingestão',
+      label: 'Leads & Speed-to-Lead',
       icon: (
         <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
           <circle cx="9" cy="7" r="4" />
           <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      ),
-    },
-    {
-      href: '/dashboard/cotacao-cockpit',
-      label: 'Cockpit de Cotação',
-      icon: (
-        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      ),
-    },
-    {
-      href: '/dashboard/analytics',
-      label: 'Analytics & SLA',
-      icon: (
-        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
         </svg>
       ),
     },
@@ -86,8 +55,29 @@ export default function Header({ user, organization }: HeaderProps) {
       ),
     },
     {
+      href: '/dashboard/cotacao-cockpit',
+      label: 'Cotação Multisseguradoras',
+      icon: (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      ),
+    },
+    {
+      href: '/dashboard/simulador',
+      label: 'Simulador',
+      icon: (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="4" y="2" width="16" height="20" rx="2" />
+          <line x1="8" y1="6" x2="16" y2="6" />
+          <line x1="16" y1="14" x2="16" y2="18" />
+          <path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01" />
+        </svg>
+      ),
+    },
+    {
       href: '/dashboard/importar',
-      label: 'Importação',
+      label: 'Importar Planilha',
       icon: (
         <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -98,7 +88,7 @@ export default function Header({ user, organization }: HeaderProps) {
     },
     {
       href: '/dashboard/templates',
-      label: 'Templates',
+      label: 'Templates WhatsApp',
       icon: (
         <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -115,25 +105,14 @@ export default function Header({ user, organization }: HeaderProps) {
         </svg>
       ),
     },
-    {
-      href: '/dashboard/catalogo',
-      label: 'Catálogo / UI Kit',
-      icon: (
-        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <polygon points="12 2 2 7 12 12 22 7 12 2" />
-          <polyline points="2 17 12 22 22 17" />
-          <polyline points="2 12 12 17 22 12" />
-        </svg>
-      ),
-    },
   ];
 
-  const primaryColor = organization.corPrimaria || '#2563EB';
+  const primaryColor = organization.corPrimaria || '#275ba5';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#090a0f]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-[#e9e8e7] bg-white/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
-        {/* Brand & Organization */}
+        {/* Brand & Corretora */}
         <div className="flex items-center gap-4">
           <Link href="/dashboard/leads" className="flex items-center gap-2.5 group active-press">
             {organization.logoUrl ? (
@@ -144,38 +123,38 @@ export default function Header({ user, organization }: HeaderProps) {
               />
             ) : (
               <div
-                className="w-7 h-7 rounded-md flex items-center justify-center font-bold text-white text-xs shadow-sm"
+                className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-white text-xs shadow-xs"
                 style={{ backgroundColor: primaryColor }}
               >
                 {organization.nome.slice(0, 2).toUpperCase()}
               </div>
             )}
             <div className="flex flex-col">
-              <span className="font-semibold text-zinc-100 text-sm tracking-tight group-hover:text-white transition-colors">
+              <span className="font-semibold text-[#1b1c1c] text-sm tracking-tight group-hover:text-[#275ba5] transition-colors">
                 {organization.nome}
               </span>
-              <span className="text-[10px] text-zinc-400 font-medium flex items-center gap-1.5">
+              <span className="text-[10px] text-[#565f71] font-medium flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Sistema de Operação
+                Corretora de Seguros
               </span>
             </div>
           </Link>
 
-          {/* Nav links (desktop) */}
-          <nav className="hidden lg:flex items-center gap-0.5 ml-4 pl-4 border-l border-zinc-800">
+          {/* Navegação Desktop */}
+          <nav className="hidden lg:flex items-center gap-1 ml-4 pl-4 border-l border-[#e9e8e7]">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href === '/dashboard/leads' && pathname === '/dashboard');
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-2 cursor-pointer active-press ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 cursor-pointer active-press ${
                     isActive
-                      ? 'bg-zinc-800/80 text-zinc-100 shadow-sm border border-zinc-700/60'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60 border border-transparent'
+                      ? 'bg-[#d7e0f5]/70 text-[#275ba5] font-semibold border border-[#c3c6d3]/60 shadow-2xs'
+                      : 'text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] border border-transparent'
                   }`}
                 >
-                  <span className={isActive ? 'text-blue-400' : 'text-zinc-400'}>{link.icon}</span>
+                  <span className={isActive ? 'text-[#275ba5]' : 'text-[#737782]'}>{link.icon}</span>
                   <span>{link.label}</span>
                 </Link>
               );
@@ -183,22 +162,22 @@ export default function Header({ user, organization }: HeaderProps) {
           </nav>
         </div>
 
-        {/* User Profile, Underwriter Role & Logout */}
+        {/* Perfil do Corretor & Sair */}
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex flex-col text-right">
             <div className="flex items-center justify-end gap-1.5">
-              <span className="text-xs font-medium text-zinc-200">{user.nome}</span>
-              <span className="text-[10px] font-medium bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-700">
+              <span className="text-xs font-medium text-[#1b1c1c]">{user.nome}</span>
+              <span className="text-[10px] font-medium bg-[#f5f3f3] text-[#565f71] px-1.5 py-0.5 rounded border border-[#e9e8e7]">
                 {user.role === 'admin' ? 'Corretor Responsável' : user.role}
               </span>
             </div>
-            <span className="text-[10px] text-zinc-400">{user.email}</span>
+            <span className="text-[10px] text-[#737782]">{user.email}</span>
           </div>
 
           <button
             onClick={handleLogout}
             title="Sair do Sistema"
-            className="p-1.5 rounded-md text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-colors text-xs flex items-center gap-1.5 cursor-pointer active-press"
+            className="p-1.5 rounded-lg text-[#565f71] hover:text-[#ba1a1a] hover:bg-red-50 border border-transparent hover:border-red-200 transition-colors text-xs flex items-center gap-1.5 cursor-pointer active-press"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -208,16 +187,16 @@ export default function Header({ user, organization }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile nav */}
-      <div className="lg:hidden flex items-center justify-start gap-1 border-t border-zinc-800 bg-[#090a0f] py-1.5 px-3 overflow-x-auto no-scrollbar">
+      {/* Navegação Mobile */}
+      <div className="lg:hidden flex items-center justify-start gap-1 border-t border-[#e9e8e7] bg-[#fbf9f9] py-1.5 px-3 overflow-x-auto no-scrollbar">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
             <Link
               key={link.href}
               href={link.href}
-              className={`px-2.5 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors ${
-                isActive ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-400 hover:text-zinc-200'
+              className={`px-2.5 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+                isActive ? 'bg-[#d7e0f5] text-[#275ba5] font-semibold' : 'text-[#565f71] hover:text-[#1b1c1c]'
               }`}
             >
               <span>{link.icon}</span>

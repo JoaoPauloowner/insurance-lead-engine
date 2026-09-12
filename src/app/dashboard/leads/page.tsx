@@ -44,7 +44,7 @@ export default function LeadsPage() {
   const [premiumFilter, setPremiumFilter] = useState('all');
   const [sortBy, setSortBy] = useState<'sla' | 'score' | 'premium'>('sla');
 
-  // Seleção e Ações em Lote (PRD 5.2 Sticky Batch Processing)
+  // Seleção e Ações em Lote
   const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
   const [batchNotice, setBatchNotice] = useState<string | null>(null);
 
@@ -63,8 +63,8 @@ export default function LeadsPage() {
   }, []);
 
   const [userOrg, setUserOrg] = useState<{ userName: string; orgName: string }>({
-    userName: 'Sarah Vance',
-    orgName: 'Prime Corretora & Syndicate',
+    userName: 'Carlos Silva',
+    orgName: 'Valor Corretora de Seguros',
   });
 
   const fetchData = useCallback(async () => {
@@ -94,8 +94,8 @@ export default function LeadsPage() {
       if (meRes.ok) {
         const meData = await meRes.json();
         setUserOrg({
-          userName: meData.user?.nome || 'Sarah Vance',
-          orgName: meData.organization?.nome || 'Prime Corretora & Syndicate',
+          userName: meData.user?.nome || 'Carlos Silva',
+          orgName: meData.organization?.nome || 'Valor Corretora de Seguros',
         });
       }
     } catch (e) {
@@ -113,9 +113,9 @@ export default function LeadsPage() {
   const filteredLeads = useMemo(() => {
     return leads
       .filter((lead) => {
-        if (premiumFilter === '25k') return (lead.premioEstimado || 0) >= 25000;
-        if (premiumFilter === '50k') return (lead.premioEstimado || 0) >= 50000;
-        if (premiumFilter === '100k') return (lead.premioEstimado || 0) >= 100000;
+        if (premiumFilter === '3k') return (lead.premioEstimado || 0) >= 3000;
+        if (premiumFilter === '5k') return (lead.premioEstimado || 0) >= 5000;
+        if (premiumFilter === '10k') return (lead.premioEstimado || 0) >= 10000;
         return true;
       })
       .sort((a, b) => {
@@ -128,11 +128,11 @@ export default function LeadsPage() {
       });
   }, [leads, premiumFilter, sortBy]);
 
-  // Total Premium de Leads Selecionados
+  // Total Premium de Leads Selecionados (BRL)
   const totalSelectedPremium = useMemo(() => {
     return leads
       .filter((l) => selectedLeadIds.includes(l.id))
-      .reduce((acc, curr) => acc + (curr.premioEstimado || 45000), 0);
+      .reduce((acc, curr) => acc + (curr.premioEstimado || 3500), 0);
   }, [leads, selectedLeadIds]);
 
   const toggleSelectAll = () => {
@@ -149,12 +149,12 @@ export default function LeadsPage() {
     );
   };
 
-  // Exportar CSV Binder (PRD 5.2)
-  const handleExportCsvBinder = () => {
+  // Exportar Planilha / CSV
+  const handleExportCsv = () => {
     const selected = leads.filter((l) => selectedLeadIds.includes(l.id));
     if (selected.length === 0) return;
 
-    const headers = ['ID', 'Empresa', 'Contato', 'Telefone', 'Email', 'LOB', 'PremioEstimado', 'TargetCarrier', 'AppetiteScore', 'IntentScore', 'RiskTags', 'Status'];
+    const headers = ['ID', 'Cliente/Empresa', 'Contato', 'Telefone', 'Email', 'Ramo', 'PremioEstimado', 'Seguradora', 'Score', 'Status'];
     const rows = selected.map((l) => [
       l.id,
       `"${l.empresa || l.nome}"`,
@@ -163,10 +163,8 @@ export default function LeadsPage() {
       l.email || '',
       l.lob || l.ramoDesejado,
       l.premioEstimado || 0,
-      l.targetCarrier || 'Chubb',
-      l.carrierAppetite || 90,
+      l.targetCarrier || 'Porto Seguro',
       l.score,
-      `"${l.riskTags || ''}"`,
       l.status,
     ]);
 
@@ -174,17 +172,17 @@ export default function LeadsPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `LeadEngine_Binder_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `Leads_Corretora_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    setBatchNotice(`Exportados ${selected.length} leads corporativos para o CSV Binder.`);
+    setBatchNotice(`Exportados ${selected.length} leads para planilha CSV.`);
     setTimeout(() => setBatchNotice(null), 4000);
   };
 
   const handleBulkFastRoute = () => {
-    setBatchNotice(`⚡ ${selectedLeadIds.length} leads despachados em lote para a mesa sênior de subscrição.`);
+    setBatchNotice(`⚡ ${selectedLeadIds.length} leads distribuídos para atendimento prioritário.`);
     setSelectedLeadIds([]);
     setTimeout(() => setBatchNotice(null), 4000);
   };
@@ -193,19 +191,19 @@ export default function LeadsPage() {
     setSimulating(true);
     try {
       const mockLead = {
-        nome: 'Fernando Silveira ' + Math.floor(Math.random() * 1000),
-        empresa: 'LogTech Transportes SA',
-        telefone: '11987' + Math.floor(100000 + Math.random() * 900000),
-        email: 'fernando.novo@logtech.com.br',
-        origem: 'Meta Lead Ads (Instagram)',
-        ramoDesejado: 'Fleet Auto',
-        lob: 'Fleet Auto',
-        premioEstimado: 89000,
-        carrierAppetite: 92,
-        targetCarrier: 'Progressive',
-        riskTags: JSON.stringify(['DOT Tier A', 'FIPE Matched']),
+        nome: 'Renata Vasconcelos ' + Math.floor(Math.random() * 1000),
+        empresa: null,
+        telefone: '11985' + Math.floor(100000 + Math.random() * 900000),
+        email: 'renata.v@gmail.com',
+        origem: 'Meta Ads (Instagram)',
+        ramoDesejado: 'Seguro Auto',
+        lob: 'Seguro Auto',
+        premioEstimado: 3850,
+        carrierAppetite: 96,
+        targetCarrier: 'Porto Seguro',
+        riskTags: JSON.stringify(['Jeep Compass 2024', 'Zero Km', 'Classe Bônus 5']),
         urgencia: 'alta',
-        notas: 'Frota de 25 caminhões pesados. Seguro vence em 6 dias.',
+        notas: 'Cotação de Seguro Auto novo para Jeep Compass 2024. Carro retirado na concessionária na quinta-feira.',
       };
 
       const res = await fetch('/api/leads/intake', {
@@ -225,7 +223,7 @@ export default function LeadsPage() {
   };
 
   const handleConvertLead = async (lead: any) => {
-    if (!confirm(`Deseja converter ${lead.empresa || lead.nome} em cliente e criar a apólice no Radar de Renovações?`)) {
+    if (!confirm(`Deseja converter ${lead.empresa || lead.nome} em apólice e salvar no Radar de Renovações?`)) {
       return;
     }
 
@@ -235,7 +233,7 @@ export default function LeadsPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          seguradora: lead.targetCarrier || 'Chubb',
+          seguradora: lead.targetCarrier || 'Porto Seguro',
           numeroApolice: `APO-${Date.now().toString().slice(-6)}`,
         }),
       });
@@ -256,99 +254,92 @@ export default function LeadsPage() {
   const stats = {
     total: leads.length,
     hot: leads.filter((l) => l.score >= 90).length,
-    fleet: leads.filter((l) => l.lob === 'Fleet Auto' || l.ramoDesejado?.includes('Auto')).length,
-    cyber: leads.filter((l) => l.lob === 'Cyber & Tech').length,
-    inland: leads.filter((l) => l.lob === 'Inland Marine').length,
-    gl: leads.filter((l) => l.lob === 'General Liability').length,
+    auto: leads.filter((l) => l.ramoDesejado?.includes('Auto') || l.lob?.includes('Auto')).length,
+    residencial: leads.filter((l) => l.ramoDesejado?.includes('Residencial') || l.lob?.includes('Residencial')).length,
+    saude: leads.filter((l) => l.ramoDesejado?.includes('Saúde') || l.lob?.includes('Saúde')).length,
+    vida: leads.filter((l) => l.ramoDesejado?.includes('Vida') || l.lob?.includes('Vida')).length,
+    empresarial: leads.filter((l) => l.ramoDesejado?.includes('Empresarial') || l.lob?.includes('Empresarial') || l.ramoDesejado?.includes('Frota')).length,
+  };
+
+  const formatBRL = (val?: number | null) => {
+    if (!val) return 'R$ 3.500';
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
   };
 
   return (
-    <div className="space-y-5 max-w-7xl mx-auto pb-24">
+    <div className="space-y-6 max-w-7xl mx-auto pb-24 font-sans">
       {/* Header & Primary Action */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/80 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-950/40 text-emerald-300 border border-emerald-500/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Dynamic Triage Engine Active
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Speed-to-Lead Ativo • Meta & Google Ads
             </span>
-            <span className="text-xs text-zinc-400 font-mono">SLA Sub-5m Mandate (&lt; 300s)</span>
+            <span className="text-xs text-[#565f71]">Meta de 1º Contato: &lt; 5 min</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            Fila de Triagem & Underwriting Queue
-            <span className="text-xs font-mono font-normal px-2 py-0.5 bg-blue-950/80 text-blue-300 border border-blue-500/30 rounded">
-              SCREEN_12
-            </span>
+          <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+            Fila de Leads & Speed-to-Lead
           </h1>
-          <p className="text-xs text-zinc-400 mt-0.5 max-w-2xl">
-            Priorização por propensão de bind, validação de compliance de risco (DOT, EIN, SOC-2, FIPE) e distribuição com 1-toque.
+          <p className="text-sm text-[#565f71] mt-0.5">
+            Novas cotações recebidas em tempo real. Priorize por intenção de compra e acione pelo WhatsApp em 1 clique.
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Link href="/dashboard">
-            <Button variant="outline" size="sm" className="h-9 text-xs border-zinc-800 bg-[#10121a] text-zinc-300 hover:text-white">
-              <svg className="w-3.5 h-3.5 mr-1.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-              </svg>
-              Cockpit Executivo
-            </Button>
-          </Link>
-
+        <div className="flex items-center gap-2.5">
           <Button
             onClick={fetchData}
             title="Atualizar lista"
             variant="outline"
             size="sm"
-            className="h-9 px-2.5 bg-[#10121a] border-zinc-800 text-zinc-400 hover:text-zinc-200"
+            className="h-9 px-3 bg-white border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
+            Atualizar
           </Button>
 
           <Button
             onClick={handleSimulateLead}
             disabled={simulating}
             size="sm"
-            className="h-9 bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-sm flex items-center gap-1.5"
+            className="h-9 bg-[#275ba5] hover:bg-[#1a4784] text-white font-medium text-xs shadow-sm flex items-center gap-1.5 px-4"
           >
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19" />
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
-            <span>{simulating ? 'Ingerindo...' : '+ Simular Inbound Webhook'}</span>
+            <span>{simulating ? 'Recebendo...' : '+ Simular Inbound Lead'}</span>
           </Button>
         </div>
       </div>
 
       {/* Alerta de Operação em Lote */}
       {batchNotice && (
-        <div className="p-3 bg-blue-950/40 border border-blue-500/40 rounded-lg flex items-center justify-between text-xs text-blue-300 animate-in fade-in slide-in-from-top-2">
+        <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-[#275ba5] shadow-sm">
           <div className="flex items-center gap-2 font-medium">
-            <svg className="w-4 h-4 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg className="w-4 h-4 text-[#275ba5] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
             <span>{batchNotice}</span>
           </div>
-          <button onClick={() => setBatchNotice(null)} className="text-blue-400/60 hover:text-blue-200">
+          <button onClick={() => setBatchNotice(null)} className="text-[#275ba5]/70 hover:text-[#275ba5] font-bold">
             ✕
           </button>
         </div>
       )}
 
-      {/* 5.2 Multi-Level Filters: Segment Pills por LOB e Intent */}
+      {/* Filtros em Pílulas: Ramos PME de Seguros do Brasil */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
         {[
           { id: 'all', label: `Todos os Leads (${stats.total})`, icon: null },
-          { id: 'hot_pill', label: `🔥 90%+ Intent (${stats.hot})`, icon: null, isHot: true },
-          { id: 'Fleet Auto', label: `Fleet Auto (${stats.fleet})`, icon: '🚛' },
-          { id: 'Cyber & Tech', label: `Cyber & Tech (${stats.cyber})`, icon: '🛡️' },
-          { id: 'Inland Marine', label: `Inland Marine (${stats.inland})`, icon: '📦' },
-          { id: 'General Liability', label: `General Liability (${stats.gl})`, icon: '🏭' },
+          { id: 'hot_pill', label: `🔥 Alta Intenção (${stats.hot})`, icon: null, isHot: true },
+          { id: 'Auto', label: `🚗 Seguro Auto (${stats.auto})`, icon: null },
+          { id: 'Residencial', label: `🏠 Residencial (${stats.residencial})`, icon: null },
+          { id: 'Saúde PME', label: `🏥 Saúde PME (${stats.saude})`, icon: null },
+          { id: 'Vida', label: `🛡️ Vida (${stats.vida})`, icon: null },
+          { id: 'Empresarial', label: `🏢 Empresarial PME (${stats.empresarial})`, icon: null },
         ].map((pill) => {
           const isActive =
             pill.id === 'hot_pill'
@@ -370,12 +361,11 @@ export default function LeadsPage() {
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                 isActive
                   ? pill.isHot
-                    ? 'bg-red-950 border border-red-500/50 text-red-200 shadow-sm'
-                    : 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-[#10121a] border border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                    ? 'bg-rose-50 border border-rose-300 text-rose-700 shadow-sm font-semibold'
+                    : 'bg-[#275ba5] text-white shadow-sm font-semibold'
+                  : 'bg-white border border-[#e9e8e7] text-[#565f71] hover:text-[#1b1c1c] hover:border-[#c3c6d3]'
               }`}
             >
-              {pill.icon && <span>{pill.icon}</span>}
               <span>{pill.label}</span>
             </button>
           );
@@ -383,24 +373,24 @@ export default function LeadsPage() {
       </div>
 
       {/* Barra Secundária de Busca, Faixa de Prêmio e Ordenação */}
-      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="bg-white border border-[#e9e8e7] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {/* Busca */}
         <div className="w-full md:w-80 relative">
           <input
             type="text"
-            placeholder="Buscar empresa, contato, DOT, EIN..."
+            placeholder="Buscar por nome, telefone, veículo ou empresa..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#090a0f] border border-zinc-800 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#1b1c1c] placeholder-[#737782] focus:bg-white focus:border-[#275ba5] focus:outline-none transition-colors"
           />
-          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-zinc-500 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#737782] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-2.5 top-2 text-zinc-400 hover:text-zinc-200 text-xs cursor-pointer"
+              className="absolute right-2.5 top-2 text-[#737782] hover:text-[#1b1c1c] text-xs cursor-pointer"
             >
               Limpar
             </button>
@@ -408,80 +398,80 @@ export default function LeadsPage() {
         </div>
 
         {/* Filtros Secundários */}
-        <div className="flex items-center gap-2.5 w-full md:w-auto justify-between md:justify-end overflow-x-auto pb-1 md:pb-0 text-xs">
-          {/* Faixa de Prêmio */}
+        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end overflow-x-auto pb-1 md:pb-0 text-xs">
+          {/* Faixa de Prêmio Estimado */}
           <div className="flex items-center gap-1.5">
-            <span className="text-zinc-500 text-[11px]">Prêmio:</span>
+            <span className="text-[#565f71] text-xs font-medium">Prêmio Estimado:</span>
             <select
               value={premiumFilter}
               onChange={(e) => setPremiumFilter(e.target.value)}
-              className="bg-[#090a0f] border border-zinc-800 rounded px-2.5 py-1.5 text-zinc-300 text-xs focus:outline-none focus:border-zinc-700"
+              className="bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-[#1b1c1c] text-xs focus:outline-none focus:border-[#275ba5]"
             >
               <option value="all">Qualquer valor</option>
-              <option value="25k">&gt; $25,000 / ano</option>
-              <option value="50k">&gt; $50,000 / ano</option>
-              <option value="100k">&gt; $100,000 / ano</option>
+              <option value="3k">&gt; R$ 3.000 / ano</option>
+              <option value="5k">&gt; R$ 5.000 / ano</option>
+              <option value="10k">&gt; R$ 10.000 / ano</option>
             </select>
           </div>
 
           {/* Ordenação */}
           <div className="flex items-center gap-1.5">
-            <span className="text-zinc-500 text-[11px]">Ordenar:</span>
+            <span className="text-[#565f71] text-xs font-medium">Ordenar:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-[#090a0f] border border-zinc-800 rounded px-2.5 py-1.5 text-zinc-300 text-xs focus:outline-none focus:border-zinc-700"
+              className="bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-[#1b1c1c] text-xs focus:outline-none focus:border-[#275ba5]"
             >
               <option value="sla">SLA Crítico (&lt; 5m)</option>
-              <option value="score">Maior Score (90%+)</option>
-              <option value="premium">Maior Prêmio ($$)</option>
+              <option value="score">Maior Intenção (Score)</option>
+              <option value="premium">Maior Prêmio (R$)</option>
             </select>
           </div>
         </div>
       </div>
 
-      {/* Tabela de Leads com Risk Tags e SLA Countdown */}
-      <div className="bg-[#10121a] border border-zinc-800/80 rounded-xl overflow-hidden shadow-sm">
+      {/* Tabela de Leads */}
+      <div className="bg-white border border-[#e9e8e7] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {loading ? (
           <div className="py-20 text-center">
-            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-            <div className="text-xs font-medium text-zinc-400">Carregando fila de triagem...</div>
+            <div className="w-7 h-7 border-2 border-[#275ba5] border-t-transparent rounded-full animate-spin mx-auto mb-2.5" />
+            <div className="text-xs font-medium text-[#565f71]">Carregando leads da corretora...</div>
           </div>
         ) : filteredLeads.length === 0 ? (
           <div className="py-16 text-center px-4">
-            <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 flex items-center justify-center mx-auto mb-3">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="w-12 h-12 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-[#565f71] flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </div>
-            <h3 className="text-sm font-semibold text-white">Nenhum lead corporativo encontrado</h3>
-            <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
-              Ajuste os filtros de LOB ou prêmio ou simule um novo webhook de entrada.
+            <h3 className="text-sm font-semibold text-[#1b1c1c]">Nenhum lead encontrado</h3>
+            <p className="text-xs text-[#565f71] mt-1 max-w-sm mx-auto">
+              Ajuste os filtros de ramo acima ou simule um novo lead recebido via anúncio.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-zinc-800 bg-[#090a0f]/80 text-[11px] font-medium text-zinc-400 uppercase tracking-wider">
+                <tr className="border-b border-[#e9e8e7] bg-[#f5f3f3] text-[11px] font-semibold text-[#565f71] uppercase tracking-wider">
                   <th className="py-3 px-3 w-10 text-center">
                     <input
                       type="checkbox"
                       checked={selectedLeadIds.length > 0 && selectedLeadIds.length === filteredLeads.length}
                       onChange={toggleSelectAll}
-                      className="rounded border-zinc-700 bg-zinc-900 text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                      className="rounded border-[#c3c6d3] text-[#275ba5] focus:ring-0 focus:ring-offset-0 cursor-pointer"
                     />
                   </th>
-                  <th className="py-3 px-4">Insured / Razão Social</th>
-                  <th className="py-3 px-4">Ramo (LOB) & Compliance</th>
-                  <th className="py-3 px-4">SLA Speed-to-Lead</th>
+                  <th className="py-3 px-4">Cliente / Proponente</th>
+                  <th className="py-3 px-4">Ramo & Detalhes</th>
+                  <th className="py-3 px-4">Speed-to-Lead</th>
                   <th className="py-3 px-4">Prêmio Estimado</th>
-                  <th className="py-3 px-4">Apetite Seguradora</th>
-                  <th className="py-3 px-4 text-right">Ações Imediatas</th>
+                  <th className="py-3 px-4">Seguradora Recomendada</th>
+                  <th className="py-3 px-4 text-right">Ação Imediata</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/60">
+              <tbody className="divide-y divide-[#e9e8e7]">
                 {filteredLeads.map((lead) => {
                   const isSelected = selectedLeadIds.includes(lead.id);
                   const isHot = lead.score >= 90;
@@ -496,7 +486,7 @@ export default function LeadsPage() {
                     }
                   }
 
-                  // Cálculo do SLA restante
+                  // Cálculo do SLA restante (5 minutos)
                   const slaExpiry = lead.slaExpiresAt
                     ? new Date(lead.slaExpiresAt).getTime()
                     : new Date(lead.createdAt).getTime() + 5 * 60 * 1000;
@@ -507,21 +497,17 @@ export default function LeadsPage() {
                   const isCritical = secondsRemaining < 60;
                   const isExpired = secondsRemaining === 0;
 
-                  const formattedPremium = lead.premioEstimado
-                    ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(lead.premioEstimado)
-                    : '$45,000';
-
                   return (
                     <tr
                       key={lead.id}
-                      className={`hover:bg-zinc-800/30 transition-colors group cursor-pointer ${
-                        isSelected ? 'bg-blue-950/20' : ''
+                      className={`hover:bg-[#faf8f8] transition-colors group cursor-pointer ${
+                        isSelected ? 'bg-blue-50/50' : ''
                       }`}
                       onClick={() => setInspectingLead(lead)}
                     >
                       {/* Checkbox de Seleção */}
                       <td
-                        className="py-3 px-3 text-center"
+                        className="py-3.5 px-3 text-center"
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleSelectLead(lead.id);
@@ -531,54 +517,54 @@ export default function LeadsPage() {
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => {}}
-                          className="rounded border-zinc-700 bg-zinc-900 text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                          className="rounded border-[#c3c6d3] text-[#275ba5] focus:ring-0 focus:ring-offset-0 cursor-pointer"
                         />
                       </td>
 
-                      {/* Insured / Empresa & Contato */}
-                      <td className="py-3 px-4">
-                        <div className="font-semibold text-zinc-100 group-hover:text-blue-400 transition-colors flex items-center gap-1.5">
+                      {/* Cliente / Contato */}
+                      <td className="py-3.5 px-4">
+                        <div className="font-semibold text-[#1b1c1c] group-hover:text-[#275ba5] transition-colors flex items-center gap-1.5">
                           <span>{lead.empresa || lead.nome}</span>
                           {isHot && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block animate-pulse" title="🔥 Hot Intent" />
+                            <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse" title="🔥 Alta Intenção de Fechamento" />
                           )}
                         </div>
-                        <div className="text-[11px] text-zinc-400 flex items-center gap-1.5 mt-0.5 font-mono">
-                          <span>{lead.nome}</span>
-                          <span>•</span>
+                        <div className="text-xs text-[#565f71] flex items-center gap-1.5 mt-0.5 font-mono">
+                          {lead.empresa && <span>{lead.nome} •</span>}
                           <span>{normalizePhoneBR(lead.telefone).formatted}</span>
+                          <span className="text-[10px] text-[#737782]">({lead.origem})</span>
                         </div>
                       </td>
 
-                      {/* LOB & Risk Compliance Tags */}
-                      <td className="py-3 px-4">
-                        <div className="font-medium text-zinc-200">{lead.lob || lead.ramoDesejado}</div>
+                      {/* Ramo e Detalhes */}
+                      <td className="py-3.5 px-4">
+                        <div className="font-medium text-[#1b1c1c]">{lead.ramoDesejado || lead.lob}</div>
                         <div className="flex flex-wrap gap-1 mt-1">
                           {parsedTags.slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-900 text-zinc-300 border border-zinc-800"
+                              className="text-[10px] px-2 py-0.5 rounded-md bg-[#f5f3f3] text-[#565f71] border border-[#e9e8e7]"
                             >
-                              ✓ {tag}
+                              {tag}
                             </span>
                           ))}
                         </div>
                       </td>
 
                       {/* SLA Speed-to-Lead Countdown */}
-                      <td className="py-3 px-4">
+                      <td className="py-3.5 px-4">
                         {isExpired ? (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 bg-zinc-900/60 px-2 py-0.5 rounded border border-zinc-800">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[#737782] bg-[#f5f3f3] px-2.5 py-1 rounded-md border border-[#e9e8e7]">
                             SLA Ultrapassado
                           </span>
                         ) : isCritical ? (
-                          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-red-400 bg-red-950/60 px-2 py-0.5 rounded border border-red-500/40 font-bold animate-pulse">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-rose-700 bg-rose-50 px-2.5 py-1 rounded-md border border-rose-200 font-bold animate-pulse">
+                            <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
                             {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')} restante!
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-amber-300 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-500/30">
-                            <svg className="w-3 h-3 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+                            <svg className="w-3 h-3 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <circle cx="12" cy="12" r="10" />
                               <polyline points="12 6 12 12 16 14" />
                             </svg>
@@ -588,74 +574,65 @@ export default function LeadsPage() {
                       </td>
 
                       {/* Prêmio Estimado */}
-                      <td className="py-3 px-4 font-mono">
-                        <div className="font-bold text-white tracking-tight">{formattedPremium}</div>
-                        <span className="text-[10px] text-zinc-500 font-sans">anual</span>
+                      <td className="py-3.5 px-4 font-mono">
+                        <div className="font-semibold text-[#1b1c1c] tracking-tight">{formatBRL(lead.premioEstimado)}</div>
+                        <span className="text-[10px] text-[#565f71] font-sans">estimativa anual</span>
                       </td>
 
-                      {/* Apetite Seguradora */}
-                      <td className="py-3 px-4">
+                      {/* Seguradora Recomendada */}
+                      <td className="py-3.5 px-4">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-semibold text-zinc-200">
-                            {lead.targetCarrier || 'Chubb'}
+                          <span className="text-xs font-semibold text-[#1b1c1c]">
+                            {lead.targetCarrier || 'Porto Seguro'}
                           </span>
-                          <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 font-semibold">
-                            {lead.carrierAppetite || 90}% Match
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
+                            {lead.carrierAppetite || 95}% Fit
                           </span>
                         </div>
-                        <div className="w-20 bg-zinc-800 rounded-full h-1.5 mt-1.5 overflow-hidden">
+                        <div className="w-24 bg-[#efeded] rounded-full h-1.5 mt-1.5 overflow-hidden">
                           <div
-                            className="bg-emerald-500 h-1.5 rounded-full"
-                            style={{ width: `${lead.carrierAppetite || 90}%` }}
+                            className="bg-[#275ba5] h-1.5 rounded-full"
+                            style={{ width: `${lead.carrierAppetite || 95}%` }}
                           />
                         </div>
                       </td>
 
                       {/* Ações */}
                       <td
-                        className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap"
+                        className="py-3.5 px-4 text-right space-x-1.5 whitespace-nowrap"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Link
-                          href={`/dashboard/leads/${lead.id}`}
-                          title="Abrir Dossier & Submission Packet"
-                          className="px-2.5 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs font-medium transition-colors cursor-pointer inline-flex items-center gap-1"
-                        >
-                          <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                          </svg>
-                          Dossier
-                        </Link>
-
                         <button
-                          onClick={() => setSelectedLeadForCall(lead)}
-                          title="Iniciar chamada assistida por IA"
-                          className="px-2.5 py-1.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-xs font-medium transition-colors cursor-pointer active-press"
+                          onClick={() => setSelectedLeadForWa(lead)}
+                          title="Enviar mensagem WhatsApp com template"
+                          className="px-3 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition-colors cursor-pointer shadow-sm inline-flex items-center gap-1"
                         >
-                          Ligar
+                          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                          </svg>
+                          <span>WhatsApp</span>
                         </button>
 
                         <button
-                          onClick={() => setSelectedLeadForWa(lead)}
-                          title="Enviar mensagem WhatsApp"
-                          className="px-2.5 py-1.5 rounded-md bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/20 text-xs font-medium transition-colors cursor-pointer active-press"
+                          onClick={() => setSelectedLeadForCall(lead)}
+                          title="Iniciar chamada assistida"
+                          className="px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors cursor-pointer"
                         >
-                          WhatsApp
+                          Ligar
                         </button>
 
                         {lead.status !== 'convertido' ? (
                           <button
                             onClick={() => handleConvertLead(lead)}
                             disabled={convertingId === lead.id}
-                            title="Converter em apólice de renovação"
-                            className="px-2.5 py-1.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition-colors cursor-pointer disabled:opacity-50 active-press"
+                            title="Salvar apólice fechada no Radar de Renovações"
+                            className="px-2.5 py-1.5 rounded-md bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-medium transition-colors cursor-pointer disabled:opacity-50"
                           >
-                            {convertingId === lead.id ? 'Convertendo...' : 'Converter'}
+                            {convertingId === lead.id ? 'Salvando...' : 'Fechar'}
                           </button>
                         ) : (
-                          <span className="text-[11px] text-emerald-400 font-medium px-2 py-1 bg-emerald-500/10 rounded border border-emerald-500/20">
-                            Bound
+                          <span className="text-[11px] text-emerald-700 font-medium px-2 py-1 bg-emerald-50 rounded border border-emerald-200">
+                            Fechado
                           </span>
                         )}
                       </td>
@@ -668,21 +645,21 @@ export default function LeadsPage() {
         )}
       </div>
 
-      {/* 5.2 STICKY BATCH PROCESSING BAR (Aparece ao selecionar leads) */}
+      {/* Barra de Ações em Lote */}
       {selectedLeadIds.length > 0 && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 animate-in fade-in slide-in-from-bottom-4">
-          <div className="bg-[#0d121f] border border-blue-500/50 rounded-xl p-3.5 shadow-2xl shadow-blue-950/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs backdrop-blur-md">
+          <div className="bg-white border border-[#c3c6d3] rounded-xl p-4 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-3">
-              <span className="flex h-2.5 w-2.5 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+              <span className="flex h-3 w-3 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#275ba5] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#275ba5]"></span>
               </span>
               <div>
-                <span className="font-bold text-white text-sm">
-                  {selectedLeadIds.length} leads corporativos selecionados
+                <span className="font-bold text-[#1b1c1c] text-sm">
+                  {selectedLeadIds.length} leads selecionados
                 </span>
-                <div className="text-[11px] text-slate-300 font-mono">
-                  ${(totalSelectedPremium / 1000).toFixed(0)}k de prêmio anual sob análise
+                <div className="text-xs text-[#565f71]">
+                  Total estimado: <strong className="text-[#1b1c1c]">{formatBRL(totalSelectedPremium)}</strong>
                 </div>
               </div>
             </div>
@@ -692,33 +669,30 @@ export default function LeadsPage() {
               <Button
                 size="sm"
                 onClick={handleBulkFastRoute}
-                className="h-8 text-xs bg-blue-600 hover:bg-blue-500 text-white font-medium"
+                className="h-8 text-xs bg-[#275ba5] hover:bg-[#1a4784] text-white font-medium"
               >
-                <svg className="w-3.5 h-3.5 mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-                Fast Route em Lote
+                Atendimento Prioritário
               </Button>
 
               <Button
                 size="sm"
                 variant="outline"
-                onClick={handleExportCsvBinder}
-                className="h-8 text-xs border-zinc-700 bg-zinc-900 text-zinc-200 hover:text-white hover:bg-zinc-800"
+                onClick={handleExportCsv}
+                className="h-8 text-xs border-[#c3c6d3] bg-white text-[#1b1c1c] hover:bg-[#f5f3f3]"
               >
-                <svg className="w-3.5 h-3.5 mr-1.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-3.5 h-3.5 mr-1.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                Exportar CSV Binder
+                Exportar CSV
               </Button>
 
               <Button
                 size="sm"
                 variant="ghost"
                 onClick={() => setSelectedLeadIds([])}
-                className="h-8 text-xs text-zinc-400 hover:text-white"
+                className="h-8 text-xs text-[#565f71] hover:text-[#1b1c1c]"
               >
                 ✕ Desmarcar
               </Button>
@@ -727,37 +701,37 @@ export default function LeadsPage() {
         </div>
       )}
 
-      {/* Drawer for Lead Deep Inspection */}
+      {/* Drawer Lateral para Detalhes do Lead */}
       {inspectingLead && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div
-            className="fixed inset-0 bg-black/60 transition-opacity"
+            className="fixed inset-0 bg-black/40 transition-opacity"
             onClick={() => setInspectingLead(null)}
           />
 
-          <div className="relative w-full max-w-lg bg-[#10121a] border-l border-zinc-800 h-full overflow-y-auto shadow-2xl p-6 sm:p-7 flex flex-col justify-between z-10 spring-drawer">
+          <div className="relative w-full max-w-lg bg-white border-l border-[#e9e8e7] h-full overflow-y-auto shadow-2xl p-6 sm:p-7 flex flex-col justify-between z-10">
             <div className="space-y-5">
-              <div className="flex items-start justify-between border-b border-zinc-800 pb-4">
+              <div className="flex items-start justify-between border-b border-[#e9e8e7] pb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-medium text-zinc-400">
-                      Score: <strong className="text-white font-mono">{inspectingLead.score}/100</strong>
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-[#275ba5] border border-blue-200">
+                      Score: {inspectingLead.score}/100
                     </span>
-                    <span className="text-xs text-zinc-500">•</span>
-                    <span className="text-xs text-zinc-500 font-mono">
+                    <span className="text-xs text-[#737782]">•</span>
+                    <span className="text-xs text-[#737782]">
                       Ref #{inspectingLead.id?.slice(-6)}
                     </span>
                   </div>
 
-                  <h2 className="text-lg font-bold text-white tracking-tight">
+                  <h2 className="text-xl font-bold text-[#1b1c1c] tracking-tight">
                     {inspectingLead.empresa || inspectingLead.nome}
                   </h2>
                   {inspectingLead.empresa && (
-                    <div className="text-xs text-zinc-400">
+                    <div className="text-xs text-[#565f71]">
                       Contato: {inspectingLead.nome}
                     </div>
                   )}
-                  <div className="text-xs text-zinc-400 font-mono mt-0.5">
+                  <div className="text-xs text-[#565f71] font-mono mt-0.5">
                     {normalizePhoneBR(inspectingLead.telefone).formatted}
                     {inspectingLead.email && ` • ${inspectingLead.email}`}
                   </div>
@@ -765,127 +739,114 @@ export default function LeadsPage() {
 
                 <button
                   onClick={() => setInspectingLead(null)}
-                  className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer active-press"
+                  className="p-1.5 rounded-lg text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] transition-colors cursor-pointer"
                 >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                 </button>
               </div>
 
-              {/* Box de Análise Técnica de Risco */}
-              <div className="p-4 rounded-lg bg-[#090a0f] border border-zinc-800 space-y-2">
+              {/* Box de Análise de Risco & Notas */}
+              <div className="p-4 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-zinc-300">
-                    Diagnóstico de Risco & Underwriting
+                  <span className="text-xs font-semibold text-[#1b1c1c]">
+                    Diagnóstico de Perfil
                   </span>
-                  <span className="text-[11px] text-zinc-500">IA Clearance</span>
+                  <span className="text-[11px] text-emerald-700 font-medium">Qualificado</span>
                 </div>
-                <p className="text-xs text-zinc-300 leading-relaxed">
-                  {inspectingLead.resumoIa || 'Lead qualificado com sucesso pelos parâmetros de apetite da corretora.'}
+                <p className="text-xs text-[#565f71] leading-relaxed">
+                  {inspectingLead.resumoIa || inspectingLead.notas || 'Lead qualificado com interesse imediato no produto.'}
                 </p>
-                <div className="pt-2 border-t border-zinc-800/80 flex items-center justify-between text-xs">
-                  <span className="text-zinc-400">Prêmio Estimado:</span>
-                  <span className="font-mono font-bold text-white">
-                    {inspectingLead.premioEstimado
-                      ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(inspectingLead.premioEstimado)
-                      : '$45,000'}
+                <div className="pt-2 border-t border-[#e9e8e7] flex items-center justify-between text-xs">
+                  <span className="text-[#565f71]">Prêmio Anual Estimado:</span>
+                  <span className="font-bold text-[#1b1c1c]">
+                    {formatBRL(inspectingLead.premioEstimado)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-zinc-400">Seguradora Recomendada:</span>
-                  <span className="font-semibold text-emerald-400">
-                    {inspectingLead.targetCarrier || 'Chubb'} ({inspectingLead.carrierAppetite || 90}% Apetite)
+                  <span className="text-[#565f71]">Seguradora Recomendada:</span>
+                  <span className="font-semibold text-[#275ba5]">
+                    {inspectingLead.targetCarrier || 'Porto Seguro'} ({inspectingLead.carrierAppetite || 95}% Fit)
                   </span>
                 </div>
               </div>
 
               {/* Ramo e Origem */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 rounded-lg bg-[#090a0f] border border-zinc-800">
-                  <span className="text-[11px] font-medium text-zinc-500 block mb-1">
-                    Linha de Negócio (LOB)
+                <div className="p-3 rounded-xl bg-white border border-[#e9e8e7]">
+                  <span className="text-[11px] font-medium text-[#565f71] block mb-1">
+                    Ramo Desejado
                   </span>
-                  <span className="text-xs font-semibold text-zinc-200">
-                    {inspectingLead.lob || inspectingLead.ramoDesejado}
+                  <span className="text-xs font-semibold text-[#1b1c1c]">
+                    {inspectingLead.ramoDesejado || inspectingLead.lob}
                   </span>
                 </div>
 
-                <div className="p-3 rounded-lg bg-[#090a0f] border border-zinc-800">
-                  <span className="text-[11px] font-medium text-zinc-500 block mb-1">
-                    Origem do Ingest
+                <div className="p-3 rounded-xl bg-white border border-[#e9e8e7]">
+                  <span className="text-[11px] font-medium text-[#565f71] block mb-1">
+                    Canal de Origem
                   </span>
-                  <span className="text-xs font-semibold text-zinc-200">
+                  <span className="text-xs font-semibold text-[#1b1c1c]">
                     {inspectingLead.origem}
                   </span>
                 </div>
               </div>
 
-              {/* Ações Operacionais */}
-              <div className="border-t border-zinc-800 pt-4 space-y-2.5">
-                <span className="text-xs font-medium text-zinc-400 block">
-                  Ações de Despacho & Fechamento
+              {/* Ações Operacionais da Corretora */}
+              <div className="border-t border-[#e9e8e7] pt-4 space-y-2.5">
+                <span className="text-xs font-semibold text-[#1b1c1c] block">
+                  Ações Rápidas de Fechamento
                 </span>
 
                 <div className="grid grid-cols-2 gap-2">
                   <button
-                    onClick={() => setSelectedLeadForCall(inspectingLead)}
-                    className="p-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer active-press"
-                  >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                    <span>Ligar com IA</span>
-                  </button>
-
-                  <button
                     onClick={() => setSelectedLeadForWa(inspectingLead)}
-                    className="p-2.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/20 text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer active-press"
+                    className="p-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                   >
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                     </svg>
-                    <span>WhatsApp</span>
+                    <span>Chamar no WhatsApp</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedLeadForCall(inspectingLead)}
+                    className="p-2.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>Ligar</span>
                   </button>
                 </div>
 
                 <Link
-                  href={`/dashboard/leads/${inspectingLead.id}`}
-                  className="w-full p-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center shadow-sm active-press"
+                  href="/dashboard/cotacao-cockpit"
+                  className="w-full p-2.5 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center shadow-sm"
                 >
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  <span>Abrir Dossier & Submission Packet Completo</span>
-                </Link>
-
-                <Link
-                  href="/dashboard/cotacao-cockpit"
-                  className="w-full p-2.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center active-press"
-                >
-                  <svg className="w-3.5 h-3.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  <span>Abrir cockpit de cotação</span>
+                  <span>Calcular Cotação Multisseguradoras</span>
                 </Link>
 
                 {inspectingLead.status !== 'convertido' && (
                   <button
                     onClick={() => handleConvertLead(inspectingLead)}
                     disabled={convertingId === inspectingLead.id}
-                    className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active-press"
+                    className="w-full py-2.5 rounded-lg border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
-                    <span>Converter em apólice no radar</span>
+                    <span>Registrar Fechamento & Apólice</span>
                   </button>
                 )}
               </div>
             </div>
 
-            <div className="border-t border-zinc-800 pt-4 mt-6 text-center">
-              <span className="text-[11px] text-zinc-500">
-                Operação sob compliance SOC-2 • {userOrg.orgName}
+            <div className="border-t border-[#e9e8e7] pt-4 mt-6 text-center">
+              <span className="text-xs text-[#737782]">
+                {userOrg.orgName} • Atendimento ao Cliente
               </span>
             </div>
           </div>
