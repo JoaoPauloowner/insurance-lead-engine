@@ -86,19 +86,19 @@ export default function TemplatesPage() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto pb-20 font-sans">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[#e9e8e7] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
-          <div className="flex items-center gap-2 text-xs text-[#565f71] mb-1.5 font-medium">
-            <Link href="/dashboard/leads" className="hover:text-[#275ba5] transition-colors">
+          <div className="flex items-center gap-2 text-xs text-[var(--text-mute)] mb-1.5 font-medium">
+            <Link href="/dashboard/leads" className="hover:text-[var(--purple)] transition-colors">
               Leads
             </Link>
             <span>/</span>
-            <span className="text-[#1b1c1c] font-semibold">Templates</span>
+            <span className="text-[var(--text)] font-semibold">Templates</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--text)]">
             Modelos de Mensagem WhatsApp
           </h1>
-          <p className="text-sm text-[#565f71] mt-0.5 max-w-xl">
+          <p className="text-sm text-[var(--text-mute)] mt-0.5 max-w-xl">
             Roteiros de primeiro contato e renovação com substituição automática de dados do cliente.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function TemplatesPage() {
         {!isCreating && !editingId && (
           <button
             onClick={handleStartCreate}
-            className="px-4 py-2 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white font-semibold text-xs shadow-sm transition-colors flex items-center gap-2 cursor-pointer"
+            className="px-4 py-2 rounded-lg bg-[var(--purple)] hover:bg-[#1a4784] text-white font-semibold text-xs shadow-sm transition-colors flex items-center gap-2 cursor-pointer"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -118,24 +118,24 @@ export default function TemplatesPage() {
       </div>
 
       {/* Variables Chip Bar */}
-      <div className="p-3.5 rounded-xl bg-white border border-[#e9e8e7] flex items-center gap-2 flex-wrap text-xs text-[#565f71] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-        <span className="font-semibold text-[#1b1c1c]">Variáveis disponíveis:</span>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{cliente}`}</code>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{corretora}`}</code>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{corretor}`}</code>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{tipo_seguro}`}</code>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{seguradora}`}</code>
-        <code className="bg-[#f5f3f3] text-[#1b1c1c] px-2 py-0.5 rounded font-mono text-[11px] border border-[#e9e8e7]">{`{dias_vencimento}`}</code>
+      <div className="p-3.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] flex items-center gap-2 flex-wrap text-xs text-[var(--text-mute)] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <span className="font-semibold text-[var(--text)]">Variáveis disponíveis:</span>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{cliente}`}</code>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{corretora}`}</code>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{corretor}`}</code>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{tipo_seguro}`}</code>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{seguradora}`}</code>
+        <code className="bg-[var(--surface)] text-[var(--text)] px-2 py-0.5 rounded font-mono text-[11px] border border-[var(--border)]">{`{dias_vencimento}`}</code>
       </div>
 
       {(isCreating || editingId) && (
-        <div className="p-6 rounded-xl bg-white border border-[#275ba5] shadow-md space-y-4">
-          <h2 className="text-sm font-bold text-[#1b1c1c]">
+        <div className="p-6 rounded-xl bg-[var(--surface-2)] border border-[#275ba5] shadow-md space-y-4">
+          <h2 className="text-sm font-bold text-[var(--text)]">
             {isCreating ? 'Cadastrar Novo Modelo' : 'Editar Modelo Existente'}
           </h2>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+              <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                 Nome do Modelo
               </label>
               <input
@@ -144,11 +144,11 @@ export default function TemplatesPage() {
                 value={formNome}
                 onChange={(e) => setFormNome(e.target.value)}
                 placeholder="Ex: Abordagem Inicial Seguro Auto"
-                className="w-full px-3 py-2 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-[#1b1c1c] text-xs focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] text-xs focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+              <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                 Conteúdo da Mensagem
               </label>
               <textarea
@@ -156,7 +156,7 @@ export default function TemplatesPage() {
                 required
                 value={formCorpo}
                 onChange={(e) => setFormCorpo(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-[#1b1c1c] text-xs leading-relaxed focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] text-xs leading-relaxed focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
               />
             </div>
             <div className="flex justify-end gap-2.5 pt-1">
@@ -166,14 +166,14 @@ export default function TemplatesPage() {
                   setIsCreating(false);
                   setEditingId(null);
                 }}
-                className="px-3.5 py-2 rounded-lg border border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] text-xs font-medium transition-colors cursor-pointer"
+                className="px-3.5 py-2 rounded-lg border border-[var(--border)] text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)] text-xs font-medium transition-colors cursor-pointer"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="px-4 py-2 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer disabled:opacity-50"
+                className="px-4 py-2 rounded-lg bg-[var(--purple)] hover:bg-[#1a4784] text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer disabled:opacity-50"
               >
                 {saving ? 'Salvando...' : 'Salvar Modelo'}
               </button>
@@ -184,22 +184,22 @@ export default function TemplatesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {loading ? (
-          <div className="col-span-2 py-16 text-center text-xs text-[#565f71]">Carregando modelos...</div>
+          <div className="col-span-2 py-16 text-center text-xs text-[var(--text-mute)]">Carregando modelos...</div>
         ) : (
           templates.map((tpl) => (
             <div
               key={tpl.id}
-              className="bg-white border border-[#e9e8e7] p-4 rounded-xl flex flex-col justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-[#c3c6d3] transition-colors"
+              className="bg-[var(--surface-2)] border border-[var(--border)] p-4 rounded-xl flex flex-col justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-[var(--border)] transition-colors"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-2 border-b border-[#e9e8e7] pb-2.5">
-                  <h3 className="font-bold text-[#1b1c1c] text-xs">
+                <div className="flex items-center justify-between gap-2 mb-2 border-b border-[var(--border)] pb-2.5">
+                  <h3 className="font-bold text-[var(--text)] text-xs">
                     {tpl.nome}
                   </h3>
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => handleStartEdit(tpl)}
-                      className="p-1 rounded-md text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] transition-colors cursor-pointer text-xs"
+                      className="p-1 rounded-md text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)] transition-colors cursor-pointer text-xs"
                       title="Editar"
                     >
                       <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -209,7 +209,7 @@ export default function TemplatesPage() {
                     </button>
                     <button
                       onClick={() => handleDelete(tpl.id)}
-                      className="p-1 rounded-md text-[#565f71] hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer text-xs"
+                      className="p-1 rounded-md text-[var(--text-mute)] hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer text-xs"
                       title="Excluir"
                     >
                       <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -219,7 +219,7 @@ export default function TemplatesPage() {
                     </button>
                   </div>
                 </div>
-                <p className="text-xs text-[#565f71] leading-relaxed bg-[#f5f3f3] p-3 rounded-lg border border-[#e9e8e7] whitespace-pre-wrap font-sans">
+                <p className="text-xs text-[var(--text-mute)] leading-relaxed bg-[var(--surface)] p-3 rounded-lg border border-[var(--border)] whitespace-pre-wrap font-sans">
                   {tpl.corpo}
                 </p>
               </div>

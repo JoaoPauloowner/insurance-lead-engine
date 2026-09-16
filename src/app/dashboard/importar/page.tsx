@@ -86,18 +86,18 @@ export default function ImportarPage() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto pb-20 font-sans">
-      <div className="border-b border-[#e9e8e7] pb-5">
-        <div className="flex items-center gap-2 text-xs text-[#565f71] mb-1.5 font-medium">
-          <Link href="/dashboard/renovacoes" className="hover:text-[#275ba5] transition-colors">
+      <div className="border-b border-[var(--border)] pb-5">
+        <div className="flex items-center gap-2 text-xs text-[var(--text-mute)] mb-1.5 font-medium">
+          <Link href="/dashboard/renovacoes" className="hover:text-[var(--purple)] transition-colors">
             Radar de Renovações
           </Link>
           <span>/</span>
-          <span className="text-[#1b1c1c] font-semibold">Importação</span>
+          <span className="text-[var(--text)] font-semibold">Importação</span>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--text)]">
           Importar Carteira de Clientes & Apólices
         </h1>
-        <p className="text-sm text-[#565f71] mt-0.5 max-w-xl">
+        <p className="text-sm text-[var(--text-mute)] mt-0.5 max-w-xl">
           Envie sua planilha em formato Excel (.xlsx) ou CSV. O sistema detecta automaticamente os dados de contato e vigência.
         </p>
       </div>
@@ -114,15 +114,15 @@ export default function ImportarPage() {
       )}
 
       {report && (
-        <div className="p-6 rounded-xl bg-white border border-emerald-200 shadow-sm space-y-4">
+        <div className="p-6 rounded-xl bg-[var(--surface-2)] border border-emerald-200 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center font-bold text-base shrink-0">
                 ✓
               </div>
               <div>
-                <h3 className="text-sm font-bold text-[#1b1c1c]">Importação Concluída com Sucesso</h3>
-                <p className="text-xs text-[#565f71]">As apólices foram inseridas no Radar de Renovações.</p>
+                <h3 className="text-sm font-bold text-[var(--text)]">Importação Concluída com Sucesso</h3>
+                <p className="text-xs text-[var(--text-mute)]">As apólices foram inseridas no Radar de Renovações.</p>
               </div>
             </div>
             <button
@@ -134,16 +134,16 @@ export default function ImportarPage() {
           </div>
 
           <div className="grid grid-cols-3 gap-3 pt-2">
-            <div className="p-3.5 bg-[#f5f3f3] rounded-xl border border-[#e9e8e7]">
-              <span className="text-xs text-[#565f71] block">Registros Importados</span>
+            <div className="p-3.5 bg-[var(--surface)] rounded-xl border border-[var(--border)]">
+              <span className="text-xs text-[var(--text-mute)] block">Registros Importados</span>
               <p className="text-2xl font-bold text-emerald-700 mt-1 tabular-nums">{report.importedCount}</p>
             </div>
-            <div className="p-3.5 bg-[#f5f3f3] rounded-xl border border-[#e9e8e7]">
-              <span className="text-xs text-[#565f71] block">Ignorados / Duplicados</span>
-              <p className="text-2xl font-bold text-[#1b1c1c] mt-1 tabular-nums">{report.skippedCount}</p>
+            <div className="p-3.5 bg-[var(--surface)] rounded-xl border border-[var(--border)]">
+              <span className="text-xs text-[var(--text-mute)] block">Ignorados / Duplicados</span>
+              <p className="text-2xl font-bold text-[var(--text)] mt-1 tabular-nums">{report.skippedCount}</p>
             </div>
-            <div className="p-3.5 bg-[#f5f3f3] rounded-xl border border-[#e9e8e7]">
-              <span className="text-xs text-[#565f71] block">Alertas de Formatação</span>
+            <div className="p-3.5 bg-[var(--surface)] rounded-xl border border-[var(--border)]">
+              <span className="text-xs text-[var(--text-mute)] block">Alertas de Formatação</span>
               <p className="text-2xl font-bold text-amber-700 mt-1 tabular-nums">{report.errors?.length || 0}</p>
             </div>
           </div>
@@ -151,13 +151,13 @@ export default function ImportarPage() {
       )}
 
       {!report && (
-        <div className="p-6 rounded-xl bg-white border border-[#e9e8e7] space-y-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <h2 className="text-xs font-bold text-[#1b1c1c] flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-blue-50 text-[#275ba5] font-semibold">Passo 1</span>
+        <div className="p-6 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] space-y-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <h2 className="text-xs font-bold text-[var(--text)] flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded bg-blue-50 text-[var(--purple)] font-semibold">Passo 1</span>
             <span>Selecione o arquivo (.xlsx, .csv ou .xls)</span>
           </h2>
 
-          <div className="border-2 border-dashed border-[#c3c6d3] hover:border-[#275ba5] rounded-xl p-8 text-center transition-colors bg-[#fbf9f9] group">
+          <div className="border-2 border-dashed border-[var(--border)] hover:border-[#275ba5] rounded-xl p-8 text-center transition-colors bg-[#fbf9f9] group">
             <input
               type="file"
               id="fileInput"
@@ -166,7 +166,7 @@ export default function ImportarPage() {
               className="hidden"
             />
             <label htmlFor="fileInput" className="cursor-pointer block space-y-2.5">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#275ba5] mx-auto">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[var(--purple)] mx-auto">
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="17 8 12 3 7 8" />
@@ -174,16 +174,16 @@ export default function ImportarPage() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-semibold text-[#1b1c1c] group-hover:text-[#275ba5] transition-colors">
+                <p className="text-sm font-semibold text-[var(--text)] group-hover:text-[var(--purple)] transition-colors">
                   {file ? file.name : 'Clique para selecionar ou arraste o arquivo aqui'}
                 </p>
-                <p className="text-xs text-[#565f71] mt-0.5">Formatos suportados: Planilha Excel (.xlsx) ou CSV com cabeçalhos</p>
+                <p className="text-xs text-[var(--text-mute)] mt-0.5">Formatos suportados: Planilha Excel (.xlsx) ou CSV com cabeçalhos</p>
               </div>
             </label>
           </div>
 
           {loadingParse && (
-            <div className="flex items-center justify-center gap-2 py-3 text-xs text-[#275ba5]">
+            <div className="flex items-center justify-center gap-2 py-3 text-xs text-[var(--purple)]">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#275ba5] border-t-transparent" />
               <span>Lendo cabeçalhos e mapeando colunas...</span>
             </div>
@@ -192,9 +192,9 @@ export default function ImportarPage() {
       )}
 
       {parseResult && !report && (
-        <div className="p-6 rounded-xl bg-white border border-[#e9e8e7] space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <div className="flex items-center justify-between border-b border-[#e9e8e7] pb-3">
-            <h2 className="text-sm font-bold text-[#1b1c1c]">
+        <div className="p-6 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+            <h2 className="text-sm font-bold text-[var(--text)]">
               Passo 2: Mapeamento de Colunas ({parseResult.totalRows} linhas identificadas)
             </h2>
             <span className="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 font-semibold">
@@ -206,20 +206,20 @@ export default function ImportarPage() {
             {SYSTEM_FIELDS.map((field) => (
               <div
                 key={field.key}
-                className="p-3.5 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] flex flex-col gap-1.5"
+                className="p-3.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-1.5"
               >
-                <label className="text-xs font-semibold text-[#1b1c1c] flex items-center justify-between">
+                <label className="text-xs font-semibold text-[var(--text)] flex items-center justify-between">
                   <span>{field.label}</span>
                   {field.required ? (
                     <span className="text-rose-700 text-[10px] font-bold">*Obrigatório</span>
                   ) : (
-                    <span className="text-[#565f71] text-[10px]">Opcional</span>
+                    <span className="text-[var(--text-mute)] text-[10px]">Opcional</span>
                   )}
                 </label>
                 <select
                   value={mapping[field.key] || ''}
                   onChange={(e) => handleMappingChange(field.key, e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-white border border-[#c3c6d3] text-xs text-[#1b1c1c] focus:outline-none focus:border-[#275ba5] transition-colors"
+                  className="w-full px-3 py-2 rounded-lg bg-[var(--surface-2)] border border-[var(--border)] text-xs text-[var(--text)] focus:outline-none focus:border-[#275ba5] transition-colors"
                 >
                   <option value="">-- Ignorar campo --</option>
                   {parseResult.headers.map((h: string) => (
@@ -232,20 +232,20 @@ export default function ImportarPage() {
             ))}
           </div>
 
-          <div className="flex justify-end gap-2.5 pt-3 border-t border-[#e9e8e7]">
+          <div className="flex justify-end gap-2.5 pt-3 border-t border-[var(--border)]">
             <button
               onClick={() => {
                 setParseResult(null);
                 setFile(null);
               }}
-              className="px-3.5 py-2 rounded-lg border border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] text-xs font-medium transition-colors cursor-pointer"
+              className="px-3.5 py-2 rounded-lg border border-[var(--border)] text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)] text-xs font-medium transition-colors cursor-pointer"
             >
               Cancelar
             </button>
             <button
               onClick={handleExecuteImport}
               disabled={loadingExecute}
-              className="px-4 py-2 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-[var(--purple)] hover:bg-[#1a4784] text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer disabled:opacity-50"
             >
               {loadingExecute ? 'Importando...' : `Confirmar Importação de ${parseResult.totalRows} Apólices`}
             </button>

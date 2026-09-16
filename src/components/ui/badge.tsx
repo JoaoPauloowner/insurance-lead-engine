@@ -3,50 +3,49 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center gap-1.5 transition-colors select-none font-medium text-xs',
+  'inline-flex items-center gap-1.5 transition-colors select-none font-jakarta font-medium text-xs rounded-[8px]',
   {
     variants: {
       variant: {
-        // --- Variantes de Domínio Claras e Legíveis ---
-        // 1. Urgência Crítica (< 15 dias de vigência ou SLA prioritário)
+        // 1. Urgência Crítica (< 15 dias / SLA estourado)
         criticalUrgent:
-          'rounded-md border border-red-200 bg-red-50 text-red-700 font-semibold shadow-2xs',
-        // 2. Janela de Negociação (15-30 dias para renovação / cotação ativa)
+          'border border-red-500/30 bg-red-500/15 text-red-400 font-semibold',
+        // 2. Janela de Negociação (15-30 dias)
         warningWindow:
-          'rounded-md border border-amber-200 bg-amber-50 text-amber-800 shadow-2xs',
-        // 3. Cobertura Garantida (> 30 dias de vigência / apólice ativa / lead convertido)
+          'border border-[#FF7A4533] bg-[#FF7A451A] text-[#FF7A45] font-semibold',
+        // 3. Cobertura Garantida / Sucesso
         secured:
-          'rounded-md border border-emerald-200 bg-emerald-50 text-emerald-800 shadow-2xs',
-        // 4. Apólice Expirada / Em Resgate
+          'border border-[#0AFF9233] bg-[#0AFF921A] text-[#0AFF92] font-semibold',
+        // 4. Apólice Expirada / Neutro
         expired:
-          'rounded-md border border-slate-200 bg-slate-100 text-slate-600',
-        // 5. Canal de Origem (Metadados neutros, tipografia mono compacta)
+          'border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text-mute)]',
+        // 5. Canal de Origem
         channel:
-          'rounded border border-slate-200 bg-slate-100 text-slate-700 font-mono text-[10px]',
+          'border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text-mute)] font-mono text-[10px]',
         // 6. Indicador de Status com Ponto Luminoso
         statusDot:
-          'rounded-full border border-slate-200 bg-white text-slate-700 pl-1.5 pr-2.5',
+          'rounded-full border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] pl-1.5 pr-2.5',
         // 7. Pontuação de Qualificação (Score Numérico)
         score:
-          'rounded border border-slate-300 bg-white text-slate-800 font-mono tabular-nums font-semibold',
+          'border border-[var(--purple-border)] bg-[#1E1B2E] text-[var(--purple)] font-mono tabular-nums font-semibold',
 
         // --- Variantes Utilitárias ---
         default:
-          'rounded-md border border-slate-200 bg-slate-100 text-slate-800',
+          'border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)]',
         secondary:
-          'rounded-md border border-[#e9e8e7] bg-[#f5f3f3] text-[#565f71]',
+          'border border-[var(--border)] bg-[var(--surface)] text-[var(--text-mute)]',
         destructive:
-          'rounded-md border border-red-200 bg-red-50 text-red-700',
+          'border border-red-500/30 bg-red-500/15 text-red-400',
         outline:
-          'rounded-md border border-slate-200 text-slate-700',
+          'border border-[var(--border)] text-[var(--text-mute)]',
         emerald:
-          'rounded-md border border-emerald-200 bg-emerald-50 text-emerald-700',
+          'border border-[#0AFF9233] bg-[#0AFF921A] text-[#0AFF92]',
         blue:
-          'rounded-md border border-[#d7e0f5] bg-[#d7e0f5]/60 text-[#275ba5]',
+          'border border-[#8B5CF633] bg-[#8B5CF61A] text-[#8B5CF6]',
         cyan:
-          'rounded-md border border-cyan-200 bg-cyan-50 text-cyan-800',
+          'border border-cyan-500/30 bg-cyan-500/15 text-cyan-400',
         amber:
-          'rounded-md border border-amber-200 bg-amber-50 text-amber-800',
+          'border border-[#FF7A4533] bg-[#FF7A451A] text-[#FF7A45]',
       },
       size: {
         default: 'px-2 py-0.5 text-[11px] leading-tight',
@@ -72,10 +71,8 @@ function Badge({ className, variant, size, dotColor, children, ...props }: Badge
     <div className={cn(badgeVariants({ variant, size }), className)} {...props}>
       {dotColor && (
         <span
-          className={cn(
-            'inline-block w-1.5 h-1.5 rounded-full shrink-0',
-            dotColor
-          )}
+          className="w-1.5 h-1.5 rounded-full inline-block shrink-0"
+          style={{ backgroundColor: dotColor }}
         />
       )}
       {children}

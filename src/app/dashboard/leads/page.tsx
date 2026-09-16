@@ -269,19 +269,19 @@ export default function LeadsPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-24 font-sans">
       {/* Header & Primary Action */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Speed-to-Lead Ativo • Meta & Google Ads
             </span>
-            <span className="text-xs text-[#565f71]">Meta de 1º Contato: &lt; 5 min</span>
+            <span className="text-xs text-[var(--text-mute)]">Meta de 1º Contato: &lt; 5 min</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--text)]">
             Fila de Leads & Speed-to-Lead
           </h1>
-          <p className="text-sm text-[#565f71] mt-0.5">
+          <p className="text-sm text-[var(--text-mute)] mt-0.5">
             Novas cotações recebidas em tempo real. Priorize por intenção de compra e acione pelo WhatsApp em 1 clique.
           </p>
         </div>
@@ -292,7 +292,7 @@ export default function LeadsPage() {
             title="Atualizar lista"
             variant="outline"
             size="sm"
-            className="h-9 px-3 bg-white border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]"
+            className="h-9 px-3 bg-[var(--surface-2)] border-[var(--border)] text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)]"
           >
             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -304,7 +304,7 @@ export default function LeadsPage() {
             onClick={handleSimulateLead}
             disabled={simulating}
             size="sm"
-            className="h-9 bg-[#275ba5] hover:bg-[#1a4784] text-white font-medium text-xs shadow-sm flex items-center gap-1.5 px-4"
+            className="h-9 bg-[var(--purple)] hover:bg-[#1a4784] text-white font-medium text-xs shadow-sm flex items-center gap-1.5 px-4"
           >
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -317,14 +317,14 @@ export default function LeadsPage() {
 
       {/* Alerta de Operação em Lote */}
       {batchNotice && (
-        <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-[#275ba5] shadow-sm">
+        <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-[var(--purple)] shadow-sm">
           <div className="flex items-center gap-2 font-medium">
-            <svg className="w-4 h-4 text-[#275ba5] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg className="w-4 h-4 text-[var(--purple)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
             <span>{batchNotice}</span>
           </div>
-          <button onClick={() => setBatchNotice(null)} className="text-[#275ba5]/70 hover:text-[#275ba5] font-bold">
+          <button onClick={() => setBatchNotice(null)} className="text-[var(--purple)]/70 hover:text-[var(--purple)] font-bold">
             ✕
           </button>
         </div>
@@ -362,8 +362,8 @@ export default function LeadsPage() {
                 isActive
                   ? pill.isHot
                     ? 'bg-rose-50 border border-rose-300 text-rose-700 shadow-sm font-semibold'
-                    : 'bg-[#275ba5] text-white shadow-sm font-semibold'
-                  : 'bg-white border border-[#e9e8e7] text-[#565f71] hover:text-[#1b1c1c] hover:border-[#c3c6d3]'
+                    : 'bg-[var(--purple)] text-white shadow-sm font-semibold'
+                  : 'bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-mute)] hover:text-[var(--text)] hover:border-[var(--border)]'
               }`}
             >
               <span>{pill.label}</span>
@@ -373,7 +373,7 @@ export default function LeadsPage() {
       </div>
 
       {/* Barra Secundária de Busca, Faixa de Prêmio e Ordenação */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {/* Busca */}
         <div className="w-full md:w-80 relative">
           <input
@@ -381,16 +381,16 @@ export default function LeadsPage() {
             placeholder="Buscar por nome, telefone, veículo ou empresa..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#1b1c1c] placeholder-[#737782] focus:bg-white focus:border-[#275ba5] focus:outline-none transition-colors"
+            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-xs text-[var(--text)] placeholder-[#737782] focus:bg-[var(--surface-2)] focus:border-[#275ba5] focus:outline-none transition-colors"
           />
-          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#737782] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[var(--text-faint)] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-2.5 top-2 text-[#737782] hover:text-[#1b1c1c] text-xs cursor-pointer"
+              className="absolute right-2.5 top-2 text-[var(--text-faint)] hover:text-[var(--text)] text-xs cursor-pointer"
             >
               Limpar
             </button>
@@ -401,11 +401,11 @@ export default function LeadsPage() {
         <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end overflow-x-auto pb-1 md:pb-0 text-xs">
           {/* Faixa de Prêmio Estimado */}
           <div className="flex items-center gap-1.5">
-            <span className="text-[#565f71] text-xs font-medium">Prêmio Estimado:</span>
+            <span className="text-[var(--text-mute)] text-xs font-medium">Prêmio Estimado:</span>
             <select
               value={premiumFilter}
               onChange={(e) => setPremiumFilter(e.target.value)}
-              className="bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-[#1b1c1c] text-xs focus:outline-none focus:border-[#275ba5]"
+              className="bg-[var(--surface)] border border-[var(--border)] rounded-lg px-2.5 py-1.5 text-[var(--text)] text-xs focus:outline-none focus:border-[#275ba5]"
             >
               <option value="all">Qualquer valor</option>
               <option value="3k">&gt; R$ 3.000 / ano</option>
@@ -416,11 +416,11 @@ export default function LeadsPage() {
 
           {/* Ordenação */}
           <div className="flex items-center gap-1.5">
-            <span className="text-[#565f71] text-xs font-medium">Ordenar:</span>
+            <span className="text-[var(--text-mute)] text-xs font-medium">Ordenar:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-[#1b1c1c] text-xs focus:outline-none focus:border-[#275ba5]"
+              className="bg-[var(--surface)] border border-[var(--border)] rounded-lg px-2.5 py-1.5 text-[var(--text)] text-xs focus:outline-none focus:border-[#275ba5]"
             >
               <option value="sla">SLA Crítico (&lt; 5m)</option>
               <option value="score">Maior Intenção (Score)</option>
@@ -431,22 +431,22 @@ export default function LeadsPage() {
       </div>
 
       {/* Tabela de Leads */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {loading ? (
           <div className="py-20 text-center">
             <div className="w-7 h-7 border-2 border-[#275ba5] border-t-transparent rounded-full animate-spin mx-auto mb-2.5" />
-            <div className="text-xs font-medium text-[#565f71]">Carregando leads da corretora...</div>
+            <div className="text-xs font-medium text-[var(--text-mute)]">Carregando leads da corretora...</div>
           </div>
         ) : filteredLeads.length === 0 ? (
           <div className="py-16 text-center px-4">
-            <div className="w-12 h-12 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-[#565f71] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[var(--surface)] border border-[var(--border)] text-[var(--text-mute)] flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </div>
-            <h3 className="text-sm font-semibold text-[#1b1c1c]">Nenhum lead encontrado</h3>
-            <p className="text-xs text-[#565f71] mt-1 max-w-sm mx-auto">
+            <h3 className="text-sm font-semibold text-[var(--text)]">Nenhum lead encontrado</h3>
+            <p className="text-xs text-[var(--text-mute)] mt-1 max-w-sm mx-auto">
               Ajuste os filtros de ramo acima ou simule um novo lead recebido via anúncio.
             </p>
           </div>
@@ -454,13 +454,13 @@ export default function LeadsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-[#e9e8e7] bg-[#f5f3f3] text-[11px] font-semibold text-[#565f71] uppercase tracking-wider">
+                <tr className="border-b border-[var(--border)] bg-[var(--surface)] text-[11px] font-semibold text-[var(--text-mute)] uppercase tracking-wider">
                   <th className="py-3 px-3 w-10 text-center">
                     <input
                       type="checkbox"
                       checked={selectedLeadIds.length > 0 && selectedLeadIds.length === filteredLeads.length}
                       onChange={toggleSelectAll}
-                      className="rounded border-[#c3c6d3] text-[#275ba5] focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                      className="rounded border-[var(--border)] text-[var(--purple)] focus:ring-0 focus:ring-offset-0 cursor-pointer"
                     />
                   </th>
                   <th className="py-3 px-4">Cliente / Proponente</th>
@@ -500,7 +500,7 @@ export default function LeadsPage() {
                   return (
                     <tr
                       key={lead.id}
-                      className={`hover:bg-[#faf8f8] transition-colors group cursor-pointer ${
+                      className={`hover:bg-[var(--surface)] transition-colors group cursor-pointer ${
                         isSelected ? 'bg-blue-50/50' : ''
                       }`}
                       onClick={() => setInspectingLead(lead)}
@@ -517,33 +517,33 @@ export default function LeadsPage() {
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => {}}
-                          className="rounded border-[#c3c6d3] text-[#275ba5] focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                          className="rounded border-[var(--border)] text-[var(--purple)] focus:ring-0 focus:ring-offset-0 cursor-pointer"
                         />
                       </td>
 
                       {/* Cliente / Contato */}
                       <td className="py-3.5 px-4">
-                        <div className="font-semibold text-[#1b1c1c] group-hover:text-[#275ba5] transition-colors flex items-center gap-1.5">
+                        <div className="font-semibold text-[var(--text)] group-hover:text-[var(--purple)] transition-colors flex items-center gap-1.5">
                           <span>{lead.empresa || lead.nome}</span>
                           {isHot && (
                             <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse" title="🔥 Alta Intenção de Fechamento" />
                           )}
                         </div>
-                        <div className="text-xs text-[#565f71] flex items-center gap-1.5 mt-0.5 font-mono">
+                        <div className="text-xs text-[var(--text-mute)] flex items-center gap-1.5 mt-0.5 font-mono">
                           {lead.empresa && <span>{lead.nome} •</span>}
                           <span>{normalizePhoneBR(lead.telefone).formatted}</span>
-                          <span className="text-[10px] text-[#737782]">({lead.origem})</span>
+                          <span className="text-[10px] text-[var(--text-faint)]">({lead.origem})</span>
                         </div>
                       </td>
 
                       {/* Ramo e Detalhes */}
                       <td className="py-3.5 px-4">
-                        <div className="font-medium text-[#1b1c1c]">{lead.ramoDesejado || lead.lob}</div>
+                        <div className="font-medium text-[var(--text)]">{lead.ramoDesejado || lead.lob}</div>
                         <div className="flex flex-wrap gap-1 mt-1">
                           {parsedTags.slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className="text-[10px] px-2 py-0.5 rounded-md bg-[#f5f3f3] text-[#565f71] border border-[#e9e8e7]"
+                              className="text-[10px] px-2 py-0.5 rounded-md bg-[var(--surface)] text-[var(--text-mute)] border border-[var(--border)]"
                             >
                               {tag}
                             </span>
@@ -554,7 +554,7 @@ export default function LeadsPage() {
                       {/* SLA Speed-to-Lead Countdown */}
                       <td className="py-3.5 px-4">
                         {isExpired ? (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[#737782] bg-[#f5f3f3] px-2.5 py-1 rounded-md border border-[#e9e8e7]">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[var(--text-faint)] bg-[var(--surface)] px-2.5 py-1 rounded-md border border-[var(--border)]">
                             SLA Ultrapassado
                           </span>
                         ) : isCritical ? (
@@ -575,23 +575,23 @@ export default function LeadsPage() {
 
                       {/* Prêmio Estimado */}
                       <td className="py-3.5 px-4 font-mono">
-                        <div className="font-semibold text-[#1b1c1c] tracking-tight">{formatBRL(lead.premioEstimado)}</div>
-                        <span className="text-[10px] text-[#565f71] font-sans">estimativa anual</span>
+                        <div className="font-semibold text-[var(--text)] tracking-tight">{formatBRL(lead.premioEstimado)}</div>
+                        <span className="text-[10px] text-[var(--text-mute)] font-sans">estimativa anual</span>
                       </td>
 
                       {/* Seguradora Recomendada */}
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-semibold text-[#1b1c1c]">
+                          <span className="text-xs font-semibold text-[var(--text)]">
                             {lead.targetCarrier || 'Porto Seguro'}
                           </span>
                           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
                             {lead.carrierAppetite || 95}% Fit
                           </span>
                         </div>
-                        <div className="w-24 bg-[#efeded] rounded-full h-1.5 mt-1.5 overflow-hidden">
+                        <div className="w-24 bg-[var(--border)] rounded-full h-1.5 mt-1.5 overflow-hidden">
                           <div
-                            className="bg-[#275ba5] h-1.5 rounded-full"
+                            className="bg-[var(--purple)] h-1.5 rounded-full"
                             style={{ width: `${lead.carrierAppetite || 95}%` }}
                           />
                         </div>
@@ -616,7 +616,7 @@ export default function LeadsPage() {
                         <button
                           onClick={() => setSelectedLeadForCall(lead)}
                           title="Iniciar chamada assistida"
-                          className="px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors cursor-pointer"
+                          className="px-2.5 py-1.5 rounded-md bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] text-xs font-medium transition-colors cursor-pointer"
                         >
                           Ligar
                         </button>
@@ -626,7 +626,7 @@ export default function LeadsPage() {
                             onClick={() => handleConvertLead(lead)}
                             disabled={convertingId === lead.id}
                             title="Salvar apólice fechada no Radar de Renovações"
-                            className="px-2.5 py-1.5 rounded-md bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-medium transition-colors cursor-pointer disabled:opacity-50"
+                            className="px-2.5 py-1.5 rounded-md bg-[var(--purple)] hover:bg-[#1a4784] text-white text-xs font-medium transition-colors cursor-pointer disabled:opacity-50"
                           >
                             {convertingId === lead.id ? 'Salvando...' : 'Fechar'}
                           </button>
@@ -648,18 +648,18 @@ export default function LeadsPage() {
       {/* Barra de Ações em Lote */}
       {selectedLeadIds.length > 0 && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 animate-in fade-in slide-in-from-bottom-4">
-          <div className="bg-white border border-[#c3c6d3] rounded-xl p-4 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-3">
               <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#275ba5] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#275ba5]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--purple)] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--purple)]"></span>
               </span>
               <div>
-                <span className="font-bold text-[#1b1c1c] text-sm">
+                <span className="font-bold text-[var(--text)] text-sm">
                   {selectedLeadIds.length} leads selecionados
                 </span>
-                <div className="text-xs text-[#565f71]">
-                  Total estimado: <strong className="text-[#1b1c1c]">{formatBRL(totalSelectedPremium)}</strong>
+                <div className="text-xs text-[var(--text-mute)]">
+                  Total estimado: <strong className="text-[var(--text)]">{formatBRL(totalSelectedPremium)}</strong>
                 </div>
               </div>
             </div>
@@ -669,7 +669,7 @@ export default function LeadsPage() {
               <Button
                 size="sm"
                 onClick={handleBulkFastRoute}
-                className="h-8 text-xs bg-[#275ba5] hover:bg-[#1a4784] text-white font-medium"
+                className="h-8 text-xs bg-[var(--purple)] hover:bg-[#1a4784] text-white font-medium"
               >
                 Atendimento Prioritário
               </Button>
@@ -678,7 +678,7 @@ export default function LeadsPage() {
                 size="sm"
                 variant="outline"
                 onClick={handleExportCsv}
-                className="h-8 text-xs border-[#c3c6d3] bg-white text-[#1b1c1c] hover:bg-[#f5f3f3]"
+                className="h-8 text-xs border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:bg-[var(--surface)]"
               >
                 <svg className="w-3.5 h-3.5 mr-1.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -692,7 +692,7 @@ export default function LeadsPage() {
                 size="sm"
                 variant="ghost"
                 onClick={() => setSelectedLeadIds([])}
-                className="h-8 text-xs text-[#565f71] hover:text-[#1b1c1c]"
+                className="h-8 text-xs text-[var(--text-mute)] hover:text-[var(--text)]"
               >
                 ✕ Desmarcar
               </Button>
@@ -709,29 +709,29 @@ export default function LeadsPage() {
             onClick={() => setInspectingLead(null)}
           />
 
-          <div className="relative w-full max-w-lg bg-white border-l border-[#e9e8e7] h-full overflow-y-auto shadow-2xl p-6 sm:p-7 flex flex-col justify-between z-10">
+          <div className="relative w-full max-w-lg bg-[var(--surface-2)] border-l border-[var(--border)] h-full overflow-y-auto shadow-2xl p-6 sm:p-7 flex flex-col justify-between z-10">
             <div className="space-y-5">
-              <div className="flex items-start justify-between border-b border-[#e9e8e7] pb-4">
+              <div className="flex items-start justify-between border-b border-[var(--border)] pb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-[#275ba5] border border-blue-200">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-[var(--purple)] border border-blue-200">
                       Score: {inspectingLead.score}/100
                     </span>
-                    <span className="text-xs text-[#737782]">•</span>
-                    <span className="text-xs text-[#737782]">
+                    <span className="text-xs text-[var(--text-faint)]">•</span>
+                    <span className="text-xs text-[var(--text-faint)]">
                       Ref #{inspectingLead.id?.slice(-6)}
                     </span>
                   </div>
 
-                  <h2 className="text-xl font-bold text-[#1b1c1c] tracking-tight">
+                  <h2 className="text-xl font-bold text-[var(--text)] tracking-tight">
                     {inspectingLead.empresa || inspectingLead.nome}
                   </h2>
                   {inspectingLead.empresa && (
-                    <div className="text-xs text-[#565f71]">
+                    <div className="text-xs text-[var(--text-mute)]">
                       Contato: {inspectingLead.nome}
                     </div>
                   )}
-                  <div className="text-xs text-[#565f71] font-mono mt-0.5">
+                  <div className="text-xs text-[var(--text-mute)] font-mono mt-0.5">
                     {normalizePhoneBR(inspectingLead.telefone).formatted}
                     {inspectingLead.email && ` • ${inspectingLead.email}`}
                   </div>
@@ -739,7 +739,7 @@ export default function LeadsPage() {
 
                 <button
                   onClick={() => setInspectingLead(null)}
-                  className="p-1.5 rounded-lg text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3] transition-colors cursor-pointer"
+                  className="p-1.5 rounded-lg text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)] transition-colors cursor-pointer"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -749,25 +749,25 @@ export default function LeadsPage() {
               </div>
 
               {/* Box de Análise de Risco & Notas */}
-              <div className="p-4 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] space-y-2.5">
+              <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[#1b1c1c]">
+                  <span className="text-xs font-semibold text-[var(--text)]">
                     Diagnóstico de Perfil
                   </span>
                   <span className="text-[11px] text-emerald-700 font-medium">Qualificado</span>
                 </div>
-                <p className="text-xs text-[#565f71] leading-relaxed">
+                <p className="text-xs text-[var(--text-mute)] leading-relaxed">
                   {inspectingLead.resumoIa || inspectingLead.notas || 'Lead qualificado com interesse imediato no produto.'}
                 </p>
-                <div className="pt-2 border-t border-[#e9e8e7] flex items-center justify-between text-xs">
-                  <span className="text-[#565f71]">Prêmio Anual Estimado:</span>
-                  <span className="font-bold text-[#1b1c1c]">
+                <div className="pt-2 border-t border-[var(--border)] flex items-center justify-between text-xs">
+                  <span className="text-[var(--text-mute)]">Prêmio Anual Estimado:</span>
+                  <span className="font-bold text-[var(--text)]">
                     {formatBRL(inspectingLead.premioEstimado)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#565f71]">Seguradora Recomendada:</span>
-                  <span className="font-semibold text-[#275ba5]">
+                  <span className="text-[var(--text-mute)]">Seguradora Recomendada:</span>
+                  <span className="font-semibold text-[var(--purple)]">
                     {inspectingLead.targetCarrier || 'Porto Seguro'} ({inspectingLead.carrierAppetite || 95}% Fit)
                   </span>
                 </div>
@@ -775,28 +775,28 @@ export default function LeadsPage() {
 
               {/* Ramo e Origem */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 rounded-xl bg-white border border-[#e9e8e7]">
-                  <span className="text-[11px] font-medium text-[#565f71] block mb-1">
+                <div className="p-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border)]">
+                  <span className="text-[11px] font-medium text-[var(--text-mute)] block mb-1">
                     Ramo Desejado
                   </span>
-                  <span className="text-xs font-semibold text-[#1b1c1c]">
+                  <span className="text-xs font-semibold text-[var(--text)]">
                     {inspectingLead.ramoDesejado || inspectingLead.lob}
                   </span>
                 </div>
 
-                <div className="p-3 rounded-xl bg-white border border-[#e9e8e7]">
-                  <span className="text-[11px] font-medium text-[#565f71] block mb-1">
+                <div className="p-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border)]">
+                  <span className="text-[11px] font-medium text-[var(--text-mute)] block mb-1">
                     Canal de Origem
                   </span>
-                  <span className="text-xs font-semibold text-[#1b1c1c]">
+                  <span className="text-xs font-semibold text-[var(--text)]">
                     {inspectingLead.origem}
                   </span>
                 </div>
               </div>
 
               {/* Ações Operacionais da Corretora */}
-              <div className="border-t border-[#e9e8e7] pt-4 space-y-2.5">
-                <span className="text-xs font-semibold text-[#1b1c1c] block">
+              <div className="border-t border-[var(--border)] pt-4 space-y-2.5">
+                <span className="text-xs font-semibold text-[var(--text)] block">
                   Ações Rápidas de Fechamento
                 </span>
 
@@ -813,7 +813,7 @@ export default function LeadsPage() {
 
                   <button
                     onClick={() => setSelectedLeadForCall(inspectingLead)}
-                    className="p-2.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    className="p-2.5 rounded-lg bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -824,7 +824,7 @@ export default function LeadsPage() {
 
                 <Link
                   href="/dashboard/cotacao-cockpit"
-                  className="w-full p-2.5 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center shadow-sm"
+                  className="w-full p-2.5 rounded-lg bg-[var(--purple)] hover:bg-[#1a4784] text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer block text-center shadow-sm"
                 >
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -844,8 +844,8 @@ export default function LeadsPage() {
               </div>
             </div>
 
-            <div className="border-t border-[#e9e8e7] pt-4 mt-6 text-center">
-              <span className="text-xs text-[#737782]">
+            <div className="border-t border-[var(--border)] pt-4 mt-6 text-center">
+              <span className="text-xs text-[var(--text-faint)]">
                 {userOrg.orgName} • Atendimento ao Cliente
               </span>
             </div>

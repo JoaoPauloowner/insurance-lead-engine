@@ -78,19 +78,19 @@ export default function RenovacoesPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-20 font-sans">
       {/* Header Operacional Sóbrio */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[#275ba5] border border-blue-200">
-              <span className="w-2 h-2 rounded-full bg-[#275ba5]" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[var(--purple)] border border-blue-200">
+              <span className="w-2 h-2 rounded-full bg-[var(--purple)]" />
               Radar Ativo de Carteira
             </span>
-            <span className="text-xs text-[#565f71]">Taxa de retenção média: 92%</span>
+            <span className="text-xs text-[var(--text-mute)]">Taxa de retenção média: 92%</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1b1c1c]">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--text)]">
             Radar de Renovações de Apólices
           </h1>
-          <p className="text-sm text-[#565f71] mt-0.5">
+          <p className="text-sm text-[var(--text-mute)] mt-0.5">
             Acompanhe o vencimento de vigência dos clientes da corretora e previna cancelamentos com acionamento antecipado.
           </p>
         </div>
@@ -100,9 +100,9 @@ export default function RenovacoesPage() {
             <Button
               variant="outline"
               size="sm"
-              className="h-9 px-3 bg-white border-[#c3c6d3] text-[#1b1c1c] hover:bg-[#f5f3f3] text-xs font-medium"
+              className="h-9 px-3 bg-[var(--surface-2)] border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)] text-xs font-medium"
             >
-              <svg className="w-4 h-4 mr-1.5 text-[#565f71]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="w-4 h-4 mr-1.5 text-[var(--text-mute)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="17 8 12 3 7 8" />
                 <line x1="12" y1="3" x2="12" y2="15" />
@@ -116,7 +116,7 @@ export default function RenovacoesPage() {
             title="Atualizar lista"
             variant="outline"
             size="sm"
-            className="h-9 px-2.5 bg-white border-[#c3c6d3] text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]"
+            className="h-9 px-2.5 bg-[var(--surface-2)] border-[var(--border)] text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)]"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -126,23 +126,23 @@ export default function RenovacoesPage() {
       </div>
 
       {/* DISPOSITIVO ESTRUTURAL: Timeline / Régua de Decaimento Temporal */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e9e8e7]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[var(--border)]">
           <div>
-            <h2 className="text-sm font-semibold text-[#1b1c1c] flex items-center gap-2">
+            <h2 className="text-sm font-semibold text-[var(--text)] flex items-center gap-2">
               <span>Distribuição Temporal da Carteira</span>
-              <span className="text-xs text-[#565f71] font-normal">
+              <span className="text-xs text-[var(--text-mute)] font-normal">
                 ({totalCount} apólices monitoradas)
               </span>
             </h2>
-            <p className="text-xs text-[#565f71] mt-0.5">
+            <p className="text-xs text-[var(--text-mute)] mt-0.5">
               Segmentação por proximidade de vencimento e janela ideal de cálculo.
             </p>
           </div>
           {statusFilter !== 'todos' && (
             <button
               onClick={() => setStatusFilter('todos')}
-              className="text-xs text-[#275ba5] hover:underline transition-colors self-start sm:self-auto cursor-pointer font-medium"
+              className="text-xs text-[var(--purple)] hover:underline transition-colors self-start sm:self-auto cursor-pointer font-medium"
             >
               Exibir todas as apólices
             </button>
@@ -151,7 +151,7 @@ export default function RenovacoesPage() {
 
         {/* Barra Proporcional de Decaimento Temporal */}
         <div className="mt-4 mb-4">
-          <div className="w-full h-2.5 rounded-full bg-[#efeded] overflow-hidden flex">
+          <div className="w-full h-2.5 rounded-full bg-[var(--border)] overflow-hidden flex">
             {totalCount > 0 ? (
               <>
                 <div
@@ -176,7 +176,7 @@ export default function RenovacoesPage() {
                 />
               </>
             ) : (
-              <div className="w-full bg-[#efeded]" />
+              <div className="w-full bg-[var(--border)]" />
             )}
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function RenovacoesPage() {
             className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'urgente'
                 ? 'border-rose-400 bg-rose-50 shadow-xs'
-                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
+                : 'border-[var(--border)] bg-[#fbf9f9] hover:bg-[var(--surface)]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
@@ -202,12 +202,12 @@ export default function RenovacoesPage() {
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[var(--text)] tabular-nums font-mono">
                 {stats.urgentes}
               </span>
               <span className="text-xs text-rose-700 font-medium">Ação Imediata</span>
             </div>
-            <p className="text-[11px] text-[#565f71] mt-1">Risco iminente de perda para concorrência</p>
+            <p className="text-[11px] text-[var(--text-mute)] mt-1">Risco iminente de perda para concorrência</p>
           </div>
 
           {/* Estágio 2: Janela de Negociação */}
@@ -216,7 +216,7 @@ export default function RenovacoesPage() {
             className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'proximo'
                 ? 'border-amber-400 bg-amber-50 shadow-xs'
-                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
+                : 'border-[var(--border)] bg-[#fbf9f9] hover:bg-[var(--surface)]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
@@ -229,12 +229,12 @@ export default function RenovacoesPage() {
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[var(--text)] tabular-nums font-mono">
                 {stats.proximos}
               </span>
               <span className="text-xs text-amber-800 font-medium">Enviar Cotação</span>
             </div>
-            <p className="text-[11px] text-[#565f71] mt-1">Momento ideal para envio da renovação</p>
+            <p className="text-[11px] text-[var(--text-mute)] mt-1">Momento ideal para envio da renovação</p>
           </div>
 
           {/* Estágio 3: Vigentes em Dia */}
@@ -243,7 +243,7 @@ export default function RenovacoesPage() {
             className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'em_dia'
                 ? 'border-emerald-400 bg-emerald-50 shadow-xs'
-                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
+                : 'border-[var(--border)] bg-[#fbf9f9] hover:bg-[var(--surface)]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
@@ -256,12 +256,12 @@ export default function RenovacoesPage() {
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[var(--text)] tabular-nums font-mono">
                 {stats.emDia}
               </span>
               <span className="text-xs text-emerald-800 font-medium">Em Dia</span>
             </div>
-            <p className="text-[11px] text-[#565f71] mt-1">Cobertura regular sem risco no curto prazo</p>
+            <p className="text-[11px] text-[var(--text-mute)] mt-1">Cobertura regular sem risco no curto prazo</p>
           </div>
 
           {/* Estágio 4: Expiradas / Resgate */}
@@ -270,7 +270,7 @@ export default function RenovacoesPage() {
             className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
               statusFilter === 'vencido'
                 ? 'border-slate-400 bg-slate-100 shadow-xs'
-                : 'border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3]'
+                : 'border-[var(--border)] bg-[#fbf9f9] hover:bg-[var(--surface)]'
             }`}
           >
             <div className="flex items-center justify-between text-xs">
@@ -283,34 +283,34 @@ export default function RenovacoesPage() {
               </span>
             </div>
             <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold text-[#1b1c1c] tabular-nums font-mono">
+              <span className="text-2xl font-bold text-[var(--text)] tabular-nums font-mono">
                 {stats.vencidos}
               </span>
               <span className="text-xs text-slate-600 font-medium">Recuperar</span>
             </div>
-            <p className="text-[11px] text-[#565f71] mt-1">Reativação e recuperação de segurado</p>
+            <p className="text-[11px] text-[var(--text-mute)] mt-1">Reativação e recuperação de segurado</p>
           </div>
         </div>
       </div>
 
       {/* Barra de Filtros e Busca */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="w-full md:w-96 relative">
           <input
             type="text"
             placeholder="Filtrar por segurado, seguradora ou apólice..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#1b1c1c] placeholder-[#737782] focus:bg-white focus:border-[#275ba5] focus:outline-none transition-colors"
+            className="w-full pl-8 pr-7 py-2 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-xs text-[var(--text)] placeholder-[#737782] focus:bg-[var(--surface-2)] focus:border-[#275ba5] focus:outline-none transition-colors"
           />
-          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#737782] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[var(--text-faint)] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-2.5 top-2 text-[#737782] hover:text-[#1b1c1c] text-xs cursor-pointer"
+              className="absolute right-2.5 top-2 text-[var(--text-faint)] hover:text-[var(--text)] text-xs cursor-pointer"
             >
               Limpar
             </button>
@@ -330,13 +330,13 @@ export default function RenovacoesPage() {
               onClick={() => setStatusFilter(tab.id)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                 statusFilter === tab.id
-                  ? 'bg-[#275ba5] text-white shadow-sm'
-                  : 'text-[#565f71] hover:text-[#1b1c1c] hover:bg-[#f5f3f3]'
+                  ? 'bg-[var(--purple)] text-white shadow-sm'
+                  : 'text-[var(--text-mute)] hover:text-[var(--text)] hover:bg-[var(--surface)]'
               }`}
             >
               <span>{tab.label}</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                statusFilter === tab.id ? 'bg-white/20 text-white' : 'bg-[#efeded] text-[#565f71]'
+                statusFilter === tab.id ? 'bg-[var(--surface-2)]/20 text-white' : 'bg-[var(--border)] text-[var(--text-mute)]'
               }`}>
                 {tab.count}
               </span>
@@ -346,15 +346,15 @@ export default function RenovacoesPage() {
       </div>
 
       {/* Tabela de Apólices */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         {loading ? (
           <div className="py-20 text-center">
             <div className="w-7 h-7 border-2 border-[#275ba5] border-t-transparent rounded-full animate-spin mx-auto mb-2.5" />
-            <div className="text-xs font-medium text-[#565f71]">Carregando carteira de apólices...</div>
+            <div className="text-xs font-medium text-[var(--text-mute)]">Carregando carteira de apólices...</div>
           </div>
         ) : apolices.length === 0 ? (
           <div className="py-16 text-center px-4">
-            <div className="w-12 h-12 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-[#565f71] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[var(--surface)] border border-[var(--border)] text-[var(--text-mute)] flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
@@ -363,8 +363,8 @@ export default function RenovacoesPage() {
                 <polyline points="10 9 9 9 8 9" />
               </svg>
             </div>
-            <h3 className="text-sm font-semibold text-[#1b1c1c]">Nenhuma apólice encontrada</h3>
-            <p className="text-xs text-[#565f71] mt-1 max-w-sm mx-auto">
+            <h3 className="text-sm font-semibold text-[var(--text)]">Nenhuma apólice encontrada</h3>
+            <p className="text-xs text-[var(--text-mute)] mt-1 max-w-sm mx-auto">
               Utilize o botão &quot;Importar Planilha&quot; para subir sua base de clientes ou converta leads fechados no painel de Leads.
             </p>
           </div>
@@ -372,7 +372,7 @@ export default function RenovacoesPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-[#e9e8e7] bg-[#f5f3f3] text-[11px] font-semibold text-[#565f71] uppercase tracking-wider">
+                <tr className="border-b border-[var(--border)] bg-[var(--surface)] text-[11px] font-semibold text-[var(--text-mute)] uppercase tracking-wider">
                   <th className="py-3 px-4 sm:px-6">Segurado</th>
                   <th className="py-3 px-4">Seguro & Seguradora</th>
                   <th className="py-3 px-4">Vencimento da Vigência</th>
@@ -394,18 +394,18 @@ export default function RenovacoesPage() {
                     .toUpperCase();
 
                   return (
-                    <tr key={apolice.id} className="hover:bg-[#faf8f8] transition-colors group">
+                    <tr key={apolice.id} className="hover:bg-[var(--surface)] transition-colors group">
                       {/* Cliente */}
                       <td className="py-3.5 px-4 sm:px-6">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#275ba5] flex items-center justify-center font-bold text-xs shrink-0">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[var(--purple)] flex items-center justify-center font-bold text-xs shrink-0">
                             {initials}
                           </div>
                           <div>
-                            <div className="font-semibold text-[#1b1c1c] group-hover:text-[#275ba5] transition-colors">
+                            <div className="font-semibold text-[var(--text)] group-hover:text-[var(--purple)] transition-colors">
                               {apolice.cliente?.nome}
                             </div>
-                            <div className="text-xs text-[#565f71] mt-0.5 font-mono">
+                            <div className="text-xs text-[var(--text-mute)] mt-0.5 font-mono">
                               {phoneInfo.formatted}
                             </div>
                           </div>
@@ -414,16 +414,16 @@ export default function RenovacoesPage() {
 
                       {/* Seguro & Seguradora */}
                       <td className="py-3.5 px-4">
-                        <div className="font-medium text-[#1b1c1c]">{apolice.tipoSeguro}</div>
-                        <div className="text-xs text-[#565f71] mt-0.5 flex items-center gap-1.5 font-mono">
-                          <span className="text-[#275ba5] font-semibold">{apolice.seguradora}</span>
+                        <div className="font-medium text-[var(--text)]">{apolice.tipoSeguro}</div>
+                        <div className="text-xs text-[var(--text-mute)] mt-0.5 flex items-center gap-1.5 font-mono">
+                          <span className="text-[var(--purple)] font-semibold">{apolice.seguradora}</span>
                           {apolice.numeroApolice && <span>• {apolice.numeroApolice}</span>}
                         </div>
                       </td>
 
                       {/* Vencimento */}
                       <td className="py-3.5 px-4">
-                        <div className="font-medium text-[#1b1c1c] tabular-nums font-mono">
+                        <div className="font-medium text-[var(--text)] tabular-nums font-mono">
                           {formatDateBR(apolice.dataVencimento)}
                         </div>
                         <div className="mt-1">
@@ -448,18 +448,18 @@ export default function RenovacoesPage() {
                       </td>
 
                       {/* Último Contato */}
-                      <td className="py-3.5 px-4 text-[#565f71]">
+                      <td className="py-3.5 px-4 text-[var(--text-mute)]">
                         {lastInteraction ? (
                           <div>
                             <span className="text-emerald-700 font-medium text-xs flex items-center gap-1">
                               <span>✓</span> Contatado por WhatsApp
                             </span>
-                            <div className="text-[11px] text-[#737782] mt-0.5 font-mono">
+                            <div className="text-[11px] text-[var(--text-faint)] mt-0.5 font-mono">
                               {formatDateBR(lastInteraction.createdAt)} por {lastInteraction.user?.nome?.split(' ')[0]}
                             </div>
                           </div>
                         ) : (
-                          <span className="text-xs text-[#737782] italic">Sem contato recente</span>
+                          <span className="text-xs text-[var(--text-faint)] italic">Sem contato recente</span>
                         )}
                       </td>
 
@@ -467,7 +467,7 @@ export default function RenovacoesPage() {
                       <td className="py-3.5 px-4 text-right space-x-1.5 whitespace-nowrap">
                         <Link
                           href="/dashboard/cotacao-cockpit"
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] text-xs font-medium transition-colors cursor-pointer"
                           title="Recalcular no cockpit"
                         >
                           Cotação

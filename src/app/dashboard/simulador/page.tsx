@@ -56,30 +56,30 @@ export default function SimuladorPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-20 font-sans">
       {/* Header */}
-      <div className="border-b border-[#e9e8e7] pb-5">
+      <div className="border-b border-[var(--border)] pb-5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                 Simulador Multicálculo
               </span>
-              <span className="text-xs text-[#565f71]">Cálculo instantâneo em &lt; 30s</span>
+              <span className="text-xs text-[var(--text-mute)]">Cálculo instantâneo em &lt; 30s</span>
             </div>
-            <h1 className="text-2xl font-bold text-[#1b1c1c] tracking-tight">
+            <h1 className="text-2xl font-bold text-[var(--text)] tracking-tight">
               Simulador de Cotação de Seguros
             </h1>
-            <p className="text-[#565f71] text-sm mt-0.5">
+            <p className="text-[var(--text-mute)] text-sm mt-0.5">
               Preencha os dados básicos do veículo ou imóvel e compare as opções recomendadas para o cliente.
             </p>
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e9e8e7] text-xs text-[#1b1c1c] shadow-xs">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--surface-2)] border border-[var(--border)] text-xs text-[var(--text)] shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Conformidade SUSEP</span>
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e9e8e7] text-xs text-[#1b1c1c] shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#275ba5]" />
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--surface-2)] border border-[var(--border)] text-xs text-[var(--text)] shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[var(--purple)]" />
               <span>Tabela FIPE Vigente</span>
             </div>
           </div>
@@ -121,18 +121,18 @@ export default function SimuladorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Left Column: Configurator Panel */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <div className="flex items-center justify-between border-b border-[#e9e8e7] pb-3 mb-4">
-              <h2 className="text-sm font-bold text-[#1b1c1c]">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3 mb-4">
+              <h2 className="text-sm font-bold text-[var(--text)]">
                 Parâmetros da Cotação
               </h2>
-              <span className="text-xs text-[#565f71] font-mono bg-[#f5f3f3] px-2 py-0.5 rounded-md border border-[#e9e8e7]">
+              <span className="text-xs text-[var(--text-mute)] font-mono bg-[var(--surface)] px-2 py-0.5 rounded-md border border-[var(--border)]">
                 FIPE Jan/2025
               </span>
             </div>
 
             {/* Segment Selector Tabs */}
-            <div className="grid grid-cols-4 gap-1.5 bg-[#f5f3f3] p-1 rounded-lg border border-[#e9e8e7] mb-5">
+            <div className="grid grid-cols-4 gap-1.5 bg-[var(--surface)] p-1 rounded-lg border border-[var(--border)] mb-5">
               {[
                 { id: 'auto', label: 'Automóvel' },
                 { id: 'frota', label: 'Frota' },
@@ -145,8 +145,8 @@ export default function SimuladorPage() {
                   onClick={() => setSegmento(tab.id)}
                   className={`py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer text-center ${
                     segmento === tab.id
-                      ? 'bg-white text-[#1b1c1c] font-semibold shadow-xs'
-                      : 'text-[#565f71] hover:text-[#1b1c1c]'
+                      ? 'bg-[var(--surface-2)] text-[var(--text)] font-semibold shadow-xs'
+                      : 'text-[var(--text-mute)] hover:text-[var(--text)]'
                   }`}
                 >
                   {tab.label}
@@ -157,147 +157,147 @@ export default function SimuladorPage() {
             {/* Form Fields */}
             <div className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                   Nome do Proponente
                 </label>
                 <input
                   type="text"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
-                  className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                  className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                     Telefone de Contato
                   </label>
                   <input
                     type="text"
                     value={telefone}
                     onChange={(e) => setTelefone(e.target.value)}
-                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                    className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] font-mono focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                     CEP Pernoite
                   </label>
                   <input
                     type="text"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
-                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                    className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] font-mono focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                   Modelo do Veículo
                 </label>
                 <input
                   type="text"
                   value={veiculo}
                   onChange={(e) => setVeiculo(e.target.value)}
-                  className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                  className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                     Ano / Fabricação
                   </label>
                   <input
                     type="text"
                     value={ano}
                     onChange={(e) => setAno(e.target.value)}
-                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                    className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                     Placa
                   </label>
                   <input
                     type="text"
                     value={placa}
                     onChange={(e) => setPlaca(e.target.value)}
-                    className="w-full bg-[#f5f3f3] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono uppercase focus:bg-white focus:outline-none focus:border-[#275ba5] transition-colors"
+                    className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] font-mono uppercase focus:bg-[var(--surface-2)] focus:outline-none focus:border-[#275ba5] transition-colors"
                   />
                 </div>
               </div>
 
               {/* Coverage Toggles */}
-              <div className="pt-3 border-t border-[#e9e8e7] space-y-2">
-                <span className="block text-xs font-bold text-[#1b1c1c] mb-2">
+              <div className="pt-3 border-t border-[var(--border)] space-y-2">
+                <span className="block text-xs font-bold text-[var(--text)] mb-2">
                   Coberturas Adicionais
                 </span>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] cursor-pointer hover:border-[var(--border)] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-[#1b1c1c]">100% Tabela FIPE (Compreensiva)</span>
-                    <span className="text-[11px] text-[#565f71]">Colisão, Incêndio, Roubo e Alagamento</span>
+                    <span className="text-xs font-medium text-[var(--text)]">100% Tabela FIPE (Compreensiva)</span>
+                    <span className="text-[11px] text-[var(--text-mute)]">Colisão, Incêndio, Roubo e Alagamento</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={coberturaFipe}
                     onChange={(e) => setCoberturaFipe(e.target.checked)}
-                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
+                    className="w-4 h-4 rounded text-[var(--purple)] border-[var(--border)]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] cursor-pointer hover:border-[var(--border)] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-[#1b1c1c]">Danos Terceiros (RCF R$ 300.000)</span>
-                    <span className="text-[11px] text-[#565f71]">Danos materiais e corporais</span>
+                    <span className="text-xs font-medium text-[var(--text)]">Danos Terceiros (RCF R$ 300.000)</span>
+                    <span className="text-[11px] text-[var(--text-mute)]">Danos materiais e corporais</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={danosTerceiros}
                     onChange={(e) => setDanosTerceiros(e.target.checked)}
-                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
+                    className="w-4 h-4 rounded text-[var(--purple)] border-[var(--border)]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] cursor-pointer hover:border-[var(--border)] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-[#1b1c1c]">Carro Reserva Plus (15 dias)</span>
-                    <span className="text-[11px] text-[#565f71]">Categoria Sedã com Ar Condicionado</span>
+                    <span className="text-xs font-medium text-[var(--text)]">Carro Reserva Plus (15 dias)</span>
+                    <span className="text-[11px] text-[var(--text-mute)]">Categoria Sedã com Ar Condicionado</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={carroReserva}
                     onChange={(e) => setCarroReserva(e.target.checked)}
-                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
+                    className="w-4 h-4 rounded text-[var(--purple)] border-[var(--border)]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] cursor-pointer hover:border-[var(--border)] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-[#1b1c1c]">Vidros, Faróis e Retrovisores</span>
-                    <span className="text-[11px] text-[#565f71]">Cobertura integral para troca de cristais</span>
+                    <span className="text-xs font-medium text-[var(--text)]">Vidros, Faróis e Retrovisores</span>
+                    <span className="text-[11px] text-[var(--text-mute)]">Cobertura integral para troca de cristais</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={vidrosFarois}
                     onChange={(e) => setVidrosFarois(e.target.checked)}
-                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
+                    className="w-4 h-4 rounded text-[var(--purple)] border-[var(--border)]"
                   />
                 </label>
 
-                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] cursor-pointer hover:border-[#c3c6d3] transition-colors">
+                <label className="flex items-center justify-between p-2.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] cursor-pointer hover:border-[var(--border)] transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium text-[#1b1c1c]">Assistência 24h Guincho Ilimitado</span>
-                    <span className="text-[11px] text-[#565f71]">Território nacional sem limite de km</span>
+                    <span className="text-xs font-medium text-[var(--text)]">Assistência 24h Guincho Ilimitado</span>
+                    <span className="text-[11px] text-[var(--text-mute)]">Território nacional sem limite de km</span>
                   </div>
                   <input
                     type="checkbox"
                     checked={guinchoIlimitado}
                     onChange={(e) => setGuinchoIlimitado(e.target.checked)}
-                    className="w-4 h-4 rounded text-[#275ba5] border-[#c3c6d3]"
+                    className="w-4 h-4 rounded text-[var(--purple)] border-[var(--border)]"
                   />
                 </label>
               </div>
@@ -308,39 +308,39 @@ export default function SimuladorPage() {
         {/* Right Column: Comparative Insurer Cards */}
         <div className="lg:col-span-7 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-[#1b1c1c]">
+            <h2 className="text-sm font-bold text-[var(--text)]">
               Cotações Recomendadas
             </h2>
-            <span className="text-xs text-[#565f71]">3 seguradoras compatíveis com o perfil</span>
+            <span className="text-xs text-[var(--text-mute)]">3 seguradoras compatíveis com o perfil</span>
           </div>
 
           {/* Card 1: Porto Seguro (Featured) */}
-          <div className="relative bg-white border-2 border-[#275ba5] rounded-xl p-5 shadow-[0_2px_8px_rgba(39,91,165,0.08)]">
-            <div className="absolute top-0 right-0 bg-[#275ba5] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+          <div className="relative bg-[var(--surface-2)] border-2 border-[#275ba5] rounded-xl p-5 shadow-[0_2px_8px_rgba(39,91,165,0.08)]">
+            <div className="absolute top-0 right-0 bg-[var(--purple)] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
               Recomendação Técnica
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-3 mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border)] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-[#1b1c1c]">Porto Seguro</span>
-                  <span className="text-[10px] text-[#565f71] font-mono">SUSEP 05886</span>
+                  <span className="text-base font-bold text-[var(--text)]">Porto Seguro</span>
+                  <span className="text-[10px] text-[var(--text-mute)] font-mono">SUSEP 05886</span>
                 </div>
-                <p className="text-xs text-[#565f71] mt-0.5">
-                  Franquia Reduzida: <strong className="text-[#1b1c1c]">R$ 2.850,00</strong>
+                <p className="text-xs text-[var(--text-mute)] mt-0.5">
+                  Franquia Reduzida: <strong className="text-[var(--text)]">R$ 2.850,00</strong>
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-2xl font-bold text-[#275ba5] tabular-nums">
+                <span className="text-2xl font-bold text-[var(--purple)] tabular-nums">
                   12x R$ 247,90
                 </span>
-                <span className="block text-xs text-[#565f71] font-mono">ou R$ 2.677,32 à vista</span>
+                <span className="block text-xs text-[var(--text-mute)] font-mono">ou R$ 2.677,32 à vista</span>
               </div>
             </div>
 
             {/* Perks */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#565f71] mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-mute)] mb-5">
               <div className="flex items-center gap-2">
                 <svg className="w-3.5 h-3.5 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
@@ -372,42 +372,42 @@ export default function SimuladorPage() {
               type="button"
               disabled={submitting}
               onClick={() => handleSubmitSimulacao('Porto Seguro')}
-              className="w-full py-2.5 px-4 rounded-lg bg-[#275ba5] hover:bg-[#1a4784] text-white font-semibold text-xs transition-colors cursor-pointer shadow-sm disabled:opacity-50"
+              className="w-full py-2.5 px-4 rounded-lg bg-[var(--purple)] hover:bg-[#1a4784] text-white font-semibold text-xs transition-colors cursor-pointer shadow-sm disabled:opacity-50"
             >
               {submitting && selectedSeguradora === 'Porto Seguro' ? 'Enviando para esteira...' : 'Selecionar Porto Seguro e Contatar'}
             </button>
           </div>
 
           {/* Card 2: Tokio Marine */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e9e8e7] pb-3 mb-3">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border)] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-[#1b1c1c]">Tokio Marine Seguradora</span>
+                  <span className="text-sm font-bold text-[var(--text)]">Tokio Marine Seguradora</span>
                   <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium border border-emerald-200">
                     94% fit
                   </span>
                 </div>
-                <p className="text-xs text-[#565f71] mt-0.5">
+                <p className="text-xs text-[var(--text-mute)] mt-0.5">
                   Franquia Normal: R$ 3.920,00
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-lg font-bold text-[#1b1c1c] tabular-nums">12x R$ 229,15</span>
-                <span className="block text-xs text-[#565f71] font-mono">R$ 2.474,80 à vista</span>
+                <span className="text-lg font-bold text-[var(--text)] tabular-nums">12x R$ 229,15</span>
+                <span className="block text-xs text-[var(--text-mute)] font-mono">R$ 2.474,80 à vista</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <span className="text-xs text-[#565f71]">
+              <span className="text-xs text-[var(--text-mute)]">
                 Assistência 24h até 500 km • Carro reserva 7 dias
               </span>
               <button
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmitSimulacao('Tokio Marine')}
-                className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] text-xs font-semibold transition-colors border border-[#c3c6d3] cursor-pointer"
+                className="px-3.5 py-1.5 rounded-lg bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] text-xs font-semibold transition-colors border border-[var(--border)] cursor-pointer"
               >
                 Selecionar Tokio Marine
               </button>
@@ -415,35 +415,35 @@ export default function SimuladorPage() {
           </div>
 
           {/* Card 3: Allianz */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#e9e8e7] pb-3 mb-3">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border)] pb-3 mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-[#1b1c1c]">Allianz Seguros</span>
+                  <span className="text-sm font-bold text-[var(--text)]">Allianz Seguros</span>
                   <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium border border-emerald-200">
                     91% fit
                   </span>
                 </div>
-                <p className="text-xs text-[#565f71] mt-0.5">
+                <p className="text-xs text-[var(--text-mute)] mt-0.5">
                   Franquia Reduzida: R$ 2.990,00
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="text-lg font-bold text-[#1b1c1c] tabular-nums">12x R$ 265,40</span>
-                <span className="block text-xs text-[#565f71] font-mono">R$ 2.866,32 à vista</span>
+                <span className="text-lg font-bold text-[var(--text)] tabular-nums">12x R$ 265,40</span>
+                <span className="block text-xs text-[var(--text-mute)] font-mono">R$ 2.866,32 à vista</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <span className="text-xs text-[#565f71]">
+              <span className="text-xs text-[var(--text-mute)]">
                 Atendimento Premier • Carro reserva 15 dias SUV • Guincho 1.000 km
               </span>
               <button
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmitSimulacao('Allianz')}
-                className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] text-xs font-semibold transition-colors border border-[#c3c6d3] cursor-pointer"
+                className="px-3.5 py-1.5 rounded-lg bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] text-xs font-semibold transition-colors border border-[var(--border)] cursor-pointer"
               >
                 Selecionar Allianz
               </button>
@@ -451,13 +451,13 @@ export default function SimuladorPage() {
           </div>
 
           {/* Standard SLA Notice */}
-          <div className="p-3.5 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] text-xs text-[#565f71] flex items-center gap-3">
-            <svg className="w-4 h-4 text-[#275ba5] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="p-3.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] text-xs text-[var(--text-mute)] flex items-center gap-3">
+            <svg className="w-4 h-4 text-[var(--purple)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
             <div>
-              <strong className="text-[#1b1c1c] block font-medium">Fluxo Integrado com a Corretora</strong>
+              <strong className="text-[var(--text)] block font-medium">Fluxo Integrado com a Corretora</strong>
               <span>
                 Ao selecionar qualquer seguradora, o lead é registrado instantaneamente na fila com prioridade para contato imediato via WhatsApp.
               </span>

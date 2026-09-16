@@ -66,6 +66,41 @@ flowchart TD
 | **[`WORKFLOWS_INTEGRATION.md`](./WORKFLOWS_INTEGRATION.md)** | Mapeamento de unificação dos nós do n8n / serviços Node.js sem sobreposição. |
 | **[`PROMPTS_AND_AGENTS.md`](./PROMPTS_AND_AGENTS.md)** | Engenharia de prompts para o Agente de Voz, Assistente WhatsApp e Scorer de Risco. |
 | **[`ROADMAP_IMPLEMENTATION.md`](./ROADMAP_IMPLEMENTATION.md)** | Plano de execução prático de construção e lançamento em 4 fases. |
+| **[`docs/`](./docs/)** | **Cadernos Técnicos do Sistema Unificado:** `01-PRD.md` a `10-DESIGN_SYSTEM.md` e `CLAUDE.md`. |
+
+---
+
+## 🛠️ Comandos de Desenvolvimento & Testes
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar banco de dados e migrações
+npx prisma db push
+npm run prisma:seed
+
+# Rodar suíte de testes unitários com Vitest (19 testes de regressão)
+npm test
+
+# Executar verificação estática de tipos TypeScript
+npx tsc --noEmit
+
+# Iniciar servidor de desenvolvimento
+npm run dev
+
+# Compilar para produção
+npm run build
+```
+
+---
+
+## 💬 Live Chat Cockpit & Speed-to-Lead Inbox (`/dashboard/chat`)
+
+* **Central Omnicanal Integrada:** Permite ao corretor acompanhar em tempo real todas as interações de WhatsApp e chamadas de voz ativa geradas pelo Vapi.
+* **Handover Humano:** Botão *"Assumir Atendimento"* transfere o controle para o corretor e coloca a IA em modo espectador.
+* **Player de Áudio:** Execução de gravações de voz com transcrição vinculada ao lead.
+* **Proteção SUSEP Automática:** O motor `src/lib/compliance.ts` barra automaticamente qualquer tentativa de automação de prometer valores arbitrários de prêmio ou franquia antes do cálculo oficial do corretor.
 
 ---
 

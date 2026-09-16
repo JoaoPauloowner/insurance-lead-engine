@@ -140,46 +140,46 @@ export default function CotacaoCockpitPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-20 font-sans">
       {/* Top Header & Telemetry Bar */}
-      <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-base font-bold text-[#1b1c1c] tracking-tight">
+                <span className="text-base font-bold text-[var(--text)] tracking-tight">
                   Cockpit de Cotação Multisseguradoras
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
                   Cotação Ativa
                 </span>
               </div>
-              <span className="text-xs text-[#565f71]">
+              <span className="text-xs text-[var(--text-mute)]">
                 Cálculo comparativo instantâneo entre as principais seguradoras do mercado brasileiro
               </span>
             </div>
 
-            <div className="flex items-center gap-1.5 ml-2 border-l border-[#e9e8e7] pl-3">
+            <div className="flex items-center gap-1.5 ml-2 border-l border-[var(--border)] pl-3">
               <button
                 type="button"
                 onClick={copyPropostaId}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-xs font-mono text-[#1b1c1c] hover:bg-[#efeded] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-xs font-mono text-[var(--text)] hover:bg-[var(--border)] transition-colors cursor-pointer"
                 title="Copiar ID da Proposta"
               >
                 <span>#COT-2026-8941</span>
-                <span className="text-[10px] text-[#565f71]">{copied ? 'Copiado' : 'Copiar'}</span>
+                <span className="text-[10px] text-[var(--text-mute)]">{copied ? 'Copiado' : 'Copiar'}</span>
               </button>
             </div>
           </div>
 
           {/* Telemetry Metrics */}
           <div className="flex items-center gap-2 flex-wrap text-xs">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-[#1b1c1c]">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <span>Gateway Seguradoras: <strong className="text-emerald-700 font-semibold">Online</strong></span>
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-[#1b1c1c]">
-              <span>Tabela FIPE: <strong className="text-[#1b1c1c] font-semibold">Vigente</strong></span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]">
+              <span>Tabela FIPE: <strong className="text-[var(--text)] font-semibold">Vigente</strong></span>
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f5f3f3] border border-[#e9e8e7] text-[#1b1c1c]">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]">
               <span>Sinistralidade: <strong className="text-emerald-700 font-semibold">Baixa (Bônus 7)</strong></span>
             </div>
             <button
@@ -217,87 +217,87 @@ export default function CotacaoCockpitPage() {
         {/* LEFT COLUMN: Proponente & Veículo (3 cols) */}
         <div className="lg:col-span-3 space-y-4">
           {/* Card 1: Perfil do Proponente */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#e9e8e7]">
-              <span className="text-xs font-bold text-[#1b1c1c]">Proponente</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-[#275ba5] font-semibold border border-blue-200">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-[var(--border)]">
+              <span className="text-xs font-bold text-[var(--text)]">Proponente</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-[var(--purple)] font-semibold border border-blue-200">
                 Classe Bônus 7
               </span>
             </div>
             <div className="space-y-2 text-xs">
               <div>
-                <span className="text-[11px] text-[#565f71] block">Nome</span>
-                <span className="text-[#1b1c1c] font-semibold">Rodrigo Silveira Mendonça</span>
+                <span className="text-[11px] text-[var(--text-mute)] block">Nome</span>
+                <span className="text-[var(--text)] font-semibold">Rodrigo Silveira Mendonça</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[11px] text-[#565f71] block">CPF</span>
-                  <span className="text-[#1b1c1c] font-mono text-[11px]">***.482.918-**</span>
+                  <span className="text-[11px] text-[var(--text-mute)] block">CPF</span>
+                  <span className="text-[var(--text)] font-mono text-[11px]">***.482.918-**</span>
                 </div>
                 <div>
-                  <span className="text-[11px] text-[#565f71] block">Idade</span>
-                  <span className="text-[#1b1c1c] text-[11px]">38 anos, Casado</span>
+                  <span className="text-[11px] text-[var(--text-mute)] block">Idade</span>
+                  <span className="text-[var(--text)] text-[11px]">38 anos, Casado</span>
                 </div>
               </div>
               <div>
-                <span className="text-[11px] text-[#565f71] block">CEP Pernoite</span>
-                <span className="text-[#1b1c1c] text-[11px]">04578-000 (Brooklin, SP)</span>
+                <span className="text-[11px] text-[var(--text-mute)] block">CEP Pernoite</span>
+                <span className="text-[var(--text)] text-[11px]">04578-000 (Brooklin, SP)</span>
                 <span className="block text-[11px] text-emerald-700 font-medium mt-0.5">Garagem fechada em condomínio</span>
               </div>
             </div>
           </div>
 
           {/* Card 2: Veículo */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#e9e8e7]">
-              <span className="text-xs font-bold text-[#1b1c1c]">Veículo Segurado</span>
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-[var(--border)]">
+              <span className="text-xs font-bold text-[var(--text)]">Veículo Segurado</span>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
                 Rastreador Ativo
               </span>
             </div>
             <div className="space-y-2 text-xs">
               <div>
-                <span className="text-[11px] text-[#565f71] block">Modelo / Ano</span>
-                <span className="text-[#1b1c1c] font-semibold">Jeep Compass Longitude 1.3</span>
-                <span className="text-[#565f71] text-[11px] block">2024 Turbo Flex</span>
+                <span className="text-[11px] text-[var(--text-mute)] block">Modelo / Ano</span>
+                <span className="text-[var(--text)] font-semibold">Jeep Compass Longitude 1.3</span>
+                <span className="text-[var(--text-mute)] text-[11px] block">2024 Turbo Flex</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[11px] text-[#565f71] block">Valor FIPE</span>
-                  <span className="text-[#1b1c1c] font-mono font-bold text-xs">R$ 168.450</span>
+                  <span className="text-[11px] text-[var(--text-mute)] block">Valor FIPE</span>
+                  <span className="text-[var(--text)] font-mono font-bold text-xs">R$ 168.450</span>
                 </div>
                 <div>
-                  <span className="text-[11px] text-[#565f71] block">Placa</span>
-                  <span className="text-[#1b1c1c] font-mono text-xs">BRA2E19</span>
+                  <span className="text-[11px] text-[var(--text-mute)] block">Placa</span>
+                  <span className="text-[var(--text)] font-mono text-xs">BRA2E19</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Card 3: Coberturas Selecionadas */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
-            <div className="pb-2 border-b border-[#e9e8e7]">
-              <span className="text-xs font-bold text-[#1b1c1c]">Cláusulas & Coberturas</span>
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3">
+            <div className="pb-2 border-b border-[var(--border)]">
+              <span className="text-xs font-bold text-[var(--text)]">Cláusulas & Coberturas</span>
             </div>
             <div className="space-y-2.5">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#1b1c1c]">100% FIPE (Casco)</span>
+                <span className="text-[var(--text)]">100% FIPE (Casco)</span>
                 <Switch checked={coberturaFipe} onCheckedChange={setCoberturaFipe} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#1b1c1c]">RCF-V Danos Materiais R$ 500k</span>
+                <span className="text-[var(--text)]">RCF-V Danos Materiais R$ 500k</span>
                 <Switch checked={rcfTerceiros} onCheckedChange={setRcfTerceiros} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#1b1c1c]">Carro Reserva 30d SUV</span>
+                <span className="text-[var(--text)]">Carro Reserva 30d SUV</span>
                 <Switch checked={carroReserva30d} onCheckedChange={setCarroReserva30d} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#1b1c1c]">Vidros VIP + Faróis</span>
+                <span className="text-[var(--text)]">Vidros VIP + Faróis</span>
                 <Switch checked={vidrosVip} onCheckedChange={setVidrosVip} />
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#1b1c1c]">Guincho 24h Ilimitado</span>
+                <span className="text-[var(--text)]">Guincho 24h Ilimitado</span>
                 <Switch checked={guinchoIlimitado} onCheckedChange={setGuinchoIlimitado} />
               </div>
             </div>
@@ -306,13 +306,13 @@ export default function CotacaoCockpitPage() {
 
         {/* CENTER COLUMN: Multi-Insurer Rate Matrix (6 cols) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="bg-white border border-[#e9e8e7] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <div className="p-4 border-b border-[#e9e8e7] flex items-center justify-between bg-[#f5f3f3]">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="p-4 border-b border-[var(--border)] flex items-center justify-between bg-[var(--surface)]">
               <div>
-                <h3 className="text-xs font-bold text-[#1b1c1c]">Comparativo Multisseguradoras</h3>
-                <p className="text-xs text-[#565f71]">Porto Seguro, Tokio Marine, Allianz, Bradesco e HDI</p>
+                <h3 className="text-xs font-bold text-[var(--text)]">Comparativo Multisseguradoras</h3>
+                <p className="text-xs text-[var(--text-mute)]">Porto Seguro, Tokio Marine, Allianz, Bradesco e HDI</p>
               </div>
-              <span className="text-[11px] font-mono text-[#565f71] bg-white px-2 py-0.5 rounded-md border border-[#e9e8e7]">
+              <span className="text-[11px] font-mono text-[var(--text-mute)] bg-[var(--surface-2)] px-2 py-0.5 rounded-md border border-[var(--border)]">
                 Tabela Oficial
               </span>
             </div>
@@ -320,7 +320,7 @@ export default function CotacaoCockpitPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="border-b border-[#e9e8e7] bg-[#fbf9f9] text-xs font-semibold text-[#565f71]">
+                  <tr className="border-b border-[var(--border)] bg-[#fbf9f9] text-xs font-semibold text-[var(--text-mute)]">
                     <th className="py-3 px-3">Seguradora</th>
                     <th className="py-3 px-3">Franquia</th>
                     <th className="py-3 px-3">Assistência</th>
@@ -338,36 +338,36 @@ export default function CotacaoCockpitPage() {
                         className={`cursor-pointer transition-colors ${
                           isSelected
                             ? 'bg-blue-50/60 border-l-4 border-l-[#275ba5]'
-                            : 'hover:bg-[#faf8f8]'
+                            : 'hover:bg-[var(--surface)]'
                         }`}
                       >
                         <td className="py-3 px-3">
                           <div className="flex flex-col">
                             <div className="flex items-center gap-1.5">
-                              <span className="font-semibold text-[#1b1c1c]">{item.name}</span>
+                              <span className="font-semibold text-[var(--text)]">{item.name}</span>
                               {item.isBest && (
                                 <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
                                   Mais Vendida
                                 </span>
                               )}
                             </div>
-                            <span className="text-[10px] text-[#565f71] font-mono">
+                            <span className="text-[10px] text-[var(--text-mute)] font-mono">
                               SUSEP {item.susep} • Match {item.match}
                             </span>
                           </div>
                         </td>
                         <td className="py-3 px-3">
-                          <span className="font-mono text-[#1b1c1c] text-xs block font-medium">{item.franquia}</span>
-                          <span className="text-[10px] text-[#565f71]">{item.franquiaTipo}</span>
+                          <span className="font-mono text-[var(--text)] text-xs block font-medium">{item.franquia}</span>
+                          <span className="text-[10px] text-[var(--text-mute)]">{item.franquiaTipo}</span>
                         </td>
-                        <td className="py-3 px-3 text-xs text-[#565f71] max-w-[130px] truncate">
+                        <td className="py-3 px-3 text-xs text-[var(--text-mute)] max-w-[130px] truncate">
                           {item.assistencia}
                         </td>
-                        <td className="py-3 px-3 text-right font-mono font-semibold text-[#1b1c1c] text-xs">
+                        <td className="py-3 px-3 text-right font-mono font-semibold text-[var(--text)] text-xs">
                           12x {item.mensal}
                         </td>
                         <td className="py-3 px-3 text-right">
-                          <span className="font-mono font-bold text-[#1b1c1c] text-xs block">
+                          <span className="font-mono font-bold text-[var(--text)] text-xs block">
                             {item.total}
                           </span>
                           <span className="text-[10px] text-emerald-700 font-medium">{item.descontoPix}</span>
@@ -381,57 +381,57 @@ export default function CotacaoCockpitPage() {
           </div>
 
           {/* Validated SLA Callout */}
-          <div className="p-3.5 rounded-xl bg-white border border-[#e9e8e7] flex items-center justify-between text-xs text-[#565f71] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div className="p-3.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] flex items-center justify-between text-xs text-[var(--text-mute)] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-emerald-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
               <span>Proposta válida por 48 horas com congelamento de taxa garantido.</span>
             </div>
-            <span className="font-medium text-[#1b1c1c]">Emissão Imediata</span>
+            <span className="font-medium text-[var(--text)]">Emissão Imediata</span>
           </div>
         </div>
 
         {/* RIGHT COLUMN: Proposal Summary & Binding (3 cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3.5">
-            <div className="pb-3 border-b border-[#e9e8e7]">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] space-y-3.5">
+            <div className="pb-3 border-b border-[var(--border)]">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-[#565f71]">Opção Escolhida</span>
-                <span className="text-xs text-[#275ba5] font-semibold">{currentInsurer.match} Fit</span>
+                <span className="text-xs font-semibold text-[var(--text-mute)]">Opção Escolhida</span>
+                <span className="text-xs text-[var(--purple)] font-semibold">{currentInsurer.match} Fit</span>
               </div>
-              <h4 className="text-base font-bold text-[#1b1c1c] mt-1">{currentInsurer.name}</h4>
-              <p className="text-xs text-[#565f71]">Plano Compreensivo Completo</p>
+              <h4 className="text-base font-bold text-[var(--text)] mt-1">{currentInsurer.name}</h4>
+              <p className="text-xs text-[var(--text-mute)]">Plano Compreensivo Completo</p>
             </div>
 
             {/* Financial Breakdown */}
             <div className="space-y-1.5 text-xs">
-              <div className="flex justify-between text-[#565f71]">
+              <div className="flex justify-between text-[var(--text-mute)]">
                 <span>Prêmio Líquido:</span>
-                <span className="font-mono text-[#1b1c1c]">R$ 2.540,15</span>
+                <span className="font-mono text-[var(--text)]">R$ 2.540,15</span>
               </div>
-              <div className="flex justify-between text-[#565f71]">
+              <div className="flex justify-between text-[var(--text-mute)]">
                 <span>IOF (7,38%):</span>
-                <span className="font-mono text-[#1b1c1c]">R$ 187,46</span>
+                <span className="font-mono text-[var(--text)]">R$ 187,46</span>
               </div>
-              <div className="flex justify-between text-[#565f71]">
+              <div className="flex justify-between text-[var(--text-mute)]">
                 <span>Desconto Comercial:</span>
                 <span className="font-mono text-emerald-700 font-medium">- R$ 200,00</span>
               </div>
-              <div className="pt-2 border-t border-[#e9e8e7] flex justify-between items-baseline">
-                <span className="font-bold text-[#1b1c1c]">Total à Vista (PIX):</span>
-                <span className="font-mono font-bold text-[#1b1c1c] text-base">
+              <div className="pt-2 border-t border-[var(--border)] flex justify-between items-baseline">
+                <span className="font-bold text-[var(--text)]">Total à Vista (PIX):</span>
+                <span className="font-mono font-bold text-[var(--text)] text-base">
                   {currentInsurer.total}
                 </span>
               </div>
-              <div className="flex justify-between text-xs text-[#565f71]">
+              <div className="flex justify-between text-xs text-[var(--text-mute)]">
                 <span>Cartão de Crédito:</span>
-                <span className="font-mono text-[#1b1c1c]">12x de {currentInsurer.mensal}</span>
+                <span className="font-mono text-[var(--text)]">12x de {currentInsurer.mensal}</span>
               </div>
             </div>
 
             {/* Checklist */}
-            <div className="p-3 rounded-xl bg-[#f5f3f3] border border-[#e9e8e7] space-y-1.5 text-xs text-[#565f71]">
+            <div className="p-3 rounded-xl bg-[var(--surface)] border border-[var(--border)] space-y-1.5 text-xs text-[var(--text-mute)]">
               <div className="flex items-center gap-2 text-emerald-700 font-medium">
                 <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12" />
@@ -480,7 +480,7 @@ export default function CotacaoCockpitPage() {
               <button
                 disabled={submitting}
                 onClick={handleEmitirProposta}
-                className="w-full py-2.5 rounded-lg bg-surface-container-highest hover:bg-surface-container text-on-surface text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer border border-[#c3c6d3] disabled:opacity-50"
+                className="w-full py-2.5 rounded-lg bg-surface-container-highest hover:bg-surface-container text-on-surface text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer border border-[var(--border)] disabled:opacity-50"
               >
                 <span>{submitting ? 'Emitindo...' : 'Emitir Proposta Formal'}</span>
               </button>
@@ -489,7 +489,7 @@ export default function CotacaoCockpitPage() {
                 onClick={() => {
                   alert('Agendamento de ligação para Rodrigo Silveira Mendonça.');
                 }}
-                className="w-full py-2 rounded-lg bg-white hover:bg-[#f5f3f3] text-[#1b1c1c] border border-[#c3c6d3] text-xs font-medium transition-colors cursor-pointer"
+                className="w-full py-2 rounded-lg bg-[var(--surface-2)] hover:bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] text-xs font-medium transition-colors cursor-pointer"
               >
                 Ligar para o Cliente
               </button>

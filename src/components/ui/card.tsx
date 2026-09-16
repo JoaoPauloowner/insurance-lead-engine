@@ -3,25 +3,25 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const cardVariants = cva(
-  'rounded-lg text-[#1b1c1c] transition-all',
+  'rounded-[16px] text-[var(--text)] transition-all',
   {
     variants: {
       variant: {
-        // 1. Padrão: Card branco com borda sutil e sombra suave (DESIGN.md)
+        // 1. Padrão: Card CentralFlow Dark com borda sutil #232326
         default:
-          'border border-[#e9e8e7] bg-white shadow-xs',
-        // 2. Analítico: Fundo branco, borda nítida
+          'border border-[var(--border)] bg-[var(--surface-2)] shadow-sm hover:border-[var(--border-hover)]',
+        // 2. Analítico / Superfície Elevada
         analytical:
-          'border border-[#e9e8e7] bg-white shadow-xs',
-        // 3. Interativo: Superfície tátil com hover suave
+          'border border-[var(--border)] bg-[var(--surface)] shadow-xs',
+        // 3. Interativo: Superfície tátil com active state e hover sutil
         interactive:
-          'border border-[#e9e8e7] bg-white hover:bg-[#f5f3f3] hover:border-[#c3c6d3] cursor-pointer active-press shadow-xs hover:shadow-sm',
+          'border border-[var(--border)] bg-[var(--surface-2)] hover:border-[var(--purple-border)] hover:bg-[#1E1E24] cursor-pointer active:scale-[0.99] shadow-xs',
         // 4. Crítico / Urgência Operacional
         critical:
-          'border border-red-200 bg-red-50/40 shadow-xs',
-        // 5. Destacado / Primário
+          'border border-red-500/30 bg-red-950/20 text-red-200 shadow-xs',
+        // 5. Destacado / Gradiente Sutil SynAIpses
         elevated:
-          'border border-[#d7e0f5] bg-white shadow-sm',
+          'border border-[var(--purple-border)] bg-[var(--surface-2)] shadow-[0_0_24px_rgba(139,92,246,0.08)]',
       },
     },
     defaultVariants: {
@@ -32,13 +32,19 @@ const cardVariants = cva(
 
 export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
+    VariantProps<typeof cardVariants> {
+  active?: boolean;
+}
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, ...props }, ref) => (
+  ({ className, variant, active, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(cardVariants({ variant }), className)}
+      className={cn(
+        cardVariants({ variant }),
+        active && 'card-cf-active',
+        className
+      )}
       {...props}
     />
   )
@@ -51,22 +57,19 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col space-y-1 p-4 sm:p-5', className)}
+    className={cn('flex flex-col space-y-1.5 p-5', className)}
     {...props}
   />
 ));
 CardHeader.displayName = 'CardHeader';
 
 const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn(
-      'text-sm sm:text-base font-semibold text-[#1b1c1c] leading-tight tracking-tight',
-      className
-    )}
+    className={cn('font-sora text-sm font-semibold tracking-tight text-[var(--text)]', className)}
     {...props}
   />
 ));
@@ -78,7 +81,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-xs text-[#565f71]', className)}
+    className={cn('font-jakarta text-xs text-[var(--text-mute)]', className)}
     {...props}
   />
 ));
@@ -88,7 +91,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('p-4 sm:p-5 pt-0', className)} {...props} />
+  <div ref={ref} className={cn('p-5 pt-0', className)} {...props} />
 ));
 CardContent.displayName = 'CardContent';
 
@@ -98,10 +101,18 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex items-center p-4 sm:p-5 pt-0', className)}
+    className={cn('flex items-center p-5 pt-0', className)}
     {...props}
   />
 ));
 CardFooter.displayName = 'CardFooter';
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  cardVariants,
+};

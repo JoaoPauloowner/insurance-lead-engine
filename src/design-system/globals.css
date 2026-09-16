@@ -1,0 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg:#08080A;
+  --surface:#121214;
+  --surface-2:#1A1A1E;
+  --surface-3:#1E1E20;
+  --border:#232326;
+  --border-hover:#2A2A2E;
+  --text:#FAFAFA;
+  --text-mute:#8A8AA0;
+  --text-faint:#5A5A64;
+  --purple:#8B5CF6;
+  --purple-soft:#8B5CF61A;
+  --purple-border:#8B5CF633;
+  --orange:#FF7A45;
+  --orange-soft:#FF7A451A;
+  --yellow:#F2E94E;
+  --success:#0AFF92;
+  --gradient:linear-gradient(135deg,#8B5CF6 0%,#FF7A45 100%);
+  --gradient-subtle:linear-gradient(135deg,#8B5CF61A 0%,#FF7A451A 100%);
+  --sidebar-w:280px;
+  --header-h:56px;
+}
+
+*{border-color:var(--border)}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased}
+.font-sora{font-family:'Sora',sans-serif}
+.font-jakarta{font-family:'Plus Jakarta Sans',sans-serif}
+.font-mono{font-family:'JetBrains Mono',monospace}
+
+/* Scrollbar premium */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:var(--border-hover)}
+
+/* Card CentralFlow */
+.card-cf{background:var(--surface-2);border:1px solid var(--border);border-radius:16px;transition:all .2s}
+.card-cf:hover{border-color:var(--border-hover)}
+.card-cf-active{background:linear-gradient(0deg, var(--surface-2), var(--surface-2)), var(--gradient-subtle);border-color:var(--purple-border);}
+
+/* Gradient text */
+.text-gradient{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}

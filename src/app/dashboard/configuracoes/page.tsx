@@ -206,7 +206,7 @@ export default function ConfiguracoesPage() {
       )}
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold text-primary bg-primary/10">
@@ -216,7 +216,7 @@ export default function ConfiguracoesPage() {
               Multi-Tenant Ativo
             </span>
           </div>
-          <h1 className="text-2xl font-bold text-[#1b1c1c] tracking-tight">
+          <h1 className="text-2xl font-bold text-[var(--text)] tracking-tight">
             Configurações da Corretora & Webhook
           </h1>
           <p className="text-secondary text-xs mt-0.5 max-w-2xl">
@@ -228,20 +228,20 @@ export default function ConfiguracoesPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Branding Settings */}
         <div className="lg:col-span-6 space-y-5">
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-xs">
-            <div className="flex items-center gap-3 mb-4 border-b border-[#e9e8e7] pb-3">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-5 shadow-xs">
+            <div className="flex items-center gap-3 mb-4 border-b border-[var(--border)] pb-3">
               <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                 <span className="material-symbols-outlined text-[20px]">badge</span>
               </div>
               <div>
-                <h2 className="text-sm font-bold text-[#1b1c1c]">Identidade da Corretora</h2>
+                <h2 className="text-sm font-bold text-[var(--text)]">Identidade da Corretora</h2>
                 <p className="text-[11px] text-secondary">Aparece nos relatórios, propostas em PDF e templates</p>
               </div>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                   Nome Comercial da Corretora
                 </label>
                 <input
@@ -249,20 +249,20 @@ export default function ConfiguracoesPage() {
                   required
                   value={org.nome}
                   onChange={(e) => setOrg({ ...org, nome: e.target.value })}
-                  className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:outline-none focus:border-primary transition-colors"
+                  className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] focus:outline-none focus:border-primary transition-colors"
                   placeholder="Ex: Prime Corretora & Lead Engine"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                   URL do Logotipo da Corretora (PNG / SVG)
                 </label>
                 <input
                   type="url"
                   value={org.logoUrl}
                   onChange={(e) => setOrg({ ...org, logoUrl: e.target.value })}
-                  className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] focus:outline-none focus:border-primary transition-colors"
+                  className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] focus:outline-none focus:border-primary transition-colors"
                   placeholder="https://suacorretora.com.br/logo.png"
                 />
                 <p className="text-[11px] text-secondary mt-1">
@@ -271,7 +271,7 @@ export default function ConfiguracoesPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+                <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                   Cor Primária Institucional
                 </label>
                 <div className="flex items-center gap-2 mb-2">
@@ -279,13 +279,13 @@ export default function ConfiguracoesPage() {
                     type="color"
                     value={org.corPrimaria}
                     onChange={(e) => setOrg({ ...org, corPrimaria: e.target.value })}
-                    className="w-10 h-8 rounded-lg border border-[#e9e8e7] bg-transparent cursor-pointer"
+                    className="w-10 h-8 rounded-lg border border-[var(--border)] bg-transparent cursor-pointer"
                   />
                   <input
                     type="text"
                     value={org.corPrimaria}
                     onChange={(e) => setOrg({ ...org, corPrimaria: e.target.value })}
-                    className="w-28 bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-xs text-[#1b1c1c] font-mono text-center"
+                    className="w-28 bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-2.5 py-1.5 text-xs text-[var(--text)] font-mono text-center"
                     placeholder="#275ba5"
                   />
                   <div
@@ -303,19 +303,19 @@ export default function ConfiguracoesPage() {
                       key={preset.hex}
                       type="button"
                       onClick={() => setOrg({ ...org, corPrimaria: preset.hex })}
-                      className="text-xs px-2.5 py-1 rounded-md border border-[#e9e8e7] bg-[#fbf9f9] hover:bg-[#f5f3f3] transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="text-xs px-2.5 py-1 rounded-md border border-[var(--border)] bg-[#fbf9f9] hover:bg-[var(--surface)] transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                       <span
                         className="w-2.5 h-2.5 rounded-full"
                         style={{ backgroundColor: preset.hex }}
                       />
-                      <span className="text-[#1b1c1c] text-[11px] font-medium">{preset.name}</span>
+                      <span className="text-[var(--text)] text-[11px] font-medium">{preset.name}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#e9e8e7] flex justify-end">
+              <div className="pt-3 border-t border-[var(--border)] flex justify-end">
                 <button
                   type="submit"
                   disabled={saving}
@@ -330,13 +330,13 @@ export default function ConfiguracoesPage() {
           </div>
 
           {/* WhatsApp Automated Speed-to-Lead Card */}
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-xs space-y-4">
-            <div className="flex items-center gap-3 border-b border-[#e9e8e7] pb-3">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-5 shadow-xs space-y-4">
+            <div className="flex items-center gap-3 border-b border-[var(--border)] pb-3">
               <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
                 <span className="material-symbols-outlined text-[20px]">chat</span>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-[#1b1c1c]">Automação de WhatsApp (Speed-to-Lead)</h3>
+                <h3 className="text-sm font-bold text-[var(--text)]">Automação de WhatsApp (Speed-to-Lead)</h3>
                 <p className="text-[11px] text-secondary">Disparo imediato em &lt; 30 segundos ao receber novo lead</p>
               </div>
             </div>
@@ -358,7 +358,7 @@ export default function ConfiguracoesPage() {
                   <select
                     value={waConfig.provider}
                     onChange={(e) => setWaConfig({ ...waConfig, provider: e.target.value })}
-                    className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-xs text-[#1b1c1c] focus:outline-none focus:border-primary"
+                    className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-2.5 py-1.5 text-xs text-[var(--text)] focus:outline-none focus:border-primary"
                   >
                     <option value="evolution">Evolution API (Recomendado)</option>
                     <option value="zapi">Z-API WhatsApp</option>
@@ -372,7 +372,7 @@ export default function ConfiguracoesPage() {
                     type="text"
                     value={waConfig.instance}
                     onChange={(e) => setWaConfig({ ...waConfig, instance: e.target.value })}
-                    className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-2.5 py-1.5 text-xs text-[#1b1c1c] font-mono focus:outline-none focus:border-primary"
+                    className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-2.5 py-1.5 text-xs text-[var(--text)] font-mono focus:outline-none focus:border-primary"
                     placeholder="leadengine-prime"
                   />
                 </div>
@@ -384,7 +384,7 @@ export default function ConfiguracoesPage() {
                   placeholder="DDD + Seu WhatsApp para testar"
                   value={waConfig.testNumber}
                   onChange={(e) => setWaConfig({ ...waConfig, testNumber: e.target.value })}
-                  className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-3 py-1.5 text-xs text-[#1b1c1c] font-mono"
+                  className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-3 py-1.5 text-xs text-[var(--text)] font-mono"
                 />
                 <button
                   type="button"
@@ -398,7 +398,7 @@ export default function ConfiguracoesPage() {
               </div>
 
               {waTestResult && (
-                <div className="p-2.5 rounded-lg bg-[#fbf9f9] border border-[#e9e8e7] text-[11px] font-mono text-secondary">
+                <div className="p-2.5 rounded-lg bg-[#fbf9f9] border border-[var(--border)] text-[11px] font-mono text-secondary">
                   Status: {waTestResult.ok ? 'Mensagem disparada com sucesso (Speed-to-Lead verificado)!' : waTestResult.error}
                 </div>
               )}
@@ -408,19 +408,19 @@ export default function ConfiguracoesPage() {
 
         {/* Right Column: Webhook Universal for Meta Ads / Google Ads */}
         <div className="lg:col-span-6 space-y-5">
-          <div className="bg-white border border-[#e9e8e7] rounded-xl p-5 shadow-xs space-y-4">
-            <div className="flex items-center gap-3 border-b border-[#e9e8e7] pb-3">
+          <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-5 shadow-xs space-y-4">
+            <div className="flex items-center gap-3 border-b border-[var(--border)] pb-3">
               <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                 <span className="material-symbols-outlined text-[20px]">webhook</span>
               </div>
               <div>
-                <h2 className="text-sm font-bold text-[#1b1c1c]">Webhook Universal de Ingestão</h2>
+                <h2 className="text-sm font-bold text-[var(--text)]">Webhook Universal de Ingestão</h2>
                 <p className="text-[11px] text-secondary">Conexão direta para campanhas de tráfego pago</p>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#1b1c1c] mb-1">
+              <label className="block text-xs font-semibold text-[var(--text)] mb-1">
                 Sua URL de Webhook Exclusiva
               </label>
               <div className="flex items-center gap-1.5">
@@ -428,7 +428,7 @@ export default function ConfiguracoesPage() {
                   type="text"
                   readOnly
                   value={webhookUrl}
-                  className="w-full bg-[#fbf9f9] border border-[#e9e8e7] rounded-lg px-3 py-2 text-xs text-[#1b1c1c] font-mono select-all focus:outline-none"
+                  className="w-full bg-[#fbf9f9] border border-[var(--border)] rounded-lg px-3 py-2 text-xs text-[var(--text)] font-mono select-all focus:outline-none"
                 />
                 <button
                   type="button"
@@ -447,10 +447,10 @@ export default function ConfiguracoesPage() {
             </div>
 
             {/* Test Action */}
-            <div className="p-4 rounded-xl bg-[#fbf9f9] border border-[#e9e8e7] space-y-3">
+            <div className="p-4 rounded-xl bg-[#fbf9f9] border border-[var(--border)] space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-xs font-bold text-[#1b1c1c]">Simular Lead do Instagram ao Vivo</span>
+                  <span className="text-xs font-bold text-[var(--text)]">Simular Lead do Instagram ao Vivo</span>
                   <p className="text-[11px] text-secondary">
                     Envia um payload simulado e verifica a chegada em tempo real na esteira.
                   </p>
@@ -467,9 +467,9 @@ export default function ConfiguracoesPage() {
               </div>
 
               {testResult && (
-                <div className="mt-3 p-3 rounded-lg bg-white border border-[#e9e8e7] text-xs space-y-1.5">
+                <div className="mt-3 p-3 rounded-lg bg-[var(--surface-2)] border border-[var(--border)] text-xs space-y-1.5">
                   <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-semibold text-[#1b1c1c]">Resultado do Gateway:</span>
+                    <span className="font-semibold text-[var(--text)]">Resultado do Gateway:</span>
                     <span className={`px-2 py-0.5 rounded-full font-bold ${testResult.ok ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
                       HTTP {testResult.status}
                     </span>
@@ -483,10 +483,10 @@ export default function ConfiguracoesPage() {
 
             {/* Documentation / Payload reference */}
             <div className="space-y-2 pt-2">
-              <span className="text-xs font-bold text-[#1b1c1c] uppercase tracking-wider block">
+              <span className="text-xs font-bold text-[var(--text)] uppercase tracking-wider block">
                 Exemplo de Payload JSON (Meta Ads / n8n)
               </span>
-              <pre className="p-3 rounded-xl bg-[#fbf9f9] border border-[#e9e8e7] text-[11px] font-mono text-secondary overflow-x-auto">
+              <pre className="p-3 rounded-xl bg-[#fbf9f9] border border-[var(--border)] text-[11px] font-mono text-secondary overflow-x-auto">
 {`{
   "nome": "Marcos Silveira",
   "telefone": "5511987654321",

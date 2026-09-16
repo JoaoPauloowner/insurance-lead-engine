@@ -132,7 +132,7 @@ export default function PlanosAssinaturaPage() {
       )}
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#e9e8e7] pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-primary bg-primary/10">
@@ -142,7 +142,7 @@ export default function PlanosAssinaturaPage() {
               Nota Fiscal Automática
             </span>
           </div>
-          <h1 className="text-2xl font-bold text-[#1b1c1c] tracking-tight">
+          <h1 className="text-2xl font-bold text-[var(--text)] tracking-tight">
             Planos & Assinatura da Corretora
           </h1>
           <p className="text-secondary text-xs mt-0.5 max-w-2xl">
@@ -151,11 +151,11 @@ export default function PlanosAssinaturaPage() {
         </div>
 
         {/* Annual / Monthly Toggle */}
-        <div className="flex items-center bg-[#f5f3f3] border border-[#e9e8e7] p-1 rounded-xl text-xs font-semibold">
+        <div className="flex items-center bg-[var(--surface)] border border-[var(--border)] p-1 rounded-xl text-xs font-semibold">
           <button
             onClick={() => setBillingCycle('monthly')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-              billingCycle === 'monthly' ? 'bg-white text-[#1b1c1c] shadow-2xs' : 'text-secondary hover:text-[#1b1c1c]'
+              billingCycle === 'monthly' ? 'bg-[var(--surface-2)] text-[var(--text)] shadow-2xs' : 'text-secondary hover:text-[var(--text)]'
             }`}
           >
             Mensal
@@ -163,7 +163,7 @@ export default function PlanosAssinaturaPage() {
           <button
             onClick={() => setBillingCycle('annual')}
             className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
-              billingCycle === 'annual' ? 'bg-white text-[#1b1c1c] shadow-2xs' : 'text-secondary hover:text-[#1b1c1c]'
+              billingCycle === 'annual' ? 'bg-[var(--surface-2)] text-[var(--text)] shadow-2xs' : 'text-secondary hover:text-[var(--text)]'
             }`}
           >
             <span>Anual</span>
@@ -175,14 +175,14 @@ export default function PlanosAssinaturaPage() {
       </div>
 
       {/* Current Subscription Status Card */}
-      <div className="p-5 rounded-2xl bg-white border border-[#e9e8e7] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 rounded-2xl bg-[var(--surface-2)] border border-[var(--border)] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start gap-3.5">
           <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[26px]">workspace_premium</span>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-base font-bold text-[#1b1c1c]">
+              <span className="text-base font-bold text-[var(--text)]">
                 Plano {org.plano.toUpperCase()}
               </span>
               <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
@@ -190,7 +190,7 @@ export default function PlanosAssinaturaPage() {
               </span>
             </div>
             <p className="text-xs text-secondary mt-0.5">
-              Corretora: <strong className="text-[#1b1c1c] font-medium">{org.nome}</strong> • 
+              Corretora: <strong className="text-[var(--text)] font-medium">{org.nome}</strong> • 
               {org.statusPlano === 'trial' ? ' Você tem 7 dias de acesso liberado a todas as ferramentas Pro.' : ' Renovação mensal automática.'}
             </p>
           </div>
@@ -216,10 +216,10 @@ export default function PlanosAssinaturaPage() {
           return (
             <div
               key={plan.id}
-              className={`rounded-2xl p-6 bg-white border flex flex-col justify-between transition-all relative ${
+              className={`rounded-2xl p-6 bg-[var(--surface-2)] border flex flex-col justify-between transition-all relative ${
                 plan.isPopular
                   ? 'border-2 border-primary shadow-lg ring-4 ring-primary/5'
-                  : 'border-[#e9e8e7] shadow-xs hover:border-[#c3c6d3]'
+                  : 'border-[var(--border)] shadow-xs hover:border-[var(--border)]'
               }`}
             >
               {plan.isPopular && (
@@ -229,15 +229,15 @@ export default function PlanosAssinaturaPage() {
               )}
 
               <div>
-                <div className="pb-4 border-b border-[#e9e8e7]">
-                  <h3 className="text-lg font-bold text-[#1b1c1c]">{plan.name}</h3>
+                <div className="pb-4 border-b border-[var(--border)]">
+                  <h3 className="text-lg font-bold text-[var(--text)]">{plan.name}</h3>
                   <p className="text-xs text-secondary mt-1 min-h-[36px]">{plan.description}</p>
                 </div>
 
                 <div className="py-5">
                   <div className="flex items-baseline gap-1">
                     <span className="text-xs text-secondary font-medium">R$</span>
-                    <span className="text-3xl font-extrabold text-[#1b1c1c] font-mono tracking-tight">
+                    <span className="text-3xl font-extrabold text-[var(--text)] font-mono tracking-tight">
                       {price}
                     </span>
                     <span className="text-xs text-secondary font-medium">/mês</span>
@@ -252,7 +252,7 @@ export default function PlanosAssinaturaPage() {
                     O que está incluso:
                   </span>
                   {plan.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-[#1b1c1c]">
+                    <div key={idx} className="flex items-start gap-2 text-xs text-[var(--text)]">
                       <span className="material-symbols-outlined text-emerald-600 text-[16px] shrink-0 mt-0.5">
                         check
                       </span>
@@ -268,7 +268,7 @@ export default function PlanosAssinaturaPage() {
                   className={`w-full py-2.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm ${
                     plan.isPopular
                       ? 'bg-primary hover:bg-primary-container text-white shadow-primary/20'
-                      : 'bg-[#f5f3f3] hover:bg-[#ebe8e8] text-[#1b1c1c] border border-[#e9e8e7]'
+                      : 'bg-[var(--surface)] hover:bg-[#ebe8e8] text-[var(--text)] border border-[var(--border)]'
                   }`}
                 >
                   <span>{isCurrent ? 'Plano Atual (Renovar)' : `Escolher Plano ${plan.name}`}</span>
@@ -283,10 +283,10 @@ export default function PlanosAssinaturaPage() {
       {/* Checkout Modal */}
       {selectedPlanForCheckout && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-[#e9e8e7] p-6 space-y-5 animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between border-b border-[#e9e8e7] pb-3">
+          <div className="bg-[var(--surface-2)] w-full max-w-md rounded-2xl shadow-2xl border border-[var(--border)] p-6 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
               <div>
-                <h3 className="text-base font-bold text-[#1b1c1c]">
+                <h3 className="text-base font-bold text-[var(--text)]">
                   Contratar Plano {selectedPlanForCheckout.toUpperCase()}
                 </h3>
                 <p className="text-xs text-secondary">
@@ -295,7 +295,7 @@ export default function PlanosAssinaturaPage() {
               </div>
               <button
                 onClick={() => setSelectedPlanForCheckout(null)}
-                className="p-1.5 rounded-lg text-secondary hover:text-[#1b1c1c] hover:bg-[#f5f3f3]"
+                className="p-1.5 rounded-lg text-secondary hover:text-[var(--text)] hover:bg-[var(--surface)]"
               >
                 ✕
               </button>
@@ -303,7 +303,7 @@ export default function PlanosAssinaturaPage() {
 
             {/* Payment Method Selector */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-[#1b1c1c]">
+              <label className="block text-xs font-semibold text-[var(--text)]">
                 Forma de Pagamento
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -313,7 +313,7 @@ export default function PlanosAssinaturaPage() {
                   className={`p-3 rounded-xl border text-left flex flex-col gap-1 transition-all cursor-pointer ${
                     paymentMethod === 'pix'
                       ? 'border-emerald-600 bg-emerald-50/50 text-emerald-900 font-semibold'
-                      : 'border-[#e9e8e7] bg-[#fbf9f9] text-secondary'
+                      : 'border-[var(--border)] bg-[#fbf9f9] text-secondary'
                   }`}
                 >
                   <span className="text-xs font-bold flex items-center gap-1">
@@ -329,7 +329,7 @@ export default function PlanosAssinaturaPage() {
                   className={`p-3 rounded-xl border text-left flex flex-col gap-1 transition-all cursor-pointer ${
                     paymentMethod === 'cartao'
                       ? 'border-primary bg-primary/5 text-primary font-semibold'
-                      : 'border-[#e9e8e7] bg-[#fbf9f9] text-secondary'
+                      : 'border-[var(--border)] bg-[#fbf9f9] text-secondary'
                   }`}
                 >
                   <span className="text-xs font-bold flex items-center gap-1">
@@ -342,10 +342,10 @@ export default function PlanosAssinaturaPage() {
             </div>
 
             {/* Price Summary */}
-            <div className="p-3.5 rounded-xl bg-[#fbf9f9] border border-[#e9e8e7] space-y-1.5 text-xs">
+            <div className="p-3.5 rounded-xl bg-[#fbf9f9] border border-[var(--border)] space-y-1.5 text-xs">
               <div className="flex justify-between text-secondary">
                 <span>Subtotal Mensal:</span>
-                <span className="font-mono text-[#1b1c1c]">
+                <span className="font-mono text-[var(--text)]">
                   R$ {selectedPlanForCheckout === 'starter' ? '297,00' : selectedPlanForCheckout === 'pro' ? '597,00' : '1.290,00'}
                 </span>
               </div>
@@ -353,7 +353,7 @@ export default function PlanosAssinaturaPage() {
                 <span>Desconto Especial PIX:</span>
                 <span className="font-mono text-emerald-700 font-medium">- 10% (Primeiro Mês)</span>
               </div>
-              <div className="pt-2 border-t border-[#e9e8e7] flex justify-between font-bold text-[#1b1c1c]">
+              <div className="pt-2 border-t border-[var(--border)] flex justify-between font-bold text-[var(--text)]">
                 <span>Total a Pagar:</span>
                 <span className="font-mono text-base text-primary">
                   R$ {selectedPlanForCheckout === 'starter' ? '267,30' : selectedPlanForCheckout === 'pro' ? '537,30' : '1.161,00'}
